@@ -1,0 +1,99 @@
+name: Sync upstream (master) and notify Discord
+
+on:
+  schedule:
+    - cron: '*/15 * * * *' # каждые 15 минут
+  workflow_dispatch: {}
+
+env:
+  UPSTREAM_OWNER: muk-as
+  UPSTREAM_REPO: DOTA2_WEB
+  UPSTREAM_BRANCH: master   # <-- upstream использует master
+  FORK_BRANCH: master       # <-- измените на main, если в вашем форке основная ветка называется main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Save current fork SHA
+        id: before
+        run: |
+          echo "before_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Add upstream and fetch
+        run: |
+          git remote add upstream https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git || true
+          git fetch --no-tags upstream
+
+      - name: Get upstream latest SHA
+        id: upstream
+        run: |
+          upstream_sha=$(git rev-parse --verify upstream/${{ env.UPSTREAM_BRANCH }})
+          echo "upstream_sha=$upstream_sha" >> $GITHUB_OUTPUT
+
+      - name: Merge upstream into fork branch
+        run: |
+          git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
+          # пытаемся fast-forward; если не получится — сделаем обычный merge
+          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge upstream/${{ env.UPSTREAM_BRANCH }}"; then
+            echo "merged=ff" >> $GITHUB_OUTPUT
+          else
+            git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
+            echo "merged=merge" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Save new SHA
+        id: after
+        run: |
+          echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Compare SHAs
+        id: compare
+        run: |
+          if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Push changes to fork
+        if: ${{ steps.compare.outputs.changed == 'true' }}
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
+
+      - name: Get upstream commit info
+        if: ${{ steps.compare.outputs.changed == 'true' }}
+        id: commitinfo
+        run: |
+          ua=${{ steps.upstream.outputs.upstream_sha }}
+          short_sha=$(git rev-parse --short $ua)
+          msg=$(git log -1 --pretty=format:'%s' $ua)
+          author=$(git log -1 --pretty=format:'%an' $ua)
+          url="https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}/commit/$ua"
+          echo "commit_sha=$ua" >> $GITHUB_OUTPUT
+          echo "commit_short=$short_sha" >> $GITHUB_OUTPUT
+          echo "commit_msg=$msg" >> $GITHUB_OUTPUT
+          echo "commit_author=$author" >> $GITHUB_OUTPUT
+          echo "commit_url=$url" >> $GITHUB_OUTPUT
+
+      - name: Notify Discord
+        if: ${{ steps.compare.outputs.changed == 'true' }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          payload=$(
+            jq -n --arg title "New upstream commits in ${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}" \
+                  --arg desc "${{ steps.commitinfo.outputs.commit_msg }}" \
+                  --arg author "${{ steps.commitinfo.outputs.commit_author }}" \
+                  --arg sha "${{ steps.commitinfo.outputs.commit_short }}" \
+                  --arg url "${{ steps.commitinfo.outputs.commit_url }}" \
+                  '{username: "Upstream Sync Bot", embeds: [{title: $title, description: $desc, fields: [{name:"Author", value:$author, inline:true},{name:"SHA", value:$sha, inline:true}], url:$url}] }'
+          )
+          curl -s -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK"
