@@ -1,0 +1,63 @@
+name: Sync upstream (master) to fork
+
+on:
+  schedule:
+    - cron: '*/15 * * * *' # каждые 15 минут
+  workflow_dispatch: {}
+
+env:
+  UPSTREAM_OWNER: muk-as
+  UPSTREAM_REPO: DOTA2_WEB
+  UPSTREAM_BRANCH: master   # upstream использует master
+  FORK_BRANCH: master       # поменяйте на main если в вашем форке основная ветка main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Save current fork SHA
+        id: before
+        run: echo "before_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Add upstream and fetch
+        run: |
+          git remote add upstream https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git || true
+          git fetch --no-tags upstream
+
+      - name: Get upstream latest SHA
+        id: upstream
+        run: |
+          upstream_sha=$(git rev-parse --verify upstream/${{ env.UPSTREAM_BRANCH }})
+          echo "upstream_sha=$upstream_sha" >> $GITHUB_OUTPUT
+
+      - name: Merge upstream into fork branch
+        run: |
+          git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
+          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge upstream/${{ env.UPSTREAM_BRANCH }}"; then
+            echo "merged=ff" >> $GITHUB_OUTPUT
+          else
+            # если не удалось ff, попробуем обычный merge (может создать коммит merge)
+            git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
+            echo "merged=merge" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Save new SHA
+        id: after
+        run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Compare SHAs and push if changed
+        id: push
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
