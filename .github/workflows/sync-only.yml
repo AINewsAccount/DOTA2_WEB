@@ -71,10 +71,9 @@ jobs:
             echo "ℹ️ Нет изменений — всё уже актуально."  
           fi  
 
-      - name: 📢 Send Dota updates to Discord  
+      -       - name: 📢 Send Dota updates to Discord  
         if: steps.push.outputs.changed == 'true'  
         run: |  
-          apt-get update && apt-get install -y tac  # tac обычно доступен, но на всякий случай  
           while read -r hash; do  
             if [ -z "$hash" ]; then continue; fi  
             msg=$(git show -s --format=%B $hash | sed 's/"/\\"/g')  
