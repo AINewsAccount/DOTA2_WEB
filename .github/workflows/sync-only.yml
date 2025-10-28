@@ -71,14 +71,37 @@ jobs:
             echo "ℹ️ Нет изменений — всё уже актуально."  
           fi  
 
-      - name: 📢 Send Dota updates to Discord  
+        - name: 📢 Send Dota updates to Discord  
         if: steps.push.outputs.changed == 'true'  
         run: |  
           while read -r hash; do  
             if [ -z "$hash" ]; then continue; fi  
-            msg=$(git show -s --format=%B $hash | sed 's/"/\\"/g')  
-            if echo "$msg" | grep -iq "Dota 2"; then  
-              formatted_msg="**Dota 2 Update:**\n$msg"  
-              curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"$formatted_msg\"}" "${{ secrets.DISCORD_WEBHOOK }}"  
+
+            title=$(git show -s --format=%s $hash | sed 's/"/\\"/g')
+            body=$(git show -s --format=%b $hash | sed 's/"/\\"/g')
+            files_changed=$(git show --stat --oneline $hash | tail -n 1 | sed 's/"/\\"/g')
+            url="https://github.com/${{ github.repository }}/commit/$hash"
+
+            if echo "$title $body" | grep -iq "Dota"; then  
+              # Определяем цвет по типу апдейта
+              color=3447003  # default (blue)
+              if echo "$title" | grep -iq "Experimental"; then
+                color=10181046  # purple
+              elif echo "$title" | grep -iq "Staging"; then
+                color=15105570  # orange
+              fi
+
+              json=$(jq -n \
+                --arg t "#dota_update" \
+                --arg title "$title" \
+                --arg desc "$body\n\n**$files_changed**" \
+                --arg url "$url" \
+                --argjson color "$color" \
+                '{embeds: [{title: $t, description: ($title + "\n" + $desc), color: $color, url: $url}]}' )
+
+              curl -H "Content-Type: application/json" \
+                   -X POST \
+                   -d "$json" \
+                   "${{ secrets.DISCORD_WEBHOOK }}"
             fi  
           done < <(git log --no-merges --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
