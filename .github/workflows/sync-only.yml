@@ -71,7 +71,7 @@ jobs:
             echo "ℹ️ Нет изменений — всё уже актуально."  
           fi  
 
-      -       - name: 📢 Send Dota updates to Discord  
+      - name: 📢 Send Dota updates to Discord  
         if: steps.push.outputs.changed == 'true'  
         run: |  
           while read -r hash; do  
