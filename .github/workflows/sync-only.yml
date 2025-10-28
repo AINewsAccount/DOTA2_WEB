@@ -5,7 +5,6 @@ on:
     - cron: '*/15 * * * *' # запуск каждые 15 минут
   workflow_dispatch: {} # ручной запуск
 
-# Указываем параметры
 env:
   UPSTREAM_OWNER: muk-as
   UPSTREAM_REPO: DOTA2_WEB
@@ -16,58 +15,71 @@ jobs:
   sync:
     runs-on: ubuntu-latest
 
-    # Разрешаем запись в репозиторий (иначе push не сработает)
-    permissions:
-      contents: write
+    # Разрешаем запись в репозиторий (иначе push не сработает)  
+    permissions:  
+      contents: write  
 
-    steps:
-      - name: 🧩 Checkout fork
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # обязательно, чтобы работал merge
+    steps:  
+      - name: 🧩 Checkout fork  
+        uses: actions/checkout@v4  
+        with:  
+          fetch-depth: 0 # обязательно, чтобы работал merge  
 
-      - name: 💾 Save current fork SHA
-        id: before
-        run: echo "before_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - name: 💾 Save current fork SHA  
+        id: before  
+        run: echo "before_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT  
 
-      - name: 🔗 Add upstream and fetch
-        run: |
-          git remote add upstream https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git || true
-          git fetch --no-tags upstream
+      - name: 🔗 Add upstream and fetch  
+        run: |  
+          git remote add upstream https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git || true  
+          git fetch --no-tags upstream  
 
-      - name: ⚙️ Configure git identity
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: ⚙️ Configure git identity  
+        run: |  
+          git config --global user.name "github-actions[bot]"  
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"  
 
-      - name: 🔄 Merge upstream into fork branch
-        id: merge
-        run: |
-          git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
-          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge upstream/${{ env.UPSTREAM_BRANCH }}" 2>/dev/null; then
-            echo "merged=ff" >> $GITHUB_OUTPUT
-            echo "✅ Fast-forward merge выполнен."
-          else
-            echo "ℹ️ Fast-forward невозможен, выполняется обычный merge..."
-            git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
-            echo "merged=merge" >> $GITHUB_OUTPUT
-          fi
+      - name: 🔄 Merge upstream into fork branch  
+        id: merge  
+        run: |  
+          git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}  
+          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge upstream/${{ env.UPSTREAM_BRANCH }}" 2>/dev/null; then  
+            echo "merged=ff" >> $GITHUB_OUTPUT  
+            echo "✅ Fast-forward merge выполнен."  
+          else  
+            echo "ℹ️ Fast-forward невозможен, выполняется обычный merge..."  
+            git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true  
+            echo "merged=merge" >> $GITHUB_OUTPUT  
+          fi  
 
-      - name: 💾 Save new SHA
-        id: after
-        run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - name: 💾 Save new SHA  
+        id: after  
+        run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT  
 
-      - name: 🚀 Compare SHAs and push if changed
-        id: push
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "⬆️ Изменения найдены — выполняется push..."
-            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
-            echo "✅ Форк успешно синхронизирован с upstream."
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "ℹ️ Нет изменений — всё уже актуально."
-          fi
+      - name: 🚀 Compare SHAs and push if changed  
+        id: push  
+        env:  
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        run: |  
+          if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then  
+            echo "changed=true" >> $GITHUB_OUTPUT  
+            echo "⬆️ Изменения найдены — выполняется push..."  
+            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}  
+            echo "✅ Форк успешно синхронизирован с upstream."  
+          else  
+            echo "changed=false" >> $GITHUB_OUTPUT  
+            echo "ℹ️ Нет изменений — всё уже актуально."  
+          fi  
+
+      - name: 📢 Send Dota updates to Discord  
+        if: steps.push.outputs.changed == 'true'  
+        run: |  
+          apt-get update && apt-get install -y tac  # tac обычно доступен, но на всякий случай  
+          while read -r hash; do  
+            if [ -z "$hash" ]; then continue; fi  
+            msg=$(git show -s --format=%B $hash | sed 's/"/\\"/g')  
+            if echo "$msg" | grep -iq "Dota 2"; then  
+              formatted_msg="**Dota 2 Update:**\n$msg"  
+              curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"$formatted_msg\"}" "${{ secrets.DISCORD_WEBHOOK }}"  
+            fi  
+          done < <(git log --no-merges --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
