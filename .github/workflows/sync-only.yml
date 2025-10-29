@@ -78,28 +78,56 @@ jobs:
 
             title=$(git show -s --format=%s $hash | sed 's/"/\\"/g')
             body=$(git show -s --format=%b $hash | sed 's/"/\\"/g')
-            files_changed=$(git show --stat --oneline $hash | tail -n 1 | sed 's/"/\\"/g')
+            stats=$(git show --stat --oneline $hash | tail -n 1 | sed 's/"/\\"/g')
             url="https://github.com/${{ github.repository }}/commit/$hash"
 
+            # Проверяем, что коммит связан с Dota
             if echo "$title $body" | grep -iq "Dota"; then
-              # Определяем цвет по типу обновления
-              color=3447003  # синий (default)
-              if echo "$title" | grep -iq "Experimental"; then
-                color=10181046  # фиолетовый
-              elif echo "$title" | grep -iq "Staging"; then
-                color=15105570  # оранжевый
+
+              # Извлекаем строку с версией (например "7197 => 7199")
+              version_line=$(echo "$title $body" | grep -oE '[0-9]{3,6} *=> *[0-9]{3,6}' | head -n1 | sed 's/ //g')
+              version_display=""
+              if [ -n "$version_line" ]; then
+                version_display="🧩 *${version_line//=>/→}*"
               fi
 
-              # Формируем embed JSON
+              # Определяем название обновления (например "Dota 2 Experimental Server")
+              update_name=$(echo "$title" | grep -oE 'Dota 2[^0-9]*' | sed 's/ *$//' | head -n1)
+
+              # Определяем цвет по типу
+              color=3447003  # default blue
+              if echo "$title" | grep -iq "Experimental"; then
+                color=10181046  # purple
+              elif echo "$title" | grep -iq "Staging"; then
+                color=15105570  # orange
+              fi
+
+              # Извлекаем статистику изменений
+              files=$(echo "$stats" | grep -oE '^[0-9]+ file' | sed 's/file/files/')
+              insertions=$(echo "$stats" | grep -oE '[0-9]+ insertion' || true)
+              deletions=$(echo "$stats" | grep -oE '[0-9]+ deletion' || true)
+              changes="🔄 *${files:-no files}, ${insertions:-0 insertions}, ${deletions:-0 deletions}*"
+
+              # Добавляем источник, если есть
+              source=""
+              if echo "$body" | grep -iq "t.me"; then
+                link=$(echo "$body" | grep -oE 'https://t\.me/[A-Za-z0-9_/-]+' | head -n1)
+                source="📡 [Source](${link})"
+              fi
+
+              # Формируем красивое embed-сообщение
+              desc="**${update_name:-Dota 2 Update}**\n${version_display}\n${changes}\n\n🔗 [View on GitHub](${url})"
+              if [ -n "$source" ]; then
+                desc="${desc}\n${source}"
+              fi
+
               json=$(jq -n \
                 --arg t "#dota_update" \
-                --arg title "$title" \
-                --arg desc "$body\n\n**$files_changed**" \
-                --arg url "$url" \
+                --arg desc "$desc" \
                 --argjson color "$color" \
-                '{embeds: [{title: $t, description: ($title + "\n" + $desc), color: $color, url: $url}]}')
+                '{embeds: [{title: $t, description: $desc, color: $color}]}')
 
-              # Отправляем сообщение в Discord
+              # Отправляем в Discord
               curl -H "Content-Type: application/json" \
                    -X POST \
                    -d "$json" \
