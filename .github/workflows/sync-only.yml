@@ -71,66 +71,76 @@ jobs:
           fi
 
       - name: 📢 Send Dota updates to Discord
-        if: steps.push.outputs.changed == 'true'
-        run: |
-          while read -r hash; do
-            if [ -z "$hash" ]; then continue; fi
+   if: steps.push.outputs.changed == 'true'
+   run: |
+     updates=""
+     while read -r hash; do
+       if [ -z "$hash" ]; then continue; fi
 
-            title=$(git show -s --format=%s $hash | sed 's/"/\\"/g')
-            body=$(git show -s --format=%b $hash | sed 's/"/\\"/g')
-            stats=$(git show --stat --oneline $hash | tail -n 1 | sed 's/"/\\"/g')
-            url="https://github.com/${{ github.repository }}/commit/$hash"
+       title=$(git show -s --format=%s $hash | sed 's/"/\\"/g')
+       body=$(git show -s --format=%b $hash | sed 's/"/\\"/g')
+       stats=$(git show --stat $hash | tail -n1 | sed 's/"/\\"/g')
 
-            # Проверяем, что коммит связан с Dota
-            if echo "$title $body" | grep -iq "Dota"; then
+       # Проверяем, что коммит связан с Dota
+       if echo "$title $body" | grep -iq "Dota"; then
 
-              # Извлекаем строку с версией (например "7197 => 7199")
-              version_line=$(echo "$title $body" | grep -oE '[0-9]{3,6} *=> *[0-9]{3,6}' | head -n1 | sed 's/ //g')
-              version_display=""
-              if [ -n "$version_line" ]; then
-                version_display="🧩 *${version_line//=>/→}*"
-              fi
+         # Извлекаем версию (например "7197 => 7199")
+         version_line=$(echo "$title $body" | grep -oE '[0-9]{3,6} *=> *[0-9]{3,6}' | head -n1 | sed 's/ //g')
+         version_display=""
+         if [ -n "$version_line" ]; then
+           version_display="🧩 *${version_line//=>/→}*"
+         fi
 
-              # Определяем название обновления (например "Dota 2 Experimental Server")
-              update_name=$(echo "$title" | grep -oE 'Dota 2[^0-9]*' | sed 's/ *$//' | head -n1)
+         # Определяем название обновления (например "Dota 2 Experimental Server")
+         update_name=$(echo "$title $body" | grep -oE 'Dota 2[^0-9]*' | sed 's/ *$//' | head -n1)
 
-              # Определяем цвет по типу
-              color=3447003  # default blue
-              if echo "$title" | grep -iq "Experimental"; then
-                color=10181046  # purple
-              elif echo "$title" | grep -iq "Staging"; then
-                color=15105570  # orange
-              fi
+         # Определяем цвет по типу
+         color=3447003  # default blue
+         if echo "$title $body" | grep -iq "Experimental"; then
+           color=10181046  # purple
+         elif echo "$title $body" | grep -iq "Staging"; then
+           color=15105570  # orange
+         fi
 
-              # Извлекаем статистику изменений
-              files=$(echo "$stats" | grep -oE '^[0-9]+ file' | sed 's/file/files/')
-              insertions=$(echo "$stats" | grep -oE '[0-9]+ insertion' || true)
-              deletions=$(echo "$stats" | grep -oE '[0-9]+ deletion' || true)
-              changes="🔄 *${files:-no files}, ${insertions:-0 insertions}, ${deletions:-0 deletions}*"
+         # Извлекаем статистику изменений
+         files=$(echo "$stats" | grep -oE '[0-9]+ files? changed' || true)
+         # insertions=$(echo "$stats" | grep -oE '[0-9]+ insertions?\(\+\)' | sed 's/(\+)//' || true)
+         # deletions=$(echo "$stats" | grep -oE '[0-9]+ deletions?\(\-\)' | sed 's/(\-)//' || true)
+         # changes="🔄 *${files:-no files}, ${insertions:-0 insertions}, ${deletions:-0 deletions}*"
+         # Упрощаем к твоему примеру: только files changed
+         files_num=$(echo "$stats" | grep -oE '[0-9]+' | head -n1 || echo 0)
+         changes="Files changed: ${files_num}"
 
-              # Добавляем источник, если есть
-              source=""
-              if echo "$body" | grep -iq "t.me"; then
-                link=$(echo "$body" | grep -oE 'https://t\.me/[A-Za-z0-9_/-]+' | head -n1)
-                source="📡 [Source](${link})"
-              fi
+         # Добавляем источник, если есть
+         source=""
+         if echo "$title $body" | grep -iq "t.me"; then
+           link=$(echo "$title $body" | grep -oE 'https://t\.me/[A-Za-z0-9_/-]+' | head -n1)
+           source=" #steam_api | t.me/DOTA_DM"  # как в примере, можно доработать на BOOST me если нет link
+         else
+           source=" #steam_api | BOOST me"
+         fi
 
-              # Формируем красивое embed-сообщение
-              desc="**${update_name:-Dota 2 Update}**\n${version_display}\n${changes}\n\n🔗 [View on GitHub](${url})"
-              if [ -n "$source" ]; then
-                desc="${desc}\n${source}"
-              fi
+         # Формируем сообщение (близко к твоему примеру)
+         url="https://github.com/${{ github.repository }}/commit/$hash"
+         desc="${source} [v] ${update_name:-Dota 2 Update} ${version_display} ${changes} | CLICK to view CHANGES 🔗 ${url}"
 
-              json=$(jq -n \
-                --arg t "#dota_update" \
-                --arg desc "$desc" \
-                --argjson color "$color" \
-                '{embeds: [{title: $t, description: $desc, color: $color}]}')
+         # Добавляем к updates
+         if [ -n "$updates" ]; then
+           updates="${updates} | "
+         fi
+         updates="${updates}${desc}"
 
-              # Отправляем в Discord
-              curl -H "Content-Type: application/json" \
-                   -X POST \
-                   -d "$json" \
-                   "${{ secrets.DISCORD_WEBHOOK }}"
-            fi
-          done < <(git log --no-merges --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
+       fi
+     done < <(git log --no-merges --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
+
+     if [ -n "$updates" ]; then
+       json=$(jq -n \
+         --arg u "DОТА_DM_SPAM: ${updates}" \
+         '{content: $u}')
+
+       # Отправляем в Discord
+       curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "$json" \
+            "${{ secrets.DISCORD_WEBHOOK }}"
+     fi
