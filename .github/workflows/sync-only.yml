@@ -70,6 +70,14 @@ jobs:
             echo "ℹ️ Нет изменений — всё уже актуально."
           fi
 
+      - name: 🐛 Debug SHAs and log
+        if: steps.push.outputs.changed == 'true'
+        run: |
+          echo "Debug: Before SHA: ${{ steps.before.outputs.before_sha }}"
+          echo "Debug: After SHA: ${{ steps.after.outputs.after_sha }}"
+          echo "Debug: Git log range: ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }}"
+          git log --no-merges --pretty=oneline ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} || echo "Error in git log"
+
       - name: 📢 Send Dota updates to Discord
         if: steps.push.outputs.changed == 'true'
         run: |
@@ -84,24 +92,6 @@ jobs:
             # Проверяем, что коммит связан с Dota
             if echo "$title $body" | grep -iq "Dota"; then
 
-              # Извлекаем версию (например "7197 => 7199")
-              version_line=$(echo "$title $body" | grep -oE '[0-9]{3,6} *=> *[0-9]{3,6}' | head -n1 | sed 's/ //g')
-              version_display=""
-              if [ -n "$version_line" ]; then
-                version_display="${version_line//=>/ => }"
-              fi
-
-              # Определяем название обновления (например "Dota 2 Experimental Server")
-              update_name=$(echo "$title $body" | grep -oE 'Dota 2[^0-9]*' | sed 's/ *$//' | head -n1)
-
-              # Определяем цвет по типу
-              color=3447003  # default blue
-              if echo "$title $body" | grep -iq "Experimental"; then
-                color=10181046  # purple
-              elif echo "$title $body" | grep -iq "Staging"; then
-                color=15105570  # orange
-              fi
-
               # Извлекаем статистику изменений
               files_num=$(echo "$stats" | grep -oE '[0-9]+' | head -n1 || echo 0)
               changes="Files changed: ${files_num}"
@@ -109,21 +99,20 @@ jobs:
               # Добавляем источник, если есть
               source=""
               if echo "$title $body" | grep -iq "t.me"; then
-                link=$(echo "$title $body" | grep -oE 'https://t\.me/[A-Za-z0-9_/-]+' | head -n1)
-                source=" #steam_api | t.me/DOTA_DM"
-              else
-                source=" #steam_api | BOOST me"
+                source="#steam_api | t.me/DOTA_DM "
+              elif echo "$title $body" | grep -iq "BOOST me"; then
+                source="#steam_api | BOOST me "
               fi
 
-              # Формируем сообщение (близко к твоему примеру)
+              # Формируем сообщение (используем полный title + body для деталей)
               url="https://github.com/${{ github.repository }}/commit/$hash"
-              desc="[v] ${update_name:-Dota 2 Update} ${version_display} ${changes} | CLICK to view CHANGES"
+              desc="${title} ${body} ${changes} | CLICK to view CHANGES 🔗 ${url}"
 
               # Добавляем к updates
               if [ -n "$updates" ]; then
                 updates="${updates} | "
               fi
-              updates="${updates}${source} ${desc}"
+              updates="${updates}${source}${desc}"
 
             fi
           done < <(git log --no-merges --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
