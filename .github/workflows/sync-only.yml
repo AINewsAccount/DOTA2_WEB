@@ -98,15 +98,25 @@ jobs:
             exit 0
           fi
 
-          if [ "${{ github.event.inputs.mode }}" = "test" ]; then
-            echo "🧪 Sending test notification to Discord..."
-            test_msg="**Тип обновления:** Dota 2 Test Mode\n**Что нового:**\n[v] test 12345 => 12346\n[h] testhash123 => testhash456\n[s] test CN hero => hero2\n🔗 [Посмотреть коммит](https://github.com/${{ github.repository }})"
-            json=$(jq -n --arg content "$test_msg" '{content: $content}')
-            curl -s -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK" \
-              && echo "✅ Test message sent." \
-              || echo "⚠️ Failed to send test message."
-            exit 0
-          fi
+        if [ "${{ github.event.inputs.mode }}" = "test" ]; then
+          echo "🧪 Sending test notification to Discord..."
+
+          test_msg="**Тип обновления:** Dota 2 Test Mode
+        **Что нового:**
+        [v] test 12345 => 12346
+        [h] testhash123 => testhash456
+        [s] test CN hero => hero2"
+
+        json=$(jq -n --arg content "$test_msg" '{content: $content}')
+
+        curl -s -H "Content-Type: application/json" \
+           -X POST -d "$json" "$DISCORD_WEBHOOK" \
+           && echo "✅ Test message sent." \
+           || echo "⚠️ Failed to send test message."
+
+          exit 0
+        fi
+
 
           # --- обычная логика Discord-уведомлений ---
           if [ "${{ steps.push.outputs.changed }}" != "true" ]; then
