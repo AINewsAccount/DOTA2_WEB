@@ -76,12 +76,12 @@ jobs:
           echo "Debug: Before SHA: ${{ steps.before.outputs.before_sha }}"
           echo "Debug: After SHA: ${{ steps.after.outputs.after_sha }}"
           echo "Debug: Git log range: ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }}"
-          git log --no-merges --pretty=oneline ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} || echo "Error in git log"
+          git log --pretty=oneline ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} || echo "Error in git log"
 
       - name: 📢 Send Dota updates to Discord
         if: steps.push.outputs.changed == 'true'
         run: |
-          updates=""
+          embeds='[]'
           while read -r hash; do
             if [ -z "$hash" ]; then continue; fi
 
@@ -89,42 +89,78 @@ jobs:
             body=$(git show -s --format=%b $hash | sed 's/"/\\"/g')
             stats=$(git show --stat $hash | tail -n1 | sed 's/"/\\"/g')
 
+            # Получаем измененные HISTORY файлы
+            history_files=$(git show --name-only --pretty="" $hash | grep '_HISTORY_by_date.txt$' || true)
+
+            echo "Debug: Processing hash: $hash"
+            echo "Debug: title: $title"
+            echo "Debug: body: $body"
+            echo "Debug: stats: $stats"
+            echo "Debug: history_files: $history_files"
+
             # Проверяем, что коммит связан с Dota
             if echo "$title $body" | grep -iq "Dota"; then
+              echo "Debug: Matched Dota"
 
               # Извлекаем статистику изменений
               files_num=$(echo "$stats" | grep -oE '[0-9]+' | head -n1 || echo 0)
-              changes="Files changed: ${files_num}"
+              echo "Debug: files_num: $files_num"
+              changes_summary="Files changed: ${files_num}"
 
-              # Добавляем источник, если есть
+              # Добавляем источник
               source=""
               if echo "$title $body" | grep -iq "t.me"; then
-                source="#steam_api | t.me/DOTA_DM "
+                source="#steam_api | t.me/DOTA_DM\n"
               elif echo "$title $body" | grep -iq "BOOST me"; then
-                source="#steam_api | BOOST me "
+                source="#steam_api | BOOST me\n"
               fi
+              echo "Debug: source: $source"
 
-              # Формируем сообщение (используем полный title + body для деталей)
+              # Извлекаем добавленные строки из HISTORY файлов
+              new_changes=""
+              for file in $history_files; do
+                if [ -n "$file" ]; then
+                  added_lines=$(git show $hash -- "$file" | grep '^\+' | sed 's/^\+//' | grep -E '\[s\]|\[v\]|\[h\]' | tr '\n' '\n' )
+                  if [ -n "$added_lines" ]; then
+                    type_update=$(echo "${file%/*}" | sed 's/dota2_/Dota 2 /g; s/_/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')
+                    new_changes="${new_changes}\n**Тип обновления: ${type_update}**\nЧто нового:\n${added_lines}\n"
+                  fi
+                fi
+              done
+              echo "Debug: new_changes: $new_changes"
+
+              # Определяем цвет по типу
+              color=3447003  # default blue
+              if echo "$new_changes $title $body" | grep -iq "Experimental"; then
+                color=10181046  # purple
+              elif echo "$new_changes $title $body" | grep -iq "Staging"; then
+                color=15105570  # orange
+              fi
+              echo "Debug: color: $color"
+
+              # Формируем embed для этого коммита
               url="https://github.com/${{ github.repository }}/commit/$hash"
-              desc="${title} ${body} ${changes} | CLICK to view CHANGES 🔗 ${url}"
+              embed_title="Dota 2 Update"
+              embed_desc="${source}${new_changes}\n\n${title} ${body}\n${changes_summary}\n🔗 [View on GitHub](${url})"
+              embeds=$(echo "$embeds" | jq --arg t "$embed_title" --arg d "$embed_desc" --argjson c "$color" '. += [{title: $t, description: $d, color: $c}]')
+              echo "Debug: current embeds: $embeds"
 
-              # Добавляем к updates
-              if [ -n "$updates" ]; then
-                updates="${updates} | "
-              fi
-              updates="${updates}${source}${desc}"
-
+            else
+              echo "Debug: No Dota match for this commit"
             fi
-          done < <(git log --no-merges --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
+          done < <(git log --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
 
-          if [ -n "$updates" ]; then
-            json=$(jq -n \
-              --arg u "DОТА_DM_SPAM: ${updates}" \
-              '{content: $u}')
+          if [ "${embeds}" != "[]" ]; then
+            echo "Debug: Final embeds to send: $embeds"
+            json=$(jq -n --argjson embeds "$embeds" '{embeds: $embeds}')
+            echo "Debug: JSON: $json"
 
-            # Отправляем в Discord
+            echo "Debug: Sending to Discord..."
             curl -H "Content-Type: application/json" \
                  -X POST \
                  -d "$json" \
-                 "${{ secrets.DISCORD_WEBHOOK }}"
+                 "${{ secrets.DISCORD_WEBHOOK }}" || echo "Debug: Curl failed"
+            echo "Debug: Sent."
+          else
+            echo "Debug: No updates to send."
           fi
