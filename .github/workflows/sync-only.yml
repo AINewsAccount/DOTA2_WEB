@@ -2,7 +2,7 @@ name: Sync upstream (master) to fork
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # запуск каждые 15 минут
+    - cron: '*/15 * * * *' # каждые 15 минут
   workflow_dispatch:
     inputs:
       mode:
@@ -42,40 +42,26 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: 🧪 Test Discord Notification (manual)
+      # 🔹 Тестовый режим
+      - name: 🧪 Send test Discord message
         if: ${{ github.event.inputs.mode == 'test' }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          echo "🧪 Sending test notification to Discord..."
-
-          test_msg=$(cat <<'MSG'
-**Тип обновления:** Dota 2 Test Mode
-**Что нового:**
-[v] test 12345 => 12346
-[h] testhash123 => testhash456
-[s] test CN hero => hero2
-MSG
-)
-
-          json=$(jq -n --arg content "$test_msg" '{content: $content}')
-
-          curl -s -H "Content-Type: application/json" \
-               -X POST -d "$json" "$DISCORD_WEBHOOK" \
-               && echo "✅ Test message sent." \
-               || echo "⚠️ Failed to send test message."
-
+          echo "🧪 Sending test message..."
+          msg="**Тип обновления:** Dota 2 Test Mode\n**Что нового:**\n[v] test 12345 => 12346\n[h] testhash123 => testhash456\n[s] test CN hero => hero2"
+          json=$(jq -n --arg content "$msg" '{content: $content}')
+          curl -s -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK"
+          echo "✅ Test message sent."
           exit 0
 
       - name: 🔄 Merge upstream into fork branch
         id: merge
         run: |
           git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
-          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge upstream/${{ env.UPSTREAM_BRANCH }}" 2>/dev/null; then
+          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge" 2>/dev/null; then
             echo "merged=ff" >> $GITHUB_OUTPUT
-            echo "✅ Fast-forward merge выполнен."
           else
-            echo "ℹ️ Fast-forward невозможен, выполняется обычный merge..."
             git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
             echo "merged=merge" >> $GITHUB_OUTPUT
           fi
@@ -84,43 +70,32 @@ MSG
         id: after
         run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-      - name: 🚀 Compare SHAs and push if changed
+      - name: 🚀 Push if changed
         id: push
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "⬆️ Изменения найдены — выполняется push..."
             git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
-            echo "✅ Форк успешно синхронизирован с upstream."
+            echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "ℹ️ Нет изменений — всё уже актуально."
           fi
-
-      - name: 🐛 Debug SHAs and log
-        if: steps.push.outputs.changed == 'true'
-        run: |
-          echo "Debug: Before SHA: ${{ steps.before.outputs.before_sha }}"
-          echo "Debug: After SHA: ${{ steps.after.outputs.after_sha }}"
-          echo "Debug: Git log range: ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }}"
-          git log --pretty=oneline ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} || echo "Error in git log"
 
       - name: 📢 Send Dota updates to Discord
         if: steps.push.outputs.changed == 'true'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          updates=""
+          echo "📢 Checking commits for Dota updates..."
           while read -r hash; do
             [ -z "$hash" ] && continue
 
-            title=$(git show -s --format=%s $hash | sed 's/"/\\"/g')
-            body=$(git show -s --format=%b $hash | sed 's/"/\\"/g')
+            title=$(git show -s --format=%s $hash)
+            body=$(git show -s --format=%b $hash)
             commit_url="https://github.com/${{ github.repository }}/commit/$hash"
 
-            # Пытаемся определить тип обновления
+            # Определяем тип
             if echo "$title" | grep -iq "staging"; then
               type_update="Dota 2 Staging"
             elif echo "$title" | grep -iq "experimental"; then
@@ -131,22 +106,13 @@ MSG
               type_update="Dota 2 Update"
             fi
 
-            added_lines=$(git show $hash | grep -E "^\+|^-" | grep -vE "^\+\+\+|^---" | head -n 10 | sed 's/^/    /')
+            added_lines=$(git show $hash | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
             [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
 
-            msg=$(cat <<MSG
-**Тип обновления:** ${type_update}
-**Что нового:**
-${added_lines}
-🔗 [Посмотреть коммит](${commit_url})
-MSG
-)
+            msg="**Тип обновления:** ${type_update}\n**Что нового:**\n${added_lines}\n🔗 [Посмотреть коммит](${commit_url})"
 
             json=$(jq -n --arg content "$msg" '{content: $content}')
+            curl -s -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK"
 
-            curl -s -H "Content-Type: application/json" \
-                 -X POST -d "$json" "$DISCORD_WEBHOOK" \
-                 && echo "✅ Sent update for $hash" \
-                 || echo "⚠️ Failed to send update for $hash"
-
+            echo "✅ Sent update for $hash"
           done < <(git log --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
