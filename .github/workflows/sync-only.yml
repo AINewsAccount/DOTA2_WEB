@@ -115,4 +115,14 @@ jobs:
             curl -s -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK"
 
             echo "✅ Sent update for $hash"
-          done < <(git log --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
+          before_sha="${{ steps.before.outputs.before_sha }}"
+after_sha="${{ steps.after.outputs.after_sha }}"
+
+if git rev-parse "$before_sha" >/dev/null 2>&1 && git rev-parse "$after_sha" >/dev/null 2>&1; then
+  git log --pretty=format:"%H" "${before_sha}..${after_sha}" | tac | while read -r hash; do
+    [ -z "$hash" ] && continue
+    # ... остальной код ...
+  done
+else
+  echo "⚠️ One of SHAs is invalid. before=$before_sha, after=$after_sha"
+fi
