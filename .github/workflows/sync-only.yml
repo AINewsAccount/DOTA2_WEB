@@ -51,7 +51,7 @@ jobs:
 
   # ---------- TEST job: выполняется только если gate говорит run_test=true ----------
   test:
-          - name: Send test embed to Discord
+        name: Send test embed to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
