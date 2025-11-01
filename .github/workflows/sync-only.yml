@@ -2,13 +2,13 @@ name: Sync upstream (master) to fork
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # каждые 15 минут
+    - cron: '*/15 * * * *' # запуск каждые 15 минут
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Run mode (normal/test)'
+        description: 'Режим запуска: sync (обычный) или test (тестовое уведомление)'
         required: false
-        default: 'normal'
+        default: 'sync'
 
 env:
   UPSTREAM_OWNER: muk-as
@@ -24,33 +24,113 @@ jobs:
 
     steps:
       - name: 🧩 Checkout fork
+        if: ${{ github.event.inputs.mode != 'test' }}
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: 💾 Save current fork SHA
+        if: ${{ github.event.inputs.mode != 'test' }}
         id: before
         run: echo "before_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
       - name: 🔗 Add upstream and fetch
+        if: ${{ github.event.inputs.mode != 'test' }}
         run: |
           git remote add upstream https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git || true
           git fetch --no-tags upstream
 
       - name: ⚙️ Configure git identity
+        if: ${{ github.event.inputs.mode != 'test' }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      # 🔹 Тестовый режим
-            - name: 🧪 Send test Dota update to Discord
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'test' }}
+      - name: 🔄 Merge upstream into fork branch
+        if: ${{ github.event.inputs.mode != 'test' }}
+        id: merge
+        run: |
+          git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
+          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge upstream/${{ env.UPSTREAM_BRANCH }}" 2>/dev/null; then
+            echo "merged=ff" >> $GITHUB_OUTPUT
+          else
+            git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
+            echo "merged=merge" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 💾 Save new SHA
+        if: ${{ github.event.inputs.mode != 'test' }}
+        id: after
+        run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: 🚀 Compare SHAs and push if changed
+        if: ${{ github.event.inputs.mode != 'test' }}
+        id: push
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📢 Send Dota updates to Discord
+        if: ${{ steps.push.outputs.changed == 'true' && github.event.inputs.mode != 'test' }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          echo "📢 Checking commits for Dota updates..."
+          while read -r hash; do
+            [ -z "$hash" ] && continue
+
+            title=$(git show -s --format=%s $hash)
+            body=$(git show -s --format=%b $hash)
+            commit_url="https://github.com/${{ github.repository }}/commit/$hash"
+
+            if echo "$title" | grep -iq "staging"; then
+              type_update="Dota 2 Staging"
+            elif echo "$title" | grep -iq "experimental"; then
+              type_update="Dota 2 Experimental"
+            elif echo "$title" | grep -iq "heroes"; then
+              type_update="Dota 2 Heroes"
+            else
+              type_update="Dota 2 Update"
+            fi
+
+            added_lines=$(git show $hash | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
+            [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
+
+            embed_desc=$(cat <<EOF
+**Тип обновления:** ${type_update}
+**Что нового:**
+${added_lines}
+🔗 [Посмотреть коммит](${commit_url})
+EOF
+            )
+
+            color=3447003
+            json=$(jq -n \
+              --arg title "Dota 2 Update" \
+              --arg desc "$embed_desc" \
+              --argjson color "$color" \
+              '{embeds: [{title: $title, description: $desc, color: $color}]}')
+
+            curl -s -H "Content-Type: application/json" \
+                 -X POST -d "$json" "$DISCORD_WEBHOOK"
+
+            echo "✅ Sent update for $hash"
+          done < <(git log --pretty=format:"%H" ${{ steps.before.outputs.before_sha }}..${{ steps.after.outputs.after_sha }} | tac)
+
+      # 🧪 ТЕСТОВЫЙ РЕЖИМ
+      - name: 🧪 Send test Dota update to Discord
+        if: ${{ github.event.inputs.mode == 'test' }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           echo "🧪 Starting test mode..."
 
-          # Фиктивные данные для проверки формата
           before_sha="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           after_sha="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
           commit_url="https://github.com/${{ github.repository }}/commit/${after_sha}"
@@ -63,7 +143,6 @@ jobs:
 EOF
           )
 
-          # Формируем embed-описание точно как в боевой версии
           embed_desc=$(cat <<EOF
 **Тип обновления:** ${type_update}
 **Что нового:**
@@ -72,10 +151,8 @@ ${added_lines}
 EOF
           )
 
-          # Цвет тестового уведомления (желтый)
           color=16776960
 
-          # Создаем JSON
           json=$(jq -n \
             --arg title "🧪 Dota 2 Test Notification" \
             --arg desc "$embed_desc" \
@@ -85,90 +162,7 @@ EOF
           echo "Debug JSON:"
           echo "$json"
 
-          # Отправляем в Discord
           curl -s -H "Content-Type: application/json" \
                -X POST -d "$json" "$DISCORD_WEBHOOK" || echo "⚠️ Curl failed"
 
           echo "✅ Test message sent successfully."
-
-
-      - name: 🔄 Merge upstream into fork branch
-        id: merge
-        run: |
-          git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
-          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge" 2>/dev/null; then
-            echo "merged=ff" >> $GITHUB_OUTPUT
-          else
-            git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
-            echo "merged=merge" >> $GITHUB_OUTPUT
-          fi
-
-      - name: 💾 Save new SHA
-        id: after
-        run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-
-      - name: 🚀 Push if changed
-        id: push
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
-            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: 📢 Send Dota updates to Discord
-        if: steps.push.outputs.changed == 'true'
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          echo "📢 Checking commits for Dota updates..."
-          before_sha="${{ steps.before.outputs.before_sha }}"
-          after_sha="${{ steps.after.outputs.after_sha }}"
-
-          if git rev-parse "$before_sha" >/dev/null 2>&1 && git rev-parse "$after_sha" >/dev/null 2>&1; then
-            echo "🧩 Processing commits between $before_sha .. $after_sha"
-            git log --pretty=format:"%H" "${before_sha}..${after_sha}" | tac | while read -r hash; do
-              [ -z "$hash" ] && continue
-
-              title=$(git show -s --format=%s $hash)
-              body=$(git show -s --format=%b $hash)
-              commit_url="https://github.com/${{ github.repository }}/commit/$hash"
-
-              # Определяем тип обновления и цвет embed
-              if echo "$title" | grep -iq "staging"; then
-                type_update="Dota 2 Staging"
-                color=15105570
-              elif echo "$title" | grep -iq "experimental"; then
-                type_update="Dota 2 Experimental"
-                color=10181046
-              elif echo "$title" | grep -iq "heroes"; then
-                type_update="Dota 2 Heroes"
-                color=3066993
-              else
-                type_update="Dota 2 Update"
-                color=3447003
-              fi
-
-              added_lines=$(git show $hash | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
-              [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
-
-              embed_desc="**Тип обновления:** ${type_update}\n**Что нового:**\n${added_lines}\n🔗 [Посмотреть коммит](${commit_url})"
-
-              json=$(jq -n \
-                --arg title "⚙️ Dota 2 Update" \
-                --arg desc "$embed_desc" \
-                --arg url "$commit_url" \
-                --argjson color "$color" \
-                '{embeds: [{title: $title, description: $desc, url: $url, color: $color}]}')
-
-              curl -s -H "Content-Type: application/json" \
-                   -X POST -d "$json" "$DISCORD_WEBHOOK"
-
-              echo "✅ Sent embed for $hash"
-            done
-          else
-            echo "⚠️ One of SHAs is invalid. before=$before_sha, after=$after_sha"
-          fi
