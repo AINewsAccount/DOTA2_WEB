@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Режим: sync (обычный) или test (послать тестовое embed)'
+        description: 'Режим: sync (обычный) или test (тестовое уведомление)'
         required: false
         default: 'sync'
 
@@ -20,24 +20,54 @@ permissions:
   contents: write
 
 jobs:
-  # ---------- TEST JOB: запускается только вручную с mode=test ----------
+  # ---------- GATE: решает, запускать test или sync ----------
+  gate:
+    name: Decide mode
+    runs-on: ubuntu-latest
+    outputs:
+      run_sync: ${{ steps.set.outputs.run_sync }}
+      run_test: ${{ steps.set.outputs.run_test }}
+    steps:
+      - id: set
+        run: |
+          echo "Event: $GITHUB_EVENT_NAME"
+          # по умолчанию — run sync
+          run_sync=true
+          run_test=false
+
+          # если workflow_dispatch и входной параметр mode == 'test' — включаем тестовый режим
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            # github.event.inputs.mode доступен как контекст выражения, но безопаснее читать через runner env substitution
+            mode="${{ github.event.inputs.mode }}"
+            echo "workflow_dispatch mode='${mode}'"
+            if [ "${mode}" = "test" ]; then
+              run_sync=false
+              run_test=true
+            fi
+          fi
+
+          echo "run_sync=${run_sync}" >> $GITHUB_OUTPUT
+          echo "run_test=${run_test}" >> $GITHUB_OUTPUT
+
+  # ---------- TEST job: выполняется только если gate говорит run_test=true ----------
   test:
     name: Test Discord embed
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'test' }}
+    needs: gate
+    if: ${{ needs.gate.outputs.run_test == 'true' }}
     steps:
       - name: Send test embed to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          set -eux
+          set -euo pipefail
 
-          if [ -z "${DISCORD_WEBHOOK}" ]; then
-            echo "⚠️ DISCORD_WEBHOOK not set. Aborting."
+          if [ -z "${DISCORD_WEBHOOK:-}" ]; then
+            echo "⚠️ DISCORD_WEBHOOK not set. Aborting test."
             exit 1
           fi
 
-          # --- формируем многострочное описание через heredoc (реальные переводы строк!) ---
+          # --- многстрочный текст с реальными переводами строк ---
           embed_desc=$(cat <<'DESC'
 **Тип обновления:** Dota 2 Test Mode
 **Что нового:**
@@ -47,7 +77,6 @@ jobs:
 DESC
 )
 
-          # Подготавливаем JSON через jq (без проблем с экранированием)
           json=$(jq -n \
             --arg title "🧪 Dota 2 Test Notification" \
             --arg desc "$embed_desc" \
@@ -57,16 +86,16 @@ DESC
           echo "Debug JSON:"
           echo "$json"
 
-          # Отправляем
           curl -sS -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK" \
             && echo "✅ Test embed sent." \
             || (echo "❌ Failed to send test embed." && exit 1)
 
-  # ---------- SYNC JOB: основной поток (не запускается, если mode == test) ----------
+  # ---------- SYNC job: основной поток (merge/push + уведомления) ----------
   sync:
     name: Sync upstream -> fork
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.mode != 'test' }}
+    needs: gate
+    if: ${{ needs.gate.outputs.run_sync == 'true' }}
     steps:
       - name: Checkout fork
         uses: actions/checkout@v4
@@ -126,9 +155,9 @@ DESC
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          set -eux
+          set -euo pipefail
 
-          if [ -z "${DISCORD_WEBHOOK}" ]; then
+          if [ -z "${DISCORD_WEBHOOK:-}" ]; then
             echo "⚠️ DISCORD_WEBHOOK not set. Skipping notifications."
             exit 0
           fi
@@ -136,13 +165,12 @@ DESC
           before_sha="${{ steps.before.outputs.before_sha }}"
           after_sha="${{ steps.after.outputs.after_sha }}"
 
-          # Проверяем, что оба SHA валидны
+          # проверка валидности sha
           if ! git rev-parse "$before_sha" >/dev/null 2>&1 || ! git rev-parse "$after_sha" >/dev/null 2>&1; then
             echo "⚠️ One of SHAs is invalid. before=$before_sha after=$after_sha"
             exit 0
           fi
 
-          # Выбираем все коммиты в диапазоне и отправляем embed на каждый
           git log --pretty=format:"%H" "${before_sha}..${after_sha}" | tac | while read -r hash; do
             [ -z "$hash" ] && continue
 
@@ -166,7 +194,6 @@ DESC
             added_lines=$(git show "$hash" | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 50)
             [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
 
-            # Используем heredoc для реального многострочного описания
             embed_desc=$(cat <<EOF
 **Тип обновления:** ${type_update}
 **Что нового:**
@@ -181,7 +208,6 @@ EOF
               --argjson color "$color" \
               '{embeds: [{title: $title, description: $desc, color: $color}]}')
 
-            # Отправка
             curl -sS -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK" \
               && echo "✅ Sent embed for $hash" \
               || echo "❌ Failed to send embed for $hash"
