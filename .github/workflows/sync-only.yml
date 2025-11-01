@@ -2,11 +2,11 @@ name: Sync upstream (master) to fork
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/15 * * * *' # каждые 15 минут
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Режим: sync (обычный) или test (тестовое уведомление)'
+        description: 'Режим запуска (sync или test)'
         required: false
         default: 'sync'
 
@@ -16,194 +16,122 @@ env:
   UPSTREAM_BRANCH: master
   FORK_BRANCH: master
 
-permissions:
-  contents: write
-
 jobs:
-  # ---------- GATE: решает, запускать test или sync ----------
-  gate:
-    name: Decide mode
-    runs-on: ubuntu-latest
-    outputs:
-      run_sync: ${{ steps.set.outputs.run_sync }}
-      run_test: ${{ steps.set.outputs.run_test }}
-    steps:
-      - id: set
-        run: |
-          echo "Event: $GITHUB_EVENT_NAME"
-          # по умолчанию — run sync
-          run_sync=true
-          run_test=false
-
-          # если workflow_dispatch и входной параметр mode == 'test' — включаем тестовый режим
-          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
-            # github.event.inputs.mode доступен как контекст выражения, но безопаснее читать через runner env substitution
-            mode="${{ github.event.inputs.mode }}"
-            echo "workflow_dispatch mode='${mode}'"
-            if [ "${mode}" = "test" ]; then
-              run_sync=false
-              run_test=true
-            fi
-          fi
-
-          echo "run_sync=${run_sync}" >> $GITHUB_OUTPUT
-          echo "run_test=${run_test}" >> $GITHUB_OUTPUT
-
-  # ---------- TEST job: выполняется только если gate говорит run_test=true ----------
-  test:
-        name: Send test embed to Discord
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          set -euo pipefail
-
-          if [ -z "${DISCORD_WEBHOOK:-}" ]; then
-            echo "⚠️ DISCORD_WEBHOOK not set. Aborting test."
-            exit 1
-          fi
-
-          # --- многострочный текст с реальными переводами строк ---
-          embed_desc="$(cat <<'EOF'
-**Тип обновления:** Dota 2 Test Mode
-**Что нового:**
-[v] test 12345 => 12346
-[h] testhash123 => testhash456
-[s] test CN hero => hero2
-EOF
-)"
-
-          json=$(jq -n \
-            --arg title "🧪 Dota 2 Test Notification" \
-            --arg desc "$embed_desc" \
-            --argjson color 16776960 \
-            '{embeds: [{title: $title, description: $desc, color: $color}]}')
-
-          echo "Debug JSON:"
-          echo "$json"
-
-          curl -sS -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK" \
-            && echo "✅ Test embed sent." \
-            || (echo "❌ Failed to send test embed." && exit 1)
-
-  # ---------- SYNC job: основной поток (merge/push + уведомления) ----------
   sync:
-    name: Sync upstream -> fork
     runs-on: ubuntu-latest
-    needs: gate
-    if: ${{ needs.gate.outputs.run_sync == 'true' }}
+
+    permissions:
+      contents: write
+
     steps:
-      - name: Checkout fork
+      - name: 🧩 Checkout fork
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Configure git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Save before SHA
+      - name: 💾 Save current fork SHA
         id: before
         run: echo "before_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Add upstream and fetch
+      - name: 🔗 Add upstream and fetch
         run: |
           git remote add upstream https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git || true
           git fetch --no-tags upstream
 
-      - name: Merge upstream (safe)
+      - name: ⚙️ Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: 🔄 Merge upstream
         id: merge
         run: |
           git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
-          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }}; then
+          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge"; then
             echo "merged=ff" >> $GITHUB_OUTPUT
           else
             git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
-            if git ls-files -u | grep .; then
-              echo "⚠️ Merge conflict detected. Aborting sync."
-              git merge --abort || true
-              exit 0
-            fi
             echo "merged=merge" >> $GITHUB_OUTPUT
           fi
 
-      - name: Save after SHA
+      - name: 💾 Save new SHA
         id: after
         run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Push if changed
+      - name: 🚀 Push if changed
         id: push
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          before="${{ steps.before.outputs.before_sha }}"
-          after="${{ steps.after.outputs.after_sha }}"
-          if [ "$before" != "$after" ]; then
+          if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
+            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
             echo "changed=true" >> $GITHUB_OUTPUT
-            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:refs/heads/${{ env.FORK_BRANCH }}
           else
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Send Dota update embeds to Discord
-        if: steps.push.outputs.changed == 'true'
+      - name: 📢 Send Dota updates to Discord
+        if: steps.push.outputs.changed == 'true' || github.event.inputs.mode == 'test'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           set -euo pipefail
 
-          if [ -z "${DISCORD_WEBHOOK:-}" ]; then
-            echo "⚠️ DISCORD_WEBHOOK not set. Skipping notifications."
+          # === ТЕСТОВЫЙ РЕЖИМ ===
+          if [ "${{ github.event.inputs.mode }}" = "test" ]; then
+            printf '%s\n' "**Тип обновления:** Dota 2 Test Mode" "" \
+              "**Что нового:**" \
+              "[v] test 12345 => 12346" \
+              "[h] testhash123 => testhash456" \
+              "[s] test CN hero => hero2" "" \
+              "🔗 [Посмотреть коммит](https://github.com/AINewsAccount/DOTA2_WEB/commit/testhash)" > /tmp/desc.txt
+
+            json=$(jq -n --rawfile desc /tmp/desc.txt \
+              --arg title "🧪 Dota 2 Test Notification" \
+              --argjson color 16776960 \
+              '{embeds: [{title: $title, description: $desc, color: $color}]}')
+
+            curl -sS -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK"
+            echo "✅ Тестовое сообщение отправлено."
             exit 0
           fi
 
-          before_sha="${{ steps.before.outputs.before_sha }}"
-          after_sha="${{ steps.after.outputs.after_sha }}"
+          # === ОСНОВНОЙ РЕЖИМ ===
+          before="${{ steps.before.outputs.before_sha }}"
+          after="${{ steps.after.outputs.after_sha }}"
 
-          # проверка валидности sha
-          if ! git rev-parse "$before_sha" >/dev/null 2>&1 || ! git rev-parse "$after_sha" >/dev/null 2>&1; then
-            echo "⚠️ One of SHAs is invalid. before=$before_sha after=$after_sha"
-            exit 0
-          fi
-
-          git log --pretty=format:"%H" "${before_sha}..${after_sha}" | tac | while read -r hash; do
+          git log --pretty=format:"%H" "$before..$after" | tac | while read -r hash; do
             [ -z "$hash" ] && continue
 
             title=$(git show -s --format=%s "$hash")
+            body=$(git show -s --format=%b "$hash")
             commit_url="https://github.com/${{ github.repository }}/commit/$hash"
 
-            if echo "$title" | grep -iq "staging"; then
-              type_update="Dota 2 Staging"
-              color=15105570
-            elif echo "$title" | grep -iq "experimental"; then
-              type_update="Dota 2 Experimental"
-              color=10181046
-            elif echo "$title" | grep -iq "heroes"; then
-              type_update="Dota 2 Heroes"
-              color=3066993
-            else
-              type_update="Dota 2 Update"
-              color=3447003
+            if echo "$title $body" | grep -iq "dota"; then
+              if echo "$title" | grep -iq "staging"; then
+                type_update="Dota 2 Staging"
+              elif echo "$title" | grep -iq "experimental"; then
+                type_update="Dota 2 Experimental"
+              elif echo "$title" | grep -iq "heroes"; then
+                type_update="Dota 2 Heroes"
+              else
+                type_update="Dota 2 Update"
+              fi
+
+              added_lines=$(git show "$hash" | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
+              [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
+
+              printf '%s\n' "**Тип обновления:** ${type_update}" "" \
+                "**Что нового:**" \
+                "${added_lines}" "" \
+                "🔗 [Посмотреть коммит](${commit_url})" > /tmp/desc.txt
+
+              json=$(jq -n --rawfile desc /tmp/desc.txt \
+                --arg title "📢 Dota 2 Update" \
+                --argjson color 3447003 \
+                '{embeds: [{title: $title, description: $desc, color: $color}]}')
+
+              curl -sS -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK"
+              echo "✅ Sent update for $hash"
             fi
-
-            added_lines=$(git show "$hash" | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 50)
-            [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
-
-            embed_desc=$(cat <<EOF
-**Тип обновления:** ${type_update}
-**Что нового:**
-${added_lines}
-🔗 [Посмотреть коммит](${commit_url})
-EOF
-)
-
-            json=$(jq -n \
-              --arg title "⚙️ Dota 2 Update" \
-              --arg desc "$embed_desc" \
-              --argjson color "$color" \
-              '{embeds: [{title: $title, description: $desc, color: $color}]}')
-
-            curl -sS -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK" \
-              && echo "✅ Sent embed for $hash" \
-              || echo "❌ Failed to send embed for $hash"
           done
