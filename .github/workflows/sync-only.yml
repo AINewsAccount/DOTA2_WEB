@@ -88,41 +88,50 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           echo "📢 Checking commits for Dota updates..."
-          while read -r hash; do
-            [ -z "$hash" ] && continue
-
-            title=$(git show -s --format=%s $hash)
-            body=$(git show -s --format=%b $hash)
-            commit_url="https://github.com/${{ github.repository }}/commit/$hash"
-
-            # Определяем тип
-            if echo "$title" | grep -iq "staging"; then
-              type_update="Dota 2 Staging"
-            elif echo "$title" | grep -iq "experimental"; then
-              type_update="Dota 2 Experimental"
-            elif echo "$title" | grep -iq "heroes"; then
-              type_update="Dota 2 Heroes"
-            else
-              type_update="Dota 2 Update"
-            fi
-
-            added_lines=$(git show $hash | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
-            [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
-
-            msg="**Тип обновления:** ${type_update}\n**Что нового:**\n${added_lines}\n🔗 [Посмотреть коммит](${commit_url})"
-
-            json=$(jq -n --arg content "$msg" '{content: $content}')
-            curl -s -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK"
-
-            echo "✅ Sent update for $hash"
           before_sha="${{ steps.before.outputs.before_sha }}"
-after_sha="${{ steps.after.outputs.after_sha }}"
+          after_sha="${{ steps.after.outputs.after_sha }}"
 
-if git rev-parse "$before_sha" >/dev/null 2>&1 && git rev-parse "$after_sha" >/dev/null 2>&1; then
-  git log --pretty=format:"%H" "${before_sha}..${after_sha}" | tac | while read -r hash; do
-    [ -z "$hash" ] && continue
-    # ... остальной код ...
-  done
-else
-  echo "⚠️ One of SHAs is invalid. before=$before_sha, after=$after_sha"
-fi
+          if git rev-parse "$before_sha" >/dev/null 2>&1 && git rev-parse "$after_sha" >/dev/null 2>&1; then
+            echo "🧩 Processing commits between $before_sha .. $after_sha"
+            git log --pretty=format:"%H" "${before_sha}..${after_sha}" | tac | while read -r hash; do
+              [ -z "$hash" ] && continue
+
+              title=$(git show -s --format=%s $hash)
+              body=$(git show -s --format=%b $hash)
+              commit_url="https://github.com/${{ github.repository }}/commit/$hash"
+
+              # Определяем тип обновления и цвет embed
+              if echo "$title" | grep -iq "staging"; then
+                type_update="Dota 2 Staging"
+                color=15105570
+              elif echo "$title" | grep -iq "experimental"; then
+                type_update="Dota 2 Experimental"
+                color=10181046
+              elif echo "$title" | grep -iq "heroes"; then
+                type_update="Dota 2 Heroes"
+                color=3066993
+              else
+                type_update="Dota 2 Update"
+                color=3447003
+              fi
+
+              added_lines=$(git show $hash | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
+              [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
+
+              embed_desc="**Тип обновления:** ${type_update}\n**Что нового:**\n${added_lines}\n🔗 [Посмотреть коммит](${commit_url})"
+
+              json=$(jq -n \
+                --arg title "⚙️ Dota 2 Update" \
+                --arg desc "$embed_desc" \
+                --arg url "$commit_url" \
+                --argjson color "$color" \
+                '{embeds: [{title: $title, description: $desc, url: $url, color: $color}]}')
+
+              curl -s -H "Content-Type: application/json" \
+                   -X POST -d "$json" "$DISCORD_WEBHOOK"
+
+              echo "✅ Sent embed for $hash"
+            done
+          else
+            echo "⚠️ One of SHAs is invalid. before=$before_sha, after=$after_sha"
+          fi
