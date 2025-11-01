@@ -51,12 +51,7 @@ jobs:
 
   # ---------- TEST job: выполняется только если gate говорит run_test=true ----------
   test:
-    name: Test Discord embed
-    runs-on: ubuntu-latest
-    needs: gate
-    if: ${{ needs.gate.outputs.run_test == 'true' }}
-    steps:
-      - name: Send test embed to Discord
+          - name: Send test embed to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
@@ -67,15 +62,15 @@ jobs:
             exit 1
           fi
 
-          # --- многстрочный текст с реальными переводами строк ---
-          embed_desc=$(cat <<'DESC'
+          # --- многострочный текст с реальными переводами строк ---
+          embed_desc="$(cat <<'EOF'
 **Тип обновления:** Dota 2 Test Mode
 **Что нового:**
 [v] test 12345 => 12346
 [h] testhash123 => testhash456
 [s] test CN hero => hero2
-DESC
-)
+EOF
+)"
 
           json=$(jq -n \
             --arg title "🧪 Dota 2 Test Notification" \
