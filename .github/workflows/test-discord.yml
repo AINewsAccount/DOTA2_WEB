@@ -1,0 +1,38 @@
+name: Dota 2 Discord Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send test embed to Discord (safe multiline)
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${DISCORD_WEBHOOK:-}" ]; then
+            echo "⚠️ DISCORD_WEBHOOK not set. Aborting."
+            exit 1
+          fi
+
+          # --- безопасная запись многострочного текста ---
+          printf '%s\n' "**Тип обновления:** Dota 2 Test Mode" "" \
+            "**Что нового:**" \
+            "[v] test 12345 => 12346" \
+            "[h] testhash123 => testhash456" \
+            "[s] test CN hero => hero2" "" \
+            "🔗 [Посмотреть коммит](https://github.com/AINewsAccount/DOTA2_WEB/commit/testhash)" > /tmp/desc.txt
+
+          # --- создаем embed через jq с реальными переносами ---
+          json=$(jq -n --rawfile desc /tmp/desc.txt \
+            --arg title "🧪 Dota 2 Test Notification" \
+            --argjson color 16776960 \
+            '{embeds: [{title: $title, description: $desc, color: $color}]}')
+
+          echo "Отправляю тестовое embed-сообщение..."
+          curl -sS -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK" \
+            && echo "✅ Успешно отправлено в Discord" \
+            || echo "❌ Ошибка при отправке"
