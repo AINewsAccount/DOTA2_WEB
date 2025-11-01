@@ -43,17 +43,54 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # 🔹 Тестовый режим
-      - name: 🧪 Send test Discord message
-        if: ${{ github.event.inputs.mode == 'test' }}
+            - name: 🧪 Send test Dota update to Discord
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'test' }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          echo "🧪 Sending test message..."
-          msg="**Тип обновления:** Dota 2 Test Mode\n**Что нового:**\n[v] test 12345 => 12346\n[h] testhash123 => testhash456\n[s] test CN hero => hero2"
-          json=$(jq -n --arg content "$msg" '{content: $content}')
-          curl -s -H "Content-Type: application/json" -X POST -d "$json" "$DISCORD_WEBHOOK"
-          echo "✅ Test message sent."
-          exit 0
+          echo "🧪 Starting test mode..."
+
+          # Фиктивные данные для проверки формата
+          before_sha="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          after_sha="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          commit_url="https://github.com/${{ github.repository }}/commit/${after_sha}"
+          type_update="Dota 2 Test Mode"
+
+          added_lines=$(cat <<'EOF'
+[v] test 12345 => 12346
+[h] testhash123 => testhash456
+[s] test CN hero => hero2
+EOF
+          )
+
+          # Формируем embed-описание точно как в боевой версии
+          embed_desc=$(cat <<EOF
+**Тип обновления:** ${type_update}
+**Что нового:**
+${added_lines}
+🔗 [Посмотреть коммит](${commit_url})
+EOF
+          )
+
+          # Цвет тестового уведомления (желтый)
+          color=16776960
+
+          # Создаем JSON
+          json=$(jq -n \
+            --arg title "🧪 Dota 2 Test Notification" \
+            --arg desc "$embed_desc" \
+            --argjson color "$color" \
+            '{embeds: [{title: $title, description: $desc, color: $color}]}')
+
+          echo "Debug JSON:"
+          echo "$json"
+
+          # Отправляем в Discord
+          curl -s -H "Content-Type: application/json" \
+               -X POST -d "$json" "$DISCORD_WEBHOOK" || echo "⚠️ Curl failed"
+
+          echo "✅ Test message sent successfully."
+
 
       - name: 🔄 Merge upstream into fork branch
         id: merge
