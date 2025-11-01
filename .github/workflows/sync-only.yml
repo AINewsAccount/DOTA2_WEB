@@ -2,13 +2,13 @@ name: Sync upstream (master) to fork
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # каждые 15 минут
+    - cron: '*/15 * * * *' # запуск каждые 15 минут
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Режим запуска (sync или test)'
+        description: 'Режим работы (auto/test/resend)'
         required: false
-        default: 'sync'
+        default: 'auto'
 
 env:
   UPSTREAM_OWNER: muk-as
@@ -19,7 +19,6 @@ env:
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
@@ -38,18 +37,20 @@ jobs:
           git remote add upstream https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git || true
           git fetch --no-tags upstream
 
-      - name: ⚙️ Configure git
+      - name: ⚙️ Configure git identity
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: 🔄 Merge upstream
+      - name: 🔄 Merge upstream into fork branch
         id: merge
         run: |
           git checkout ${{ env.FORK_BRANCH }} || git switch ${{ env.FORK_BRANCH }}
-          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge"; then
+          if git merge --ff-only upstream/${{ env.UPSTREAM_BRANCH }} -m "Fast-forward merge upstream/${{ env.UPSTREAM_BRANCH }}" 2>/dev/null; then
             echo "merged=ff" >> $GITHUB_OUTPUT
+            echo "✅ Fast-forward merge выполнен."
           else
+            echo "ℹ️ Fast-forward невозможен, выполняется обычный merge..."
             git merge --no-edit upstream/${{ env.UPSTREAM_BRANCH }} || true
             echo "merged=merge" >> $GITHUB_OUTPUT
           fi
@@ -58,29 +59,34 @@ jobs:
         id: after
         run: echo "after_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-      - name: 🚀 Push if changed
+      - name: 🚀 Compare SHAs and push if changed
         id: push
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ steps.before.outputs.before_sha }}" != "${{ steps.after.outputs.after_sha }}" ]; then
-            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
             echo "changed=true" >> $GITHUB_OUTPUT
+            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ env.FORK_BRANCH }}
+            echo "✅ Форк успешно синхронизирован с upstream."
           else
             echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ Нет изменений — всё уже актуально."
           fi
 
-            - name: 📢 Send Dota updates to Discord
+      # -----------------------------------------------
+      # 📢 Отправка Discord уведомлений
+      # -----------------------------------------------
+      - name: 📢 Send Dota updates to Discord
+        if: steps.push.outputs.changed == 'true' || github.event.inputs.mode != ''
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           set -euo pipefail
 
-          echo "📢 Checking commits for Dota updates..."
+          MODE="${{ github.event.inputs.mode || 'auto' }}"
+          echo "📢 Mode: $MODE"
 
-          MODE="${{ github.event.inputs.mode || 'auto' }}" # можно задать вручную через workflow_dispatch
-
-          # 🧪 Тестовый запуск — просто отправляем демонстрационное сообщение
+          # 🧪 Тестовый режим
           if [[ "$MODE" == "test" ]]; then
             echo "🧪 Sending test message..."
             embed_title="🧪 Dota 2 Test Notification"
@@ -96,32 +102,30 @@ jobs:
           before="${{ steps.before.outputs.before_sha }}"
           after="${{ steps.after.outputs.after_sha }}"
 
-          # 🧩 Проверяем наличие SHA и формируем диапазон
+          # Проверяем валидность SHA
           if git rev-parse "$before" >/dev/null 2>&1 && git rev-parse "$after" >/dev/null 2>&1; then
-            echo "✅ Найдены оба SHA, строим диапазон $before..$after"
+            echo "✅ Используем диапазон $before..$after"
             log_range=$(git log --pretty=format:"%H" "$before..$after" | tac)
           else
-            echo "⚠️ Один из SHA не существует локально. Пробуем расширить fetch..."
+            echo "⚠️ SHA недоступны — выполняется fetch --unshallow..."
             git fetch --unshallow || true
             if git rev-parse "$before" >/dev/null 2>&1 && git rev-parse "$after" >/dev/null 2>&1; then
               log_range=$(git log --pretty=format:"%H" "$before..$after" | tac)
             else
-              echo "⚠️ Не удалось получить SHA. Используем последние 5 коммитов."
+              echo "⚠️ Используем последние 5 коммитов вместо диапазона."
               log_range=$(git log -n 5 --pretty=format:"%H" | tac)
             fi
           fi
 
-          # 🔁 Режим пересылки последнего коммита
+          # 🔂 Режим пересылки последнего коммита
           if [[ "$MODE" == "resend" ]]; then
-            echo "🔁 Resending last commit..."
-            last_commit=$(git log -n 1 --pretty=format:"%H")
-            log_range="$last_commit"
+            echo "🔁 Режим пересылки последнего коммита..."
+            log_range=$(git log -n 1 --pretty=format:"%H")
           fi
 
-          # --- Проходим по каждому коммиту ---
+          echo "🔍 Обрабатываем коммиты..."
           while read -r hash; do
             [ -z "$hash" ] && continue
-
             title=$(git show -s --format=%s "$hash")
             body=$(git show -s --format=%b "$hash")
             commit_url="https://github.com/${{ github.repository }}/commit/$hash"
@@ -137,7 +141,7 @@ jobs:
               type_update="Dota 2 Update"
             fi
 
-            # Получаем изменения (до 10 строк)
+            # Получаем до 10 строк изменений
             added_lines=$(git show "$hash" | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
             [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
 
@@ -154,4 +158,3 @@ jobs:
 
             echo "✅ Sent update for $hash"
           done <<< "$log_range"
-
