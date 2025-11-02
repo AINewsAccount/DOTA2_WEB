@@ -82,79 +82,88 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           set -euo pipefail
+# set -x  # Включи temporarily для full debug (expanded commands), удали после
 
-          MODE="${{ github.event.inputs.mode || 'auto' }}"
-          echo "📢 Mode: $MODE"
+MODE="${{ github.event.inputs.mode || 'auto' }}"
+echo "📢 Mode: $MODE"
 
-          # 🧪 Тестовый режим
-          if [[ "$MODE" == "test" ]]; then
-            echo "🧪 Sending test message..."
-            embed_title="🧪 Dota 2 Test Notification"
-            embed_desc=$'**Тип обновления:** Dota 2 Test Mode\n\n**Что нового:**\n[v] test 12345 => 12346\n[h] testhash123 => testhash456\n[s] test CN hero => hero2\n\n🔗 Посмотреть коммит'
-            jq -n \
-              --arg title "$embed_title" \
-              --arg desc "$embed_desc" \
-              '{embeds: [{title: $title, description: $desc, color: 5814783}]}' \
-            | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
-            exit 0
-          fi
+# 🧪 Тестовый режим (оставил как есть)
+if [[ "$MODE" == "test" ]]; then
+  echo "🧪 Sending test message..."
+  embed_title="🧪 Dota 2 Test Notification"
+  embed_desc=$'**Тип обновления:** Dota 2 Test Mode\n\n**Что нового:**\n[v] test 12345 => 12346\n[h] testhash123 => testhash456\n[s] test CN hero => hero2\n\n🔗 Посмотреть коммит'
+  jq -n \
+    --arg title "$embed_title" \
+    --arg desc "$embed_desc" \
+    '{embeds: [{title: $title, description: $desc, color: 5814783}]}' \
+  | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
+  exit 0
+fi
 
-          before="${{ steps.before.outputs.before_sha }}"
-          after="${{ steps.after.outputs.after_sha }}"
+# Санайтизация SHA (из предложенного)
+before_raw="${{ steps.before.outputs.before_sha }}"
+after_raw="${{ steps.after.outputs.after_sha }}"
+before=$(printf '%s' "$before_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
+after=$(printf '%s' "$after_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
+echo "DEBUG: before='$before' after='$after'"
 
-          # Проверяем валидность SHA
-          if git rev-parse "$before" >/dev/null 2>&1 && git rev-parse "$after" >/dev/null 2>&1; then
-            echo "✅ Используем диапазон $before..$after"
-            log_range=$(git log --pretty=format:"%H" "$before..$after" | tac)
-          else
-            echo "⚠️ SHA недоступны — выполняется fetch --unshallow..."
-            git fetch --unshallow || true
-            if git rev-parse "$before" >/dev/null 2>&1 && git rev-parse "$after" >/dev/null 2>&1; then
-              log_range=$(git log --pretty=format:"%H" "$before..$after" | tac)
-            else
-              echo "⚠️ Используем последние 5 коммитов вместо диапазона."
-              log_range=$(git log -n 5 --pretty=format:"%H" | tac)
-            fi
-          fi
+# Robust fetch (комбо: set-url + unshallow + depth)
+git remote set-url upstream "https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git" || true
+git fetch --no-tags upstream || true
+if ! git rev-parse "$before" >/dev/null 2>&1 || ! git rev-parse "$after" >/dev/null 2>&1; then
+  echo "⚠️ SHA недоступны — выполняется fetch --unshallow..."
+  git fetch --no-tags --unshallow upstream || true
+  git fetch --no-tags upstream --depth=1000 || true  # Для большой истории
+fi
 
-          # 🔂 Режим пересылки последнего коммита
-          if [[ "$MODE" == "resend" ]]; then
-            echo "🔁 Режим пересылки последнего коммита..."
-            log_range=$(git log -n 1 --pretty=format:"%H")
-          fi
+# Формирование log_range (мой стиль + --reverse из предложенного)
+if git rev-parse "$before" >/dev/null 2>&1 && git rev-parse "$after" >/dev/null 2>&1; then
+  range="$before..$after"
+  echo "✅ Используем диапазон $range"
+  echo "DEBUG: range for git log is $range"
+  log_range=$(git log --pretty=format:"%H" "$range" --reverse)
+else
+  echo "⚠️ Используем последние 5 коммитов вместо диапазона."
+  log_range=$(git log -n 5 --pretty=format:"%H" --reverse)
+fi
 
-          echo "🔍 Обрабатываем коммиты..."
-          while read -r hash; do
-            [ -z "$hash" ] && continue
-            title=$(git show -s --format=%s "$hash")
-            body=$(git show -s --format=%b "$hash")
-            commit_url="https://github.com/${{ github.repository }}/commit/$hash"
+# Режим resend
+if [[ "$MODE" == "resend" ]]; then
+  echo "🔁 Режим пересылки последнего коммита..."
+  log_range=$(git log -n 1 --pretty=format:"%H")
+fi
 
-            # Определяем тип обновления
-            if echo "$title" | grep -iq "staging"; then
-              type_update="Dota 2 Staging"
-            elif echo "$title" | grep -iq "experimental"; then
-              type_update="Dota 2 Experimental"
-            elif echo "$title" | grep -iq "heroes"; then
-              type_update="Dota 2 Heroes"
-            else
-              type_update="Dota 2 Update"
-            fi
+echo "🔍 Обрабатываем коммиты..."
+while read -r hash; do
+  [ -z "$hash" ] && continue
+  title=$(git show -s --format=%s "$hash")
+  body=$(git show -s --format=%b "$hash")
+  commit_url="https://github.com/${{ github.repository }}/commit/$hash"
 
-            # Получаем до 10 строк изменений
-            added_lines=$(git show "$hash" | grep -E "^\+" | grep -vE "^\+\+\+|^---" | head -n 10)
-            [ -z "$added_lines" ] && added_lines="(мелкие изменения)"
+  # Определяем тип обновления (как в оригинале)
+  if echo "$title" | grep -iq "staging"; then
+    type_update="Dota 2 Staging"
+  elif echo "$title" | grep -iq "experimental"; then
+    type_update="Dota 2 Experimental"
+  elif echo "$title" | grep -iq "heroes"; then
+    type_update="Dota 2 Heroes"
+  else
+    type_update="Dota 2 Update"
+  fi
 
-            # Формируем embed
-            embed_title="🧩 ${type_update}"
-            embed_desc=$(printf '**Тип обновления:** %s\n\n**Что нового:**\n%s\n\n🔗 [Посмотреть коммит](%s)' "$type_update" "$added_lines" "$commit_url")
+  # Changes (мой улучшенный: + и - строки)
+  changes=$(git show "$hash" | grep -E "^[+-]" | grep -vE "^\+\+\+|^---" | head -n 10)
+  [ -z "$changes" ] && changes="(мелкие изменения)"
 
-            # Отправляем embed в Discord
-            jq -n \
-              --arg title "$embed_title" \
-              --arg desc "$embed_desc" \
-              '{embeds: [{title: $title, description: $desc, color: 3066993}]}' \
-            | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
+  # Embed
+  embed_title="🧩 ${type_update}"
+  embed_desc=$(printf '**Тип обновления:** %s\n\n**Что нового:**\n%s\n\n🔗 [Посмотреть коммит](%s)' "$type_update" "$changes" "$commit_url")
 
-            echo "✅ Sent update for $hash"
-          done <<< "$log_range"
+  jq -n \
+    --arg title "$embed_title" \
+    --arg desc "$embed_desc" \
+    '{embeds: [{title: $title, description: $desc, color: 3066993}]}' \
+  | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
+
+  echo "✅ Sent update for $hash"
+done <<< "$log_range"
