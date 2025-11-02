@@ -82,7 +82,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           set -euo pipefail
-          # set -x  # Включи temporarily для full debug (expanded commands), удали после
+          set -x  # Включи temporarily для full debug (expanded commands), удали после
 
           MODE="${{ github.event.inputs.mode || 'auto' }}"
           echo "📢 Mode: $MODE"
