@@ -78,7 +78,7 @@ jobs:
           if [[ "$MODE" == "test" ]]; then
             echo "🧪 Sending test message..."
             embed_title="🧪 Dota 2 Test Notification"
-            embed_desc=$'**Тип обновления:** Dota 2 Test Mode\n\n**Новые строки в _HISTORY_by_date.txt:**\n• Новая строка с Dota 1\n• Новая строка с Dota 2\n\n🔗 Посмотреть коммит'
+            embed_desc=$'**Что нового:**\nDota 2 Staging Server | [v] 3135 => 3136\nDota 2 Staging | [v] 3135 => 3136\n\n**Дата обновления:** 2025-10-23 23:10:08\n**Источник:** [Посмотреть](https://example.com/commit)'
             color=5814783
             jq -n \
               --arg title "$embed_title" \
@@ -172,10 +172,21 @@ jobs:
               emoji="🦸"
               color=15844367  # Золотой
             fi
-            # Форматируем новые строки
-            formatted_new_lines=$(echo "$new_lines" | sed 's/^/• /')
-            # Формируем desc для этого коммита
-            embed_desc=$(printf '**Коммит:** %s\n**Тип:** %s\n**Новые строки в _HISTORY_by_date.txt:**\n%s\n🔗 [Посмотреть](%s)' "$title" "$type_update" "$formatted_new_lines" "$commit_url")
+            # Парсим строки для форматирования "Что нового" и извлечения даты (берём дату из первой строки, предполагая они похожи)
+            changes=""
+            date_update=""
+            while IFS= read -r line; do
+              # Парсим: app_id - app_name | [v] from => to | date (UTC+3)
+              app_name=$(echo "$line" | awk -F' - ' '{print $2}' | awk -F' \\| ' '{print $1}')
+              version_change=$(echo "$line" | awk -F' \\| ' '{print $2}' | awk -F' \\| ' '{print $1}')
+              date_raw=$(echo "$line" | awk -F' \\| ' '{print $3}' | sed 's/ (UTC+3)//')
+              changes+="$app_name | $version_change\n"
+              if [ -z "$date_update" ]; then
+                date_update="$date_raw"
+              fi
+            done <<< "$new_lines"
+            # Формируем desc
+            embed_desc=$(printf '**Что нового:**\n%s\n**Дата обновления:** %s\n**Источник:** [Посмотреть](%s)' "$changes" "$date_update" "$commit_url")
             # Формируем и отправляем отдельный embed для каждого коммита
             embed_title="$emoji $type_update"
             jq -n \
