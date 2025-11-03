@@ -157,7 +157,7 @@ jobs:
             # -----------------------------
             new_lines=$(git show "$hash" -- steam_api/_HISTORY_by_date.txt 2>/dev/null \
               | grep "^\+" \
-              | grep -vE "^\+\+\+" \  # Исключаем diff-хедеры, если они проскочат
+              | grep -vE "^\+\+\+" \
               | sed 's/^\+//' || true)  # Удаляем ведущий '+' для чистого вывода
             if [ -z "$new_lines" ]; then
               echo "ℹ️ Нет новых строк в _HISTORY_by_date.txt для $hash — пропускаем."
