@@ -125,7 +125,7 @@ jobs:
               num_commits="${BASH_REMATCH[1]}"
             fi
             echo "Используем -n $num_commits коммитов."
-            log_range=$(git log -n "$num_commits" --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" -- _HISTORY_by_date.txt || true)
+            log_range=$(git log -n "$num_commits" --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" -- steam_api/_HISTORY_by_date.txt || true)
             if [ -z "$log_range" ]; then
               echo "⚠️ Не найдено коммитов, изменяющих _HISTORY_by_date.txt — выходим."
               exit 0
@@ -155,7 +155,7 @@ jobs:
             # -----------------------------
             # Извлечение ТОЛЬКО новых строк (+) из _HISTORY_by_date.txt
             # -----------------------------
-            new_lines=$(git show "$hash" -- _HISTORY_by_date.txt 2>/dev/null \
+            new_lines=$(git show "$hash" -- steam_api/_HISTORY_by_date.txt 2>/dev/null \
               | grep "^\+" \
               | grep -vE "^\+\+\+" \  # Исключаем diff-хедеры, если они проскочат
               | sed 's/^\+//' || true)  # Удаляем ведущий '+' для чистого вывода
