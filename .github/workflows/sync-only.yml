@@ -74,7 +74,7 @@ jobs:
           fi
 
       # -----------------------------------------------
-      # 📢 Отправка Discord уведомлений (обновлённый блок)
+      # 📢 Отправка Discord уведомлений (полный, безопасный блок)
       # -----------------------------------------------
       - name: 📢 Send Dota updates to Discord
         if: steps.push.outputs.changed == 'true' || github.event.inputs.mode != ''
@@ -82,12 +82,12 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           set -euo pipefail
-          set -x  # Включи temporarily для full debug (expanded commands), удали после
+          # set -x  # Включи временно для debug
 
           MODE="${{ github.event.inputs.mode || 'auto' }}"
           echo "📢 Mode: $MODE"
 
-          # 🧪 Тестовый режим (оставил как есть)
+          # 🧪 Тестовый режим
           if [[ "$MODE" == "test" ]]; then
             echo "🧪 Sending test message..."
             embed_title="🧪 Dota 2 Test Notification"
@@ -100,47 +100,66 @@ jobs:
             exit 0
           fi
 
-          # Санайтизация SHA (из предложенного)
+          # -----------------------------
+          # Санайтизация SHA (берём значения из шагов)
+          # -----------------------------
           before_raw="${{ steps.before.outputs.before_sha }}"
           after_raw="${{ steps.after.outputs.after_sha }}"
           before=$(printf '%s' "$before_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
           after=$(printf '%s' "$after_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
           echo "DEBUG: before='$before' after='$after'"
 
-          # Robust fetch (комбо: set-url + unshallow + depth)
+          # -----------------------------
+          # Получаем upstream (на всякий случай делаем глубокий fetch)
+          # -----------------------------
           git remote set-url upstream "https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git" || true
           git fetch --no-tags upstream || true
           if ! git rev-parse "$before" >/dev/null 2>&1 || ! git rev-parse "$after" >/dev/null 2>&1; then
             echo "⚠️ SHA недоступны — выполняется fetch --unshallow..."
             git fetch --no-tags --unshallow upstream || true
-            git fetch --no-tags upstream --depth=1000 || true  # Для большой истории
+            git fetch --no-tags upstream --depth=1000 || true
           fi
 
-          # Формирование log_range (мой стиль + --reverse из предложенного)
+          # -----------------------------
+          # Формирование диапазона коммитов
+          # -----------------------------
           if git rev-parse "$before" >/dev/null 2>&1 && git rev-parse "$after" >/dev/null 2>&1; then
             range="$before..$after"
             echo "✅ Используем диапазон $range"
             echo "DEBUG: range for git log is $range"
-            log_range=$(git log --pretty=format:"%H" "$range" --reverse)
+            log_range=$(git log --pretty=format:"%H" "$range" --reverse || true)
           else
             echo "⚠️ Используем последние 5 коммитов вместо диапазона."
-            log_range=$(git log -n 5 --pretty=format:"%H" --reverse)
+            log_range=$(git log -n 5 --pretty=format:"%H" --reverse || true)
           fi
 
-          # Режим resend
+          # -----------------------------
+          # Режим resend: последняя правка _HISTORY_by_date.txt
+          # -----------------------------
           if [[ "$MODE" == "resend" ]]; then
-            echo "🔁 Режим пересылки последнего коммита..."
-            log_range=$(git log -n 1 --pretty=format:"%H")
+            echo "🔁 Режим пересылки последнего коммита с изменениями в _HISTORY_by_date.txt..."
+            log_range=$(git log -n 1 --pretty=format:"%H" -- _HISTORY_by_date.txt || true)
+            if [ -z "$log_range" ]; then
+              echo "⚠️ Не найдено коммитов, изменяющих _HISTORY_by_date.txt — выходим."
+              exit 0
+            fi
+          fi
+
+          # Если диапазон пустой, берём последние 5 как запасной вариант
+          if [ -z "${log_range:-}" ]; then
+            echo "⚠️ log_range пустой — используем последние 5 коммитов."
+            log_range=$(git log -n 5 --pretty=format:"%H" --reverse || true)
           fi
 
           echo "🔍 Обрабатываем коммиты..."
           while read -r hash; do
             [ -z "$hash" ] && continue
-            title=$(git show -s --format=%s "$hash")
-            body=$(git show -s --format=%b "$hash")
+
+            title=$(git show -s --format=%s "$hash" || true)
+            body=$(git show -s --format=%b "$hash" || true)
             commit_url="https://github.com/${{ github.repository }}/commit/$hash"
 
-            # Определяем тип обновления (как в оригинале)
+            # Определяем тип обновления
             if echo "$title" | grep -iq "staging"; then
               type_update="Dota 2 Staging"
             elif echo "$title" | grep -iq "experimental"; then
@@ -151,14 +170,29 @@ jobs:
               type_update="Dota 2 Update"
             fi
 
-            # Changes (мой улучшенный: + и - строки)
-            changes=$(git show "$hash" | grep -E "^[+-]" | grep -vE "^\+\+\+|^---" | head -n 10)
-            [ -z "$changes" ] && changes="(мелкие изменения)"
+            # -----------------------------
+            # Извлечение изменений конкретно из _HISTORY_by_date.txt
+            # Защищаемся от merge-коммитов и broken pipe
+            # -----------------------------
+            if git show -s --format=%P "$hash" | grep -q ' '; then
+              # У коммита несколько родителей — скорее всего merge, diff в таком коммите не подходит
+              echo "ℹ️ Пропускаем merge-коммит (нет diff): $hash"
+              changes="(merge-коммит — без diff)"
+            else
+              # Ограничиваем вывод только изменением в файле _HISTORY_by_date.txt
+              # Используем || true и перенаправляем stderr, чтобы не падать на broken pipe
+              changes=$(git show "$hash" -- _HISTORY_by_date.txt 2>/dev/null \
+                | grep -E "^[+-]" \
+                | grep -vE "^\+\+\+|^---" \
+                | head -n 10 2>/dev/null || true)
+              [ -z "$changes" ] && changes="(мелкие изменения)"
+            fi
 
-            # Embed
+            # Формируем embed
             embed_title="🧩 ${type_update}"
             embed_desc=$(printf '**Тип обновления:** %s\n\n**Что нового:**\n%s\n\n🔗 [Посмотреть коммит](%s)' "$type_update" "$changes" "$commit_url")
 
+            # Отправляем в Discord
             jq -n \
               --arg title "$embed_title" \
               --arg desc "$embed_desc" \
