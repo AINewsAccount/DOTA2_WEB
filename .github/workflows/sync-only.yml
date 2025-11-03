@@ -74,20 +74,22 @@ jobs:
           # set -x # Включи временно для debug
           MODE="${{ github.event.inputs.mode || 'auto' }}"
           echo "📢 Mode: $MODE"
-          # 🧪 Тестовый режим (обновил для примера с новыми строками)
+          # 🧪 Тестовый режим
           if [[ "$MODE" == "test" ]]; then
             echo "🧪 Sending test message..."
             embed_title="🧪 Dota 2 Test Notification"
-            embed_desc=$'**Тип обновления:** Dota 2 Test Mode\n\n**Новые строки в _HISTORY_by_date.txt:**\n+ Новая строка 1\n+ Новая строка 2\n+ Еще одна тестовая строка\n\n🔗 Посмотреть коммит'
+            embed_desc=$'**Тип обновления:** Dota 2 Test Mode\n\n**Новые строки в _HISTORY_by_date.txt:**\n• Новая строка с Dota 1\n• Новая строка с Dota 2\n\n🔗 Посмотреть коммит'
+            color=5814783
             jq -n \
               --arg title "$embed_title" \
               --arg desc "$embed_desc" \
-              '{embeds: [{title: $title, description: $desc, color: 5814783}]}' \
+              --argjson color "$color" \
+              '{embeds: [{title: $title, description: $desc, color: $color}]}' \
             | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
             exit 0
           fi
           # -----------------------------
-          # Санайтизация SHA (без изменений)
+          # Санайтизация SHA
           # -----------------------------
           before_raw="${{ steps.before.outputs.before_sha }}"
           after_raw="${{ steps.after.outputs.after_sha }}"
@@ -95,7 +97,7 @@ jobs:
           after=$(printf '%s' "$after_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
           echo "DEBUG: before='$before' after='$after'"
           # -----------------------------
-          # Получаем upstream (без изменений)
+          # Получаем upstream
           # -----------------------------
           git remote set-url upstream "https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git" || true
           git fetch --no-tags upstream || true
@@ -132,7 +134,6 @@ jobs:
             fi
           fi
           echo "🔍 Обрабатываем коммиты..."
-          embed_desc=""  # Собираем все новые строки в один desc
           for hash in $log_range; do
             [ -z "$hash" ] && continue
             # Пропускаем merge-коммиты
@@ -142,43 +143,46 @@ jobs:
             fi
             title=$(git show -s --format=%s "$hash" || true)
             commit_url="https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}/commit/$hash"
-            # Определяем тип обновления (без изменений)
-            if echo "$title" | grep -iq "staging"; then
-              type_update="Dota 2 Staging"
-            elif echo "$title" | grep -iq "experimental"; then
-              type_update="Dota 2 Experimental"
-            elif echo "$title" | grep -iq "heroes"; then
-              type_update="Dota 2 Heroes"
-            else
-              type_update="Dota 2 Update"
-            fi
             # -----------------------------
-            # Извлечение ТОЛЬКО новых строк (+) из _HISTORY_by_date.txt
+            # Извлечение ТОЛЬКО новых строк (+) из _HISTORY_by_date.txt, фильтр по "Dota"
             # -----------------------------
             new_lines=$(git show "$hash" -- steam_api/_HISTORY_by_date.txt 2>/dev/null \
               | grep "^\+" \
               | grep -vE "^\+\+\+" \
-              | sed 's/^\+//' || true)  # Удаляем ведущий '+' для чистого вывода
+              | sed 's/^\+//' \
+              | grep -i "dota" || true)  # Фильтр по слову "Dota" (case-insensitive)
             if [ -z "$new_lines" ]; then
-              echo "ℹ️ Нет новых строк в _HISTORY_by_date.txt для $hash — пропускаем."
+              echo "ℹ️ Нет новых строк с 'Dota' в _HISTORY_by_date.txt для $hash — пропускаем."
               continue
             fi
-            # Форматируем новые строки (с новой строки для каждой)
-            formatted_new_lines=$(echo "$new_lines" | sed 's/^/• /')  # Добавляем маркер для читаемости, или убери sed если не надо
-            # Добавляем в общий desc с разделением по коммитам
-            embed_desc+=$(printf '\n\n**Коммит:** %s\n**Тип:** %s\n**Новые строки в _HISTORY_by_date.txt:**\n%s\n🔗 [Посмотреть](%s)' "$title" "$type_update" "$formatted_new_lines" "$commit_url")
+            # Определяем тип обновления на основе строк (Staging/Experimental/обычное)
+            type_update="Dota 2 Update"
+            emoji="🔄"
+            color=3066993  # Зеленый для обычного
+            if echo "$new_lines" | grep -iq "experimental"; then
+              type_update="Dota 2 Experimental"
+              emoji="🧪"
+              color=16711680  # Красный
+            elif echo "$new_lines" | grep -iq "staging"; then
+              type_update="Dota 2 Staging"
+              emoji="🛠️"
+              color=3447003  # Синий
+            elif echo "$title" | grep -iq "heroes"; then
+              type_update="Dota 2 Heroes"
+              emoji="🦸"
+              color=15844367  # Золотой
+            fi
+            # Форматируем новые строки
+            formatted_new_lines=$(echo "$new_lines" | sed 's/^/• /')
+            # Формируем desc для этого коммита
+            embed_desc=$(printf '**Коммит:** %s\n**Тип:** %s\n**Новые строки в _HISTORY_by_date.txt:**\n%s\n🔗 [Посмотреть](%s)' "$title" "$type_update" "$formatted_new_lines" "$commit_url")
+            # Формируем и отправляем отдельный embed для каждого коммита
+            embed_title="$emoji $type_update"
+            jq -n \
+              --arg title "$embed_title" \
+              --arg desc "$embed_desc" \
+              --argjson color "$color" \
+              '{embeds: [{title: $title, description: $desc, color: $color}]}' \
+            | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
+            echo "✅ Sent update for $hash"
           done
-          if [ -z "$embed_desc" ]; then
-            echo "⚠️ Нет новых строк для отправки."
-            exit 0
-          fi
-          # Ограничиваем длину desc, если слишком длинно (Discord лимит ~4000 символов)
-          embed_desc=$(echo "$embed_desc" | head -c 3900)  # Транкейт, если нужно; добавь ... в конец при необходимости
-          # Формируем и отправляем один embed
-          embed_title="🧩 Dota 2 Updates (Новые строки из _HISTORY_by_date.txt)"
-          jq -n \
-            --arg title "$embed_title" \
-            --arg desc "$embed_desc" \
-            '{embeds: [{title: $title, description: $desc, color: 3066993}]}' \
-          | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
-          echo "✅ Sent updates with new lines"
