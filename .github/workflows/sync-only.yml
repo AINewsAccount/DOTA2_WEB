@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Режим работы (auto/test/resend)'
+        description: 'Режим работы (auto/test/resend или resend -n X, где X - количество коммитов)'
         required: false
         default: 'auto'
 env:
@@ -115,11 +115,17 @@ jobs:
             log_range=$(git log -n 5 --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" --reverse || true)
           fi
           # -----------------------------
-          # Режим resend: последние коммиты с изменениями в файле
+          # Режим resend: последние коммиты с изменениями в файле (с поддержкой -n X)
           # -----------------------------
-          if [[ "$MODE" == "resend" ]]; then
+          if [[ "$MODE" == resend* ]]; then
             echo "🔁 Режим пересылки последних коммитов с изменениями в _HISTORY_by_date.txt..."
-            log_range=$(git log -n 10 --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" -- _HISTORY_by_date.txt || true)
+            # Парсим опциональный -n X (default 10)
+            num_commits=10
+            if [[ "$MODE" =~ -n\ ([0-9]+) ]]; then
+              num_commits="${BASH_REMATCH[1]}"
+            fi
+            echo "Используем -n $num_commits коммитов."
+            log_range=$(git log -n "$num_commits" --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" -- _HISTORY_by_date.txt || true)
             if [ -z "$log_range" ]; then
               echo "⚠️ Не найдено коммитов, изменяющих _HISTORY_by_date.txt — выходим."
               exit 0
