@@ -64,7 +64,7 @@ jobs:
           fi
 
       # -----------------------------------------------
-      # 📢 Отправка Discord уведомлений
+      # 📢 Отправка Discord уведомлений (исправлено форматирование)
       # -----------------------------------------------
       - name: 📢 Send Dota updates to Discord
         if: steps.push.outputs.changed == 'true' || github.event.inputs.mode != ''
@@ -89,53 +89,81 @@ jobs:
             exit 0
           fi
 
+          # -----------------------------
+          # Санайтизация SHA
+          # -----------------------------
           before_raw="${{ steps.before.outputs.before_sha }}"
           after_raw="${{ steps.after.outputs.after_sha }}"
           before=$(printf '%s' "$before_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
           after=$(printf '%s' "$after_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
+          echo "DEBUG: before='$before' after='$after'"
 
+          # -----------------------------
+          # Получаем upstream
+          # -----------------------------
           git remote set-url upstream "https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git" || true
           git fetch --no-tags upstream || true
-
           if ! git rev-parse "$before" >/dev/null 2>&1; then
+            echo "⚠️ SHA недоступны — выполняется fetch --unshallow..."
             git fetch --no-tags --unshallow upstream || true
             git fetch --no-tags upstream --depth=1000 || true
           fi
 
+          # -----------------------------
+          # Формирование диапазона коммитов (только upstream)
+          # -----------------------------
           range="$before..upstream/${{ env.UPSTREAM_BRANCH }}"
+          echo "✅ Используем диапазон $range (только upstream изменения)"
           log_range=$(git log --pretty=format:"%H" "$range" --reverse || true)
-
           if [ -z "${log_range:-}" ]; then
+            echo "⚠️ log_range пустой — используем последние 5 коммитов из upstream."
             log_range=$(git log -n 5 --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" --reverse || true)
           fi
 
+          # -----------------------------
+          # Режим resend
+          # -----------------------------
           if [[ "$MODE" == resend* ]]; then
+            echo "🔁 Режим пересылки последних коммитов с изменениями в _HISTORY_by_date.txt..."
             num_commits=10
             if [[ "$MODE" =~ -n\ ([0-9]+) ]]; then
               num_commits="${BASH_REMATCH[1]}"
             fi
+            echo "Используем -n $num_commits коммитов."
             log_range=$(git log -n "$num_commits" --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" -- steam_api/_HISTORY_by_date.txt || true)
-            [ -z "$log_range" ] && exit 0
+            if [ -z "$log_range" ]; then
+              echo "⚠️ Не найдено коммитов, изменяющих _HISTORY_by_date.txt — выходим."
+              exit 0
+            fi
           fi
 
           echo "🔍 Обрабатываем коммиты..."
           for hash in $log_range; do
             [ -z "$hash" ] && continue
+            # Пропускаем merge-коммиты
             if git show -s --format=%P "$hash" | grep -q ' '; then
+              echo "ℹ️ Пропускаем merge-коммит: $hash"
               continue
             fi
-
             title=$(git show -s --format=%s "$hash" || true)
             commit_url="https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}/commit/$hash"
 
+            # -----------------------------
+            # Извлечение ТОЛЬКО новых строк (+) из _HISTORY_by_date.txt, фильтр по "Dota"
+            # -----------------------------
             new_lines=$(git show "$hash" -- steam_api/_HISTORY_by_date.txt 2>/dev/null \
               | grep "^\+" \
               | grep -vE "^\+\+\+" \
               | sed 's/^\+//' \
               | grep -i "dota" || true)
+            if [ -z "$new_lines" ]; then
+              echo "ℹ️ Нет новых строк с 'Dota' в _HISTORY_by_date.txt для $hash — пропускаем."
+              continue
+            fi
 
-            [ -z "$new_lines" ] && continue
-
+            # -----------------------------
+            # Определяем тип обновления
+            # -----------------------------
             type_update="Dota 2 Update"
             emoji="🔄"
             color=3066993
@@ -153,27 +181,32 @@ jobs:
               color=15844367
             fi
 
+            # -----------------------------
+            # Парсим строки для форматирования "Что нового" и извлечения даты
+            # -----------------------------
             changes=""
             date_update=""
             while IFS= read -r line; do
+              # Парсим: app_id - app_name | [v] from => to | date (UTC+3)
               app_name=$(echo "$line" | awk -F' - ' '{print $2}' | awk -F' \\| ' '{print $1}')
               version_change=$(echo "$line" | awk -F' \\| ' '{print $2}' | awk -F' \\| ' '{print $1}')
               date_raw=$(echo "$line" | awk -F' \\| ' '{print $3}' | sed 's/ (UTC+3)//')
-              changes+="${app_name} | ${version_change}\n"
-              [ -z "$date_update" ] && date_update="$date_raw"
+              # === КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: добавляем реальный перевод строки через $'\n' ===
+              changes+="${app_name} | ${version_change}"$'\n'
+              if [ -z "$date_update" ]; then
+                date_update="$date_raw"
+              fi
             done <<< "$new_lines"
 
-            # ✅ Фикс форматирования (реальные переносы строк)
+            # Формируем desc (printf сохранит реальные переводы строк)
             embed_desc=$(printf '**Что нового:**\n%s\n**Дата обновления:** %s\n**Источник:** [Посмотреть](%s)' "$changes" "$date_update" "$commit_url")
 
             embed_title="$emoji $type_update"
-
             jq -n \
               --arg title "$embed_title" \
               --arg desc "$embed_desc" \
               --argjson color "$color" \
               '{embeds: [{title: $title, description: $desc, color: $color}]}' \
             | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
-
             echo "✅ Sent update for $hash"
           done
