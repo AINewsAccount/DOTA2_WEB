@@ -138,7 +138,7 @@ jobs:
           # -----------------------------
           if [[ "$MODE" == "resend" ]]; then
             echo "🔁 Режим пересылки последнего коммита с изменениями в _HISTORY_by_date.txt..."
-            log_range=$(git log -n 1 --pretty=format:"%H" -- _HISTORY_by_date.txt || true)
+            log_range=$(git log -n 10 --pretty=format:"%H" -- _HISTORY_by_date.txt || true)
             if [ -z "$log_range" ]; then
               echo "⚠️ Не найдено коммитов, изменяющих _HISTORY_by_date.txt — выходим."
               exit 0
