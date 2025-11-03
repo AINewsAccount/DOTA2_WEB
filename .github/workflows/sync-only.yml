@@ -116,9 +116,10 @@ jobs:
           echo "✅ Используем диапазон $range (только upstream изменения)"
           log_range=$(git log --pretty=format:"%H" "$range" --reverse || true)
           if [ -z "${log_range:-}" ]; then
-            echo "⚠️ log_range пустой — используем последние 5 коммитов из upstream."
-            log_range=$(git log -n 5 --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" --reverse || true)
+          echo "ℹ️ Нет новых коммитов — пропускаем уведомление."
+          exit 0
           fi
+
 
           # -----------------------------
           # Режим resend
