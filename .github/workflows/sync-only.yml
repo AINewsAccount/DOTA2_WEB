@@ -62,8 +62,9 @@ jobs:
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "ℹ️ Нет изменений — всё уже актуально."
           fi
+
       # -----------------------------------------------
-      # 📢 Отправка Discord уведомлений (обновленный блок)
+      # 📢 Отправка Discord уведомлений
       # -----------------------------------------------
       - name: 📢 Send Dota updates to Discord
         if: steps.push.outputs.changed == 'true' || github.event.inputs.mode != ''
@@ -71,10 +72,9 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           set -euo pipefail
-          # set -x # Включи временно для debug
           MODE="${{ github.event.inputs.mode || 'auto' }}"
           echo "📢 Mode: $MODE"
-          # 🧪 Тестовый режим
+
           if [[ "$MODE" == "test" ]]; then
             echo "🧪 Sending test message..."
             embed_title="🧪 Dota 2 Test Notification"
@@ -88,112 +88,92 @@ jobs:
             | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
             exit 0
           fi
-          # -----------------------------
-          # Санайтизация SHA
-          # -----------------------------
+
           before_raw="${{ steps.before.outputs.before_sha }}"
           after_raw="${{ steps.after.outputs.after_sha }}"
           before=$(printf '%s' "$before_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
           after=$(printf '%s' "$after_raw" | tr -d '\r\n' | awk '{$1=$1;print}')
-          echo "DEBUG: before='$before' after='$after'"
-          # -----------------------------
-          # Получаем upstream
-          # -----------------------------
+
           git remote set-url upstream "https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}.git" || true
           git fetch --no-tags upstream || true
+
           if ! git rev-parse "$before" >/dev/null 2>&1; then
-            echo "⚠️ SHA недоступны — выполняется fetch --unshallow..."
             git fetch --no-tags --unshallow upstream || true
             git fetch --no-tags upstream --depth=1000 || true
           fi
-          # -----------------------------
-          # Формирование диапазона коммитов (только upstream)
-          # -----------------------------
+
           range="$before..upstream/${{ env.UPSTREAM_BRANCH }}"
-          echo "✅ Используем диапазон $range (только upstream изменения)"
           log_range=$(git log --pretty=format:"%H" "$range" --reverse || true)
+
           if [ -z "${log_range:-}" ]; then
-            echo "⚠️ log_range пустой — используем последние 5 коммитов из upstream."
             log_range=$(git log -n 5 --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" --reverse || true)
           fi
-          # -----------------------------
-          # Режим resend: последние коммиты с изменениями в файле (с поддержкой -n X)
-          # -----------------------------
+
           if [[ "$MODE" == resend* ]]; then
-            echo "🔁 Режим пересылки последних коммитов с изменениями в _HISTORY_by_date.txt..."
-            # Парсим опциональный -n X (default 10)
             num_commits=10
             if [[ "$MODE" =~ -n\ ([0-9]+) ]]; then
               num_commits="${BASH_REMATCH[1]}"
             fi
-            echo "Используем -n $num_commits коммитов."
             log_range=$(git log -n "$num_commits" --pretty=format:"%H" "upstream/${{ env.UPSTREAM_BRANCH }}" -- steam_api/_HISTORY_by_date.txt || true)
-            if [ -z "$log_range" ]; then
-              echo "⚠️ Не найдено коммитов, изменяющих _HISTORY_by_date.txt — выходим."
-              exit 0
-            fi
+            [ -z "$log_range" ] && exit 0
           fi
+
           echo "🔍 Обрабатываем коммиты..."
           for hash in $log_range; do
             [ -z "$hash" ] && continue
-            # Пропускаем merge-коммиты
             if git show -s --format=%P "$hash" | grep -q ' '; then
-              echo "ℹ️ Пропускаем merge-коммит: $hash"
               continue
             fi
+
             title=$(git show -s --format=%s "$hash" || true)
             commit_url="https://github.com/${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}/commit/$hash"
-            # -----------------------------
-            # Извлечение ТОЛЬКО новых строк (+) из _HISTORY_by_date.txt, фильтр по "Dota"
-            # -----------------------------
+
             new_lines=$(git show "$hash" -- steam_api/_HISTORY_by_date.txt 2>/dev/null \
               | grep "^\+" \
               | grep -vE "^\+\+\+" \
               | sed 's/^\+//' \
-              | grep -i "dota" || true)  # Фильтр по слову "Dota" (case-insensitive)
-            if [ -z "$new_lines" ]; then
-              echo "ℹ️ Нет новых строк с 'Dota' в _HISTORY_by_date.txt для $hash — пропускаем."
-              continue
-            fi
-            # Определяем тип обновления на основе строк (Staging/Experimental/обычное)
+              | grep -i "dota" || true)
+
+            [ -z "$new_lines" ] && continue
+
             type_update="Dota 2 Update"
             emoji="🔄"
-            color=3066993  # Зеленый для обычного
+            color=3066993
             if echo "$new_lines" | grep -iq "experimental"; then
               type_update="Dota 2 Experimental"
               emoji="🧪"
-              color=16711680  # Красный
+              color=16711680
             elif echo "$new_lines" | grep -iq "staging"; then
               type_update="Dota 2 Staging"
               emoji="🛠️"
-              color=3447003  # Синий
+              color=3447003
             elif echo "$title" | grep -iq "heroes"; then
               type_update="Dota 2 Heroes"
               emoji="🦸"
-              color=15844367  # Золотой
+              color=15844367
             fi
-            # Парсим строки для форматирования "Что нового" и извлечения даты (берём дату из первой строки, предполагая они похожи)
+
             changes=""
             date_update=""
             while IFS= read -r line; do
-              # Парсим: app_id - app_name | [v] from => to | date (UTC+3)
               app_name=$(echo "$line" | awk -F' - ' '{print $2}' | awk -F' \\| ' '{print $1}')
               version_change=$(echo "$line" | awk -F' \\| ' '{print $2}' | awk -F' \\| ' '{print $1}')
               date_raw=$(echo "$line" | awk -F' \\| ' '{print $3}' | sed 's/ (UTC+3)//')
-              changes+="$app_name | $version_change\n"
-              if [ -z "$date_update" ]; then
-                date_update="$date_raw"
-              fi
+              changes+="${app_name} | ${version_change}\n"
+              [ -z "$date_update" ] && date_update="$date_raw"
             done <<< "$new_lines"
-            # Формируем desc
+
+            # ✅ Фикс форматирования (реальные переносы строк)
             embed_desc=$(printf '**Что нового:**\n%s\n**Дата обновления:** %s\n**Источник:** [Посмотреть](%s)' "$changes" "$date_update" "$commit_url")
-            # Формируем и отправляем отдельный embed для каждого коммита
+
             embed_title="$emoji $type_update"
+
             jq -n \
               --arg title "$embed_title" \
               --arg desc "$embed_desc" \
               --argjson color "$color" \
               '{embeds: [{title: $title, description: $desc, color: $color}]}' \
             | curl -s -H "Content-Type: application/json" -X POST -d @- "$DISCORD_WEBHOOK"
+
             echo "✅ Sent update for $hash"
           done
