@@ -119,23 +119,23 @@
       "library_assets_full": {
         "library_capsule": {
           "image": {
-            "english": "6843027380c3bfd0952449fd9174f492ef2e7b40/library_capsule.jpg"
+            "english": "7ec9618b56504ac86080167b3e79d7753760b736/library_capsule.jpg"
           },
           "image2x": {
-            "english": "6843027380c3bfd0952449fd9174f492ef2e7b40/library_capsule_2x.jpg"
+            "english": "7ec9618b56504ac86080167b3e79d7753760b736/library_capsule_2x.jpg"
           }
         },
         "library_hero": {
           "image": {
-            "english": "06918d1009cc79ffdee853f1ef789cddf8014226/library_hero.jpg"
+            "english": "f7bfe9bc3be1fef58479dfaf95c88372aa9226d7/library_hero.jpg"
           },
           "image2x": {
-            "english": "06918d1009cc79ffdee853f1ef789cddf8014226/library_hero_2x.jpg"
+            "english": "f7bfe9bc3be1fef58479dfaf95c88372aa9226d7/library_hero_2x.jpg"
           }
         },
         "library_hero_blur": {
           "image": {
-            "english": "06918d1009cc79ffdee853f1ef789cddf8014226/library_hero_blur.jpg"
+            "english": "f7bfe9bc3be1fef58479dfaf95c88372aa9226d7/library_hero_blur.jpg"
           }
         },
         "library_logo": {
@@ -154,14 +154,14 @@
         },
         "library_header": {
           "image": {
-            "english": "4f0854d4f0b7f620515e390628427f9f37335ffd/library_header.jpg"
+            "english": "6c786a862299b22e3d4ba331cfbdcb4f31db0211/library_header.jpg"
           },
           "image2x": {
-            "english": "4f0854d4f0b7f620515e390628427f9f37335ffd/library_header_2x.jpg"
+            "english": "6c786a862299b22e3d4ba331cfbdcb4f31db0211/library_header_2x.jpg"
           }
         }
       },
-      "store_asset_mtime": "1762450443",
+      "store_asset_mtime": "1762820487",
       "associations": {
         "0": {
           "type": "developer",
@@ -450,9 +450,9 @@
       "373301": {
         "manifests": {
           "public": {
-            "gid": "5113707606154341461",
-            "size": "4284690301",
-            "download": "2599417280"
+            "gid": "4038760825153021273",
+            "size": "4254070681",
+            "download": "2580441440"
           }
         }
       },
@@ -495,9 +495,9 @@
       "381455": {
         "manifests": {
           "public": {
-            "gid": "5164902080688323322",
-            "size": "56576910170",
-            "download": "23886204304"
+            "gid": "5817102322047348498",
+            "size": "56570063529",
+            "download": "23894297168"
           }
         }
       },
@@ -520,9 +520,9 @@
         },
         "manifests": {
           "public": {
-            "gid": "2700478290719373282",
-            "size": "588340096",
-            "download": "171991472"
+            "gid": "5657714461524515788",
+            "size": "588341632",
+            "download": "171967216"
           }
         }
       },
@@ -532,9 +532,9 @@
         },
         "manifests": {
           "public": {
-            "gid": "2312484514114067343",
+            "gid": "5903394729249569868",
             "size": "602305485",
-            "download": "294689856"
+            "download": "294686912"
           }
         }
       },
@@ -553,9 +553,9 @@
         },
         "manifests": {
           "public": {
-            "gid": "3111512743030195217",
-            "size": "707872579",
-            "download": "312341312"
+            "gid": "1494173162250052541",
+            "size": "707873731",
+            "download": "312333968"
           }
         }
       },
@@ -616,9 +616,9 @@
         "dlcappid": "313250",
         "manifests": {
           "public": {
-            "gid": "551689182777944139",
+            "gid": "3470663888036281705",
             "size": "5769109407",
-            "download": "1602900240"
+            "download": "1602895216"
           }
         }
       },
@@ -666,8 +666,8 @@
       },
       "branches": {
         "public": {
-          "buildid": "20744735",
-          "timeupdated": "1762812433"
+          "buildid": "20745737",
+          "timeupdated": "1762818885"
         }
       },
       "privatebranches": "1",
@@ -678,8 +678,8 @@
       "maxnumfiles": "2000"
     },
     "_missing_token": false,
-    "_change_number": 32182180,
-    "_sha": "065720c14bf8bdd4ba02b3fb8c227f71542e9844",
-    "_size": 14692
+    "_change_number": 32183907,
+    "_sha": "3c78c5347140bce461f4b19ff82339e221fa39df",
+    "_size": 14693
   }
 }
