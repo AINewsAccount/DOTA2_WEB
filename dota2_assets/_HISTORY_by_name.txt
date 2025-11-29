@@ -38495,6 +38495,7 @@
 76328142_Team Pennant_ Orange | [s] 2174 => 2136 | [h] 10b6de78b9 => 9949fa836f | 2025-08-06 18:00:43 (UTC+3)
 76328142_Team Pennant_ Orange | [h] 9949fa836f => a24e03819d | 2025-10-11 18:01:09 (UTC+3)
 7718115937_Monster Hunter Expedition Pack | [s] None => 2042 | [h] None => 60f81687c0 | 2025-11-11 18:13:33 (UTC+3)
+7718115937_Monster Hunter Expedition Pack | [s] 2042 => 2086 | [h] 60f81687c0 => 95c4602ac0 | 2025-11-29 18:00:20 (UTC+3)
 779929121_Frost Avalanche Bundle | [s] None => 2101 | [h] None => 568493adf0 | 2024-03-21 18:05:58 (UTC+3)
 779929121_Frost Avalanche Bundle | [s] 2101 => 2209 | [h] 568493adf0 => d7ab1e8cf9 | 2024-12-19 18:02:32 (UTC+3)
 779929121_Frost Avalanche Bundle | [s] 2209 => 2199 | [h] d7ab1e8cf9 => c4bc2fc730 | 2025-05-11 16:24:48 (UTC+3)

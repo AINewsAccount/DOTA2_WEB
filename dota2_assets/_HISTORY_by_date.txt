@@ -40157,3 +40157,4 @@
 5713397623_Dragon's Hoard | [s] 5085 => 5047 | [h] 4cb8cda485 => b10ddd84a9 | 2025-10-11 18:01:10 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4495 => 4478 | [h] a8ade951c4 => 84fb531a40 | 2025-11-03 18:01:43 (UTC+3)
 7718115937_Monster Hunter Expedition Pack | [s] None => 2042 | [h] None => 60f81687c0 | 2025-11-11 18:13:33 (UTC+3)
+7718115937_Monster Hunter Expedition Pack | [s] 2042 => 2086 | [h] 60f81687c0 => 95c4602ac0 | 2025-11-29 18:00:20 (UTC+3)
