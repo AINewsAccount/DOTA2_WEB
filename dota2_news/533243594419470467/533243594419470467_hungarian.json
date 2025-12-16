@@ -1,0 +1,113 @@
+{
+  "gid": "533243594419470467",
+  "clan_steamid": "103582791433224455",
+  "event_name": "Bemutatjuk Largót és a 7.40-es játékmenet-frissítést",
+  "event_type": 14,
+  "appid": 570,
+  "server_address": null,
+  "server_password": null,
+  "rtime32_start_time": 1765843620,
+  "rtime32_end_time": 1765848601,
+  "comment_count": 0,
+  "creator_steamid": "0",
+  "last_update_steamid": "0",
+  "event_notes": "see announcement body",
+  "jsondata": {
+    "localized_title_image": [],
+    "localized_capsule_image": [
+      "c09b13cda87a548b83b626fb33a32efd7895c634.png"
+    ],
+    "bSaleEnabled": false,
+    "sale_show_creator": false,
+    "sale_sections": [],
+    "sale_browsemore_text": "",
+    "sale_browsemore_url": "",
+    "sale_browsemore_color": "",
+    "sale_browsemore_bgcolor": "",
+    "localized_sale_header": [],
+    "localized_sale_overlay": [],
+    "localized_sale_product_banner": [],
+    "localized_sale_product_mobile_banner": [],
+    "localized_sale_logo": [],
+    "sale_font": "",
+    "sale_background_color": "",
+    "sale_header_offset": 530,
+    "referenced_appids": [],
+    "bBroadcastEnabled": false,
+    "broadcastChatSetting": "hide",
+    "default_broadcast_title": "#Broadcast_default_title_dev",
+    "localized_broadcast_left_image": [],
+    "localized_broadcast_right_image": [],
+    "broadcast_whitelist": [],
+    "bScheduleEnabled": false,
+    "scheduleEntries": [],
+    "valve_access_log": [
+      {
+        "strSteamID": "76561199113010392",
+        "rtUpdated": 1765841273
+      },
+      {
+        "strSteamID": "76561198166130601",
+        "rtUpdated": 1765843653
+      },
+      {
+        "strSteamID": "76561198239571404",
+        "rtUpdated": 1765823108
+      }
+    ],
+    "automatically_push_updated_source": true
+  },
+  "announcement_body": {
+    "gid": "533243594419470468",
+    "clanid": "3703047",
+    "posterid": "0",
+    "headline": "Bemutatjuk Largót és a 7.40-es játékmenet-frissítést",
+    "posttime": 1765843654,
+    "updatetime": 1765843654,
+    "body": [
+      "[img]{STEAM_CLAN_IMAGE}/3703047/c09b13cda87a548b83b626fb33a32efd7895c634.png[/img]",
+      "A Dota vegyes szereplőgárdából áll, de végignézve a zsiványok, varázslók, druidák és lovagok gyűjteményét (nem is beszélve a két „vadásznak” [i]nevezett[/i] karakterről), az éles szemű megfigyelők talán észrevették a legbecsméreltebb hősosztály, a dalnok hiányát. Legalábbis mostanáig.",
+      "Bemutatjuk a Dota legújabb hősét: Largót, a dalnokot.",
+      "A hagyományos dalnoki képességekkel (aktuális eseményekről énekelés és akkordváltások) rendelkező dalnokokkal ellentétben Largo a dalnok szerzetesrend sámáni vezetője. Minden dalt a saját pontos körülményeire ír, javítva szövetségesei hangulatát, vagy ha szükséges, gyorsítva lépteiket, ahogy a csata felé (vagy attól el) futnak. Békaként fogós nyelvének, mondjuk úgy, sokféle trükkje van. [url=http://dota2.com/largocomic]Olvashatsz egy kicsit a múltjáról[/url], vagy most azonnal segíthetsz felfedezni a jövőjét a Dotában.",
+      "A mai frissítés tartalmazza a [url=https://dota2.com/largo]7.40-es játékmenet-frissítést[/url] is. (A frissítésjegyzék szokás szerint túl hosszú ahhoz, hogy beleférjen ebbe a blogbejegyzésbe, ezért létrehoztunk egy egész oldalt, hogy elférjen, és bemutassuk a legfontosabbakat.)",
+      "Largo egy időre átveszi a Dota főmenüjét, de a [url=https://store.steampowered.com/curator/34827959]Monster Hunter[/url] esemény továbbra is tart, és rengeteg időd maradt elkészíteni, amin dolgozol. Mivel itt vannak az ünnepek, akciósan kínáljuk a [url=https://www.dota2.com/newsentry/555756515113304416]Dota 2 x Monster Hunter[/url] Expedíció Csomagot, és mindenkinek, akinek már megvan, egy különleges elővásárlási utalványcsomagot adunk. Ráadásul [i]mindenkinek[/i], aki az ünnepek alatt bejelentkezik, egy ingyenes tárgykészítési anyagcsomagot adunk. Jó vadászatot!",
+      "Ha már az ünnepeknél tartunk, újra felbukkant néhány megszokott móka, mindannyiunkat emlékeztetve az ünnep igazi értelmére: hógolyóval arcba dobni az ellenségeidet.",
+      "A Dota közösség minden tagjának biztonságos és boldog ünnepeket kívánunk, és jövőre találkozunk."
+    ],
+    "commentcount": 87,
+    "tags": [
+      "mod_reviewed",
+      "ModAct_1278681683_1765844193_0"
+    ],
+    "language": 18,
+    "hidden": 0,
+    "forum_topic_id": "705506553887847766",
+    "event_gid": "533243594419470467",
+    "voteupcount": 635,
+    "votedowncount": 21,
+    "ban_check_result": 0,
+    "banned": 0
+  },
+  "published": 1,
+  "hidden": 0,
+  "rtime32_visibility_start": 0,
+  "rtime32_visibility_end": 0,
+  "broadcaster_accountid": 0,
+  "follower_count": 0,
+  "ignore_count": 0,
+  "forum_topic_id": "705506553887847766",
+  "rtime32_last_modified": 1765845556,
+  "news_post_gid": "0",
+  "rtime_mod_reviewed": 1765844193,
+  "featured_app_tagid": 0,
+  "referenced_appids": [],
+  "build_id": 0,
+  "build_branch": "",
+  "unlisted": 0,
+  "votes_up": 591,
+  "votes_down": 18,
+  "comment_type": "ForumTopic",
+  "gidfeature": "1636418037459185108",
+  "gidfeature2": "705506553887847766",
+  "clan_steamid_original": "103582791433224455"
+}

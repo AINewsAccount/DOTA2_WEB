@@ -38580,6 +38580,8 @@
 782518951_The Eye Fountain | [s] 1655 => 1645 | [h] 6fa1750121 => 67afc2030c | 2025-05-11 16:24:47 (UTC+3)
 782518951_The Eye Fountain | [s] 1645 => 1722 | [h] 67afc2030c => 7cb986caef | 2025-05-21 01:14:28 (UTC+3)
 782518951_The Eye Fountain | [s] 1722 => 1684 | [h] 7cb986caef => 4827c56765 | 2025-10-11 18:01:09 (UTC+3)
+7846094216_Winter 2025 Collector's Cache | [s] None => 4156 | [h] None => 0ed177064e | 2025-12-16 03:10:14 (UTC+3)
+7846094218_Demon Eater Bundle | [s] None => 2032 | [h] None => bad023c735 | 2025-12-16 03:10:14 (UTC+3)
 798227211_Virulent Matriarch's Back | [s] None => 2947 | [h] None => c7fd26c9ab | 2024-03-21 18:05:56 (UTC+3)
 798227211_Virulent Matriarch's Back | [s] 2947 => 3163 | [h] c7fd26c9ab => 3bc8aafb24 | 2024-12-19 18:02:31 (UTC+3)
 798227211_Virulent Matriarch's Back | [s] 3163 => 3153 | [h] 3bc8aafb24 => c860435083 | 2025-05-11 16:24:47 (UTC+3)

@@ -1,0 +1,113 @@
+{
+  "gid": "533243594419470467",
+  "clan_steamid": "103582791433224455",
+  "event_name": "Largo og spilopdatering 7.40",
+  "event_type": 14,
+  "appid": 570,
+  "server_address": null,
+  "server_password": null,
+  "rtime32_start_time": 1765843620,
+  "rtime32_end_time": 1765848601,
+  "comment_count": 0,
+  "creator_steamid": "0",
+  "last_update_steamid": "0",
+  "event_notes": "see announcement body",
+  "jsondata": {
+    "localized_title_image": [],
+    "localized_capsule_image": [
+      "c09b13cda87a548b83b626fb33a32efd7895c634.png"
+    ],
+    "bSaleEnabled": false,
+    "sale_show_creator": false,
+    "sale_sections": [],
+    "sale_browsemore_text": "",
+    "sale_browsemore_url": "",
+    "sale_browsemore_color": "",
+    "sale_browsemore_bgcolor": "",
+    "localized_sale_header": [],
+    "localized_sale_overlay": [],
+    "localized_sale_product_banner": [],
+    "localized_sale_product_mobile_banner": [],
+    "localized_sale_logo": [],
+    "sale_font": "",
+    "sale_background_color": "",
+    "sale_header_offset": 530,
+    "referenced_appids": [],
+    "bBroadcastEnabled": false,
+    "broadcastChatSetting": "hide",
+    "default_broadcast_title": "#Broadcast_default_title_dev",
+    "localized_broadcast_left_image": [],
+    "localized_broadcast_right_image": [],
+    "broadcast_whitelist": [],
+    "bScheduleEnabled": false,
+    "scheduleEntries": [],
+    "valve_access_log": [
+      {
+        "strSteamID": "76561199113010392",
+        "rtUpdated": 1765841273
+      },
+      {
+        "strSteamID": "76561198166130601",
+        "rtUpdated": 1765843653
+      },
+      {
+        "strSteamID": "76561198239571404",
+        "rtUpdated": 1765823108
+      }
+    ],
+    "automatically_push_updated_source": true
+  },
+  "announcement_body": {
+    "gid": "533243594419470468",
+    "clanid": "3703047",
+    "posterid": "0",
+    "headline": "Largo og spilopdatering 7.40",
+    "posttime": 1765843654,
+    "updatetime": 1765843654,
+    "body": [
+      "[img]{STEAM_CLAN_IMAGE}/3703047/c09b13cda87a548b83b626fb33a32efd7895c634.png[/img]",
+      "Dota består af en ensemblebesætning, men de, som følger godt med i samlingen af skurke, troldfolk, druider og riddere (for ikke at tale om karakterer, som [i]kaldes[/i] \"ranger\"), har måske bemærket fraværet af den mest nedrakkede af helteklasserne: barden. I hvert fald indtil nu.",
+      "Lad os introducere Dotas nyeste helt: barden Largo.",
+      "Til forskel fra barder med traditionelle bardekræfter (at synge om aktuelle begivenheder og akkordprogressioner) er Largo det shamanistiske overhoved i bardemunkeordenen. Han tilpasser hver sang efter omstændighederne for at øge sine allieredes moral eller om nødvendigt deres tempo, når de farer i (eller flygter fra) kamp. Som frø gemmer hans \"gribetunge\" på, hvad skal vi sige, alle mulige kneb. Du kan [url=http://dota2.com/largocomic]læse lidt om hans fortid[/url] eller hjælpe med at udforske hans fremtid i Dota lige nu.",
+      "Dagens opdatering inkluderer også [url=https://dota2.com/largo]spilopdatering 7.40[/url]. (Traditionen tro er opdateringsnoterne for lange til at kunne være i dette blogindlæg, så vi har lavet en hel side til dem, som også viser nogle højdepunkter).",
+      "Largo overtager hovedmenuen i Dota i et stykke tid, men [url=https://store.steampowered.com/curator/34827959]Monster Hunter-begivenheden[/url] er stadig i gang, og der er masser af tid tilbage til at smede det, du arbejder dig henimod. Nu hvor julen står for døren, sætter vi ekspeditionspakken til [url=https://www.dota2.com/newsentry/555756515113304416]Dota 2 x Monster Hunter[/url] på tilbud og giver alle, som ejer den i forvejen, en kupon til et særligt materialebundt. Oven i det giver vi [i]alle[/i], som logger på i løbet af julen, et gratis bundt med smedematerialer. God jagt!",
+      "Apropos højtid og fest, så er nogle af de sædvanlige løjer tilbage igen og minder os om julens sande ånd: at ramme fjender i ansigtet med snebolde.",
+      "Vi håber, at alle i Dota-fællesskabet får en glædelig jul! Vi ses til næste år."
+    ],
+    "commentcount": 76,
+    "tags": [
+      "mod_reviewed",
+      "ModAct_1278681683_1765844193_0"
+    ],
+    "language": 13,
+    "hidden": 0,
+    "forum_topic_id": "705506553887847766",
+    "event_gid": "533243594419470467",
+    "voteupcount": 542,
+    "votedowncount": 16,
+    "ban_check_result": 0,
+    "banned": 0
+  },
+  "published": 1,
+  "hidden": 0,
+  "rtime32_visibility_start": 0,
+  "rtime32_visibility_end": 0,
+  "broadcaster_accountid": 0,
+  "follower_count": 0,
+  "ignore_count": 0,
+  "forum_topic_id": "705506553887847766",
+  "rtime32_last_modified": 1765845314,
+  "news_post_gid": "0",
+  "rtime_mod_reviewed": 1765844193,
+  "featured_app_tagid": 0,
+  "referenced_appids": [],
+  "build_id": 0,
+  "build_branch": "",
+  "unlisted": 0,
+  "votes_up": 470,
+  "votes_down": 14,
+  "comment_type": "ForumTopic",
+  "gidfeature": "1636418037459185108",
+  "gidfeature2": "705506553887847766",
+  "clan_steamid_original": "103582791433224455"
+}
