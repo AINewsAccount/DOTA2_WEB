@@ -1721,6 +1721,15 @@
             "cost": "0",
             "img": "sisters_shroud_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/sisters_shroud_png.png"
+          },
+          {
+            "item_id": "1716",
+            "name": "weighted_dice",
+            "name_loc": "加重骰子",
+            "sort_value": "0",
+            "cost": "0",
+            "img": "weighted_dice_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/weighted_dice_png.png"
           }
         ],
         "name_en": "Level 1"
@@ -1901,6 +1910,24 @@
             "cost": "0",
             "img": "pyrrhic_cloak_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/pyrrhic_cloak_png.png"
+          },
+          {
+            "item_id": "1720",
+            "name": "idol_of_screeauk",
+            "name_loc": "丝奎奥克神像",
+            "sort_value": "0",
+            "cost": "0",
+            "img": "idol_of_screeauk_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/idol_of_screeauk_png.png"
+          },
+          {
+            "item_id": "1721",
+            "name": "flayers_bota",
+            "name_loc": "剥皮血囊",
+            "sort_value": "0",
+            "cost": "0",
+            "img": "flayers_bota_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/flayers_bota_png.png"
           }
         ],
         "name_en": "Level 4"
@@ -1979,6 +2006,15 @@
             "cost": "0",
             "img": "desolator_2_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/desolator_2_png.png"
+          },
+          {
+            "item_id": "1718",
+            "name": "riftshadow_prism",
+            "name_loc": "影墟棱晶",
+            "sort_value": "0",
+            "cost": "0",
+            "img": "riftshadow_prism_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/riftshadow_prism_png.png"
           }
         ],
         "name_en": "Level 5"
