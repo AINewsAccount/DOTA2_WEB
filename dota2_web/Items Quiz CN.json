@@ -1651,13 +1651,13 @@
         "name": "第1级",
         "items": [
           {
-            "item_id": "1638",
-            "name": "dormant_curio",
-            "name_loc": "休眠珍品",
+            "item_id": "1717",
+            "name": "ash_legion_shield",
+            "name_loc": "余烬军团战盾",
             "sort_value": "18",
             "cost": "0",
-            "img": "dormant_curio_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/dormant_curio_png.png"
+            "img": "ash_legion_shield_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/ash_legion_shield_png.png"
           },
           {
             "item_id": "1600",
@@ -1669,6 +1669,15 @@
             "img_url": "https://www.dota2.com.cn/items/png/rippers_lash_png.png"
           },
           {
+            "item_id": "1716",
+            "name": "weighted_dice",
+            "name_loc": "加重骰子",
+            "sort_value": "17",
+            "cost": "0",
+            "img": "weighted_dice_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/weighted_dice_png.png"
+          },
+          {
             "item_id": "1124",
             "name": "spark_of_courage",
             "name_loc": "勇气之光",
@@ -1678,10 +1687,28 @@
             "img_url": "https://www.dota2.com.cn/items/png/spark_of_courage_png.png"
           },
           {
+            "item_id": "2097",
+            "name": "duelist_gloves",
+            "name_loc": "决斗家手套",
+            "sort_value": "16",
+            "cost": "0",
+            "img": "duelist_gloves_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/duelist_gloves_png.png"
+          },
+          {
+            "item_id": "1638",
+            "name": "dormant_curio",
+            "name_loc": "休眠珍品",
+            "sort_value": "15",
+            "cost": "0",
+            "img": "dormant_curio_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/dormant_curio_png.png"
+          },
+          {
             "item_id": "1606",
             "name": "polliwog_charm",
             "name_loc": "蝌蚪护符",
-            "sort_value": "15",
+            "sort_value": "14",
             "cost": "0",
             "img": "polliwog_charm_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/polliwog_charm_png.png"
@@ -1690,7 +1717,7 @@
             "item_id": "565",
             "name": "chipped_vest",
             "name_loc": "碎裂背心",
-            "sort_value": "14",
+            "sort_value": "13",
             "cost": "0",
             "img": "chipped_vest_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/chipped_vest_png.png"
@@ -1699,7 +1726,7 @@
             "item_id": "1637",
             "name": "kobold_cup",
             "name_loc": "狗头人酒杯",
-            "sort_value": "13",
+            "sort_value": "12",
             "cost": "0",
             "img": "kobold_cup_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/kobold_cup_png.png"
@@ -1708,46 +1735,10 @@
             "item_id": "947",
             "name": "occult_bracelet",
             "name_loc": "玄奥手镯",
-            "sort_value": "12",
+            "sort_value": "11",
             "cost": "0",
             "img": "occult_bracelet_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/occult_bracelet_png.png"
-          },
-          {
-            "item_id": "1639",
-            "name": "sisters_shroud",
-            "name_loc": "魅影之衣",
-            "sort_value": "11",
-            "cost": "0",
-            "img": "sisters_shroud_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/sisters_shroud_png.png"
-          },
-          {
-            "item_id": "1716",
-            "name": "weighted_dice",
-            "name_loc": "加重骰子",
-            "sort_value": "0",
-            "cost": "0",
-            "img": "weighted_dice_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/weighted_dice_png.png"
-          },
-          {
-            "item_id": "1717",
-            "name": "ash_legion_shield",
-            "name_loc": "余烬军团战盾",
-            "sort_value": "0",
-            "cost": "0",
-            "img": "ash_legion_shield_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/ash_legion_shield_png.png"
-          },
-          {
-            "item_id": "2097",
-            "name": "duelist_gloves",
-            "name_loc": "决斗家手套",
-            "sort_value": "0",
-            "cost": "0",
-            "img": "duelist_gloves_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/duelist_gloves_png.png"
           }
         ],
         "name_en": "Level 1"
@@ -1756,22 +1747,22 @@
         "name": "第2级",
         "items": [
           {
+            "item_id": "950",
+            "name": "defiant_shell",
+            "name_loc": "不羁甲壳",
+            "sort_value": "26",
+            "cost": "0",
+            "img": "defiant_shell_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/defiant_shell_png.png"
+          },
+          {
             "item_id": "840",
             "name": "pogo_stick",
             "name_loc": "杂技玩具",
-            "sort_value": "26",
+            "sort_value": "25",
             "cost": "0",
             "img": "pogo_stick_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/pogo_stick_png.png"
-          },
-          {
-            "item_id": "828",
-            "name": "misericorde",
-            "name_loc": "飞贼之刃",
-            "sort_value": "25",
-            "cost": "0",
-            "img": "misericorde_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/misericorde_png.png"
           },
           {
             "item_id": "1604",
@@ -1808,15 +1799,6 @@
             "cost": "0",
             "img": "essence_ring_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/essence_ring_png.png"
-          },
-          {
-            "item_id": "950",
-            "name": "defiant_shell",
-            "name_loc": "不羁甲壳",
-            "sort_value": "0",
-            "cost": "0",
-            "img": "defiant_shell_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/defiant_shell_png.png"
           }
         ],
         "name_en": "Level 2"
@@ -1825,10 +1807,19 @@
         "name": "第3级",
         "items": [
           {
+            "item_id": "1598",
+            "name": "unrelenting_eye",
+            "name_loc": "不屈之眼",
+            "sort_value": "36",
+            "cost": "0",
+            "img": "unrelenting_eye_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/unrelenting_eye_png.png"
+          },
+          {
             "item_id": "675",
             "name": "psychic_headband",
             "name_loc": "通灵头带",
-            "sort_value": "36",
+            "sort_value": "35",
             "cost": "0",
             "img": "psychic_headband_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/psychic_headband_png.png"
@@ -1837,7 +1828,7 @@
             "item_id": "1640",
             "name": "jidi_pollen_bag",
             "name_loc": "基迪花粉袋",
-            "sort_value": "35",
+            "sort_value": "34",
             "cost": "0",
             "img": "jidi_pollen_bag_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/jidi_pollen_bag_png.png"
@@ -1846,7 +1837,7 @@
             "item_id": "1158",
             "name": "whisper_of_the_dread",
             "name_loc": "邪道私语",
-            "sort_value": "34",
+            "sort_value": "33",
             "cost": "0",
             "img": "whisper_of_the_dread_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/whisper_of_the_dread_png.png"
@@ -1855,79 +1846,10 @@
             "item_id": "1603",
             "name": "gunpowder_gauntlets",
             "name_loc": "火药手套",
-            "sort_value": "33",
+            "sort_value": "32",
             "cost": "0",
             "img": "gunpowder_gauntlets_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/gunpowder_gauntlets_png.png"
-          },
-          {
-            "item_id": "1602",
-            "name": "gale_guard",
-            "name_loc": "烈风护体",
-            "sort_value": "32",
-            "cost": "0",
-            "img": "gale_guard_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/gale_guard_png.png"
-          }
-        ],
-        "name_en": "Level 3"
-      },
-      {
-        "name": "第4级",
-        "items": [
-          {
-            "item_id": "1641",
-            "name": "outworld_staff",
-            "name_loc": "殁境法杖",
-            "sort_value": "46",
-            "cost": "0",
-            "img": "outworld_staff_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/outworld_staff_png.png"
-          },
-          {
-            "item_id": "1643",
-            "name": "giant_maul",
-            "name_loc": "巨人之槌",
-            "sort_value": "45",
-            "cost": "0",
-            "img": "giant_maul_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/giant_maul_png.png"
-          },
-          {
-            "item_id": "1642",
-            "name": "dezun_bloodrite",
-            "name_loc": "德尊血式",
-            "sort_value": "44",
-            "cost": "0",
-            "img": "dezun_bloodrite_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/dezun_bloodrite_png.png"
-          },
-          {
-            "item_id": "1607",
-            "name": "magnifying_monocle",
-            "name_loc": "放大单片镜",
-            "sort_value": "43",
-            "cost": "0",
-            "img": "magnifying_monocle_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/magnifying_monocle_png.png"
-          },
-          {
-            "item_id": "1601",
-            "name": "crippling_crossbow",
-            "name_loc": "致残之弩",
-            "sort_value": "42",
-            "cost": "0",
-            "img": "crippling_crossbow_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/crippling_crossbow_png.png"
-          },
-          {
-            "item_id": "1608",
-            "name": "pyrrhic_cloak",
-            "name_loc": "皮洛士斗篷",
-            "sort_value": "41",
-            "cost": "0",
-            "img": "pyrrhic_cloak_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/pyrrhic_cloak_png.png"
           },
           {
             "item_id": "1605",
@@ -1937,42 +1859,66 @@
             "cost": "0",
             "img": "serrated_shiv_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/serrated_shiv_png.png"
-          },
-          {
-            "item_id": "1168",
-            "name": "rattlecage",
-            "name_loc": "回响之笼",
-            "sort_value": "0",
-            "cost": "0",
-            "img": "rattlecage_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/rattlecage_png.png"
-          },
+          }
+        ],
+        "name_en": "Level 3"
+      },
+      {
+        "name": "第4级",
+        "items": [
           {
             "item_id": "1719",
             "name": "metamorphic_mandible",
             "name_loc": "变态上颚",
-            "sort_value": "0",
+            "sort_value": "46",
             "cost": "0",
             "img": "metamorphic_mandible_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/metamorphic_mandible_png.png"
           },
           {
+            "item_id": "1721",
+            "name": "flayers_bota",
+            "name_loc": "剥皮血囊",
+            "sort_value": "45",
+            "cost": "0",
+            "img": "flayers_bota_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/flayers_bota_png.png"
+          },
+          {
             "item_id": "1720",
             "name": "idol_of_screeauk",
             "name_loc": "丝奎奥克神像",
-            "sort_value": "0",
+            "sort_value": "44",
             "cost": "0",
             "img": "idol_of_screeauk_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/idol_of_screeauk_png.png"
           },
           {
-            "item_id": "1721",
-            "name": "flayers_bota",
-            "name_loc": "剥皮血囊",
-            "sort_value": "0",
+            "item_id": "1168",
+            "name": "rattlecage",
+            "name_loc": "回响之笼",
+            "sort_value": "43",
             "cost": "0",
-            "img": "flayers_bota_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/flayers_bota_png.png"
+            "img": "rattlecage_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/rattlecage_png.png"
+          },
+          {
+            "item_id": "1643",
+            "name": "giant_maul",
+            "name_loc": "巨人之槌",
+            "sort_value": "42",
+            "cost": "0",
+            "img": "giant_maul_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/giant_maul_png.png"
+          },
+          {
+            "item_id": "1601",
+            "name": "crippling_crossbow",
+            "name_loc": "致残之弩",
+            "sort_value": "41",
+            "cost": "0",
+            "img": "crippling_crossbow_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/crippling_crossbow_png.png"
           }
         ],
         "name_en": "Level 4"
@@ -1990,22 +1936,22 @@
             "img_url": "https://www.dota2.com.cn/items/png/divine_regalia_png.png"
           },
           {
-            "item_id": "1598",
-            "name": "unrelenting_eye",
-            "name_loc": "不屈之眼",
+            "item_id": "1642",
+            "name": "dezun_bloodrite",
+            "name_loc": "德尊血式",
             "sort_value": "57",
             "cost": "0",
-            "img": "unrelenting_eye_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/unrelenting_eye_png.png"
+            "img": "dezun_bloodrite_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/dezun_bloodrite_png.png"
           },
           {
-            "item_id": "327",
-            "name": "helm_of_the_undying",
-            "name_loc": "不朽尸王的头盔",
+            "item_id": "1718",
+            "name": "riftshadow_prism",
+            "name_loc": "影墟棱晶",
             "sort_value": "56",
             "cost": "0",
-            "img": "helm_of_the_undying_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/helm_of_the_undying_png.png"
+            "img": "riftshadow_prism_lg.png",
+            "img_url": "https://www.dota2.com.cn/items/png/riftshadow_prism_png.png"
           },
           {
             "item_id": "326",
@@ -2051,15 +1997,6 @@
             "cost": "0",
             "img": "desolator_2_lg.png",
             "img_url": "https://www.dota2.com.cn/items/png/desolator_2_png.png"
-          },
-          {
-            "item_id": "1718",
-            "name": "riftshadow_prism",
-            "name_loc": "影墟棱晶",
-            "sort_value": "0",
-            "cost": "0",
-            "img": "riftshadow_prism_lg.png",
-            "img_url": "https://www.dota2.com.cn/items/png/riftshadow_prism_png.png"
           }
         ],
         "name_en": "Level 5"
