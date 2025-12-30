@@ -40160,3 +40160,4 @@
 7718115937_Monster Hunter Expedition Pack | [s] 2042 => 2086 | [h] 60f81687c0 => 95c4602ac0 | 2025-11-29 18:00:20 (UTC+3)
 7846094216_Winter 2025 Collector's Cache | [s] None => 4156 | [h] None => 0ed177064e | 2025-12-16 03:10:14 (UTC+3)
 7846094218_Demon Eater Bundle | [s] None => 2032 | [h] None => bad023c735 | 2025-12-16 03:10:14 (UTC+3)
+3588375561_Treasure of the Timeless Rite | [s] 4478 => 4490 | [h] 84fb531a40 => fc85c05d57 | 2025-12-30 18:00:40 (UTC+3)
