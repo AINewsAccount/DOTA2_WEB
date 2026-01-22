@@ -140,7 +140,7 @@
               "bonuses": [
                 {
                   "name": "special_bonus_unique_terrorblade_6",
-                  "value": 10,
+                  "value": 15,
                   "operation": 0
                 }
               ],
@@ -166,7 +166,7 @@
               "bonuses": [
                 {
                   "name": "special_bonus_unique_terrorblade_6",
-                  "value": 10,
+                  "value": 15,
                   "operation": 0
                 }
               ],
@@ -192,7 +192,7 @@
               "bonuses": [
                 {
                   "name": "special_bonus_unique_terrorblade_6",
-                  "value": 10,
+                  "value": 15,
                   "operation": 0
                 }
               ],
@@ -218,7 +218,7 @@
               "bonuses": [
                 {
                   "name": "special_bonus_unique_terrorblade_6",
-                  "value": 10,
+                  "value": 15,
                   "operation": 0
                 }
               ],
@@ -584,10 +584,10 @@
             {
               "name": "AbilityManaCost",
               "values_float": [
-                55,
-                65,
-                75,
-                85
+                50,
+                60,
+                70,
+                80
               ],
               "is_percentage": false,
               "heading_loc": "",
@@ -899,7 +899,7 @@
           "id": 699,
           "name": "terrorblade_demon_zeal",
           "name_loc": "狂魔",
-          "desc_loc": "施放时消耗恐怖利刃当前生命值的一部分，为恐怖利刃和他附近的幻象提供生命恢复、移动和攻击速度加成。倒影的幻象获得%reflection_pct%%%加成效果。魔化状态下无法施放，而且施放魔化会移除狂魔效果。",
+          "desc_loc": "施放时消耗恐怖利刃当前生命值的一部分，为恐怖利刃和他附近的幻象提供生命恢复、移动和攻击速度加成。不会影响倒影的幻象。魔化状态下无法施放，而且施放魔化会移除狂魔效果。",
           "lore_loc": "当恐怖利刃的敌人发现他砍出的第一刀是为了给自己壮胆，他们的困惑加剧了恐惧。",
           "notes_loc": [],
           "shard_loc": "",
@@ -1036,23 +1036,6 @@
               ],
               "is_percentage": true,
               "heading_loc": "当前生命值消耗：",
-              "bonuses": [],
-              "values_shard": [],
-              "values_scepter": [],
-              "facet_bonus": {
-                "name": "",
-                "values": [],
-                "operation": 0
-              },
-              "required_facet": ""
-            },
-            {
-              "name": "reflection_pct",
-              "values_float": [
-                50
-              ],
-              "is_percentage": false,
-              "heading_loc": "",
               "bonuses": [],
               "values_shard": [],
               "values_scepter": [],
@@ -1494,8 +1477,8 @@
             {
               "name": "AbilityCooldown",
               "values_float": [
-                120,
-                80,
+                110,
+                75,
                 40
               ],
               "is_percentage": false,
@@ -2160,7 +2143,7 @@
       "crops_img": "https://img.dota2.com.cn/dota2static/herostatic/crops/npc_dota_hero_terrorblade.png",
       "top_img": "https://img.dota2.com.cn/dota2static/herostatic/npc_dota_hero_terrorblade/npc_dota_hero_terrorblade.png",
       "top_video": "https://img.dota2.com.cn/dota2static/herostatic/npc_dota_hero_terrorblade/npc_dota_hero_terrorblade.webm",
-      "update_time": 1766534508,
+      "update_time": 1769043756,
       "facets": [
         {
           "color": 5,
