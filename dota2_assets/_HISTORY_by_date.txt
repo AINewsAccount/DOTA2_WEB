@@ -40162,3 +40162,7 @@
 7846094218_Demon Eater Bundle | [s] None => 2032 | [h] None => bad023c735 | 2025-12-16 03:10:14 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4478 => 4490 | [h] 84fb531a40 => fc85c05d57 | 2025-12-30 18:00:40 (UTC+3)
 2085579067_Great Sage's Reckoning | [s] 4080 => 4257 | [h] d88105b8f2 => 234d4dae62 | 2025-12-31 18:00:39 (UTC+3)
+7993307380_Monster Hunter Universal Material Pack - Super Rare | [s] None => 2100 | [h] None => 6f4e94d013 | 2026-01-22 03:22:58 (UTC+3)
+7993307381_Monster Hunter Universal Material Pack - Common | [s] None => 2088 | [h] None => 6236e616b9 | 2026-01-22 03:22:58 (UTC+3)
+7993307383_Monster Hunter Universal Material Pack - Uncommon | [s] None => 2094 | [h] None => e261b575b4 | 2026-01-22 03:22:58 (UTC+3)
+7993307384_Monster Hunter Universal Material Pack - Rare | [s] None => 2082 | [h] None => eeaec21bff | 2026-01-22 03:22:58 (UTC+3)
