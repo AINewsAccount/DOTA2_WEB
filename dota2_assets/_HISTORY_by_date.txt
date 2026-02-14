@@ -40166,3 +40166,4 @@
 7993307381_Monster Hunter Universal Material Pack - Common | [s] None => 2088 | [h] None => 6236e616b9 | 2026-01-22 03:22:58 (UTC+3)
 7993307383_Monster Hunter Universal Material Pack - Uncommon | [s] None => 2094 | [h] None => e261b575b4 | 2026-01-22 03:22:58 (UTC+3)
 7993307384_Monster Hunter Universal Material Pack - Rare | [s] None => 2082 | [h] None => eeaec21bff | 2026-01-22 03:22:58 (UTC+3)
+3588375561_Treasure of the Timeless Rite | [s] 4490 => 4495 | [h] fc85c05d57 => dd3defc2c4 | 2026-02-14 18:00:39 (UTC+3)
