@@ -12066,6 +12066,7 @@
 3588375561_Treasure of the Timeless Rite | [s] 4495 => 4478 | [h] a8ade951c4 => 84fb531a40 | 2025-11-03 18:01:43 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4478 => 4490 | [h] 84fb531a40 => fc85c05d57 | 2025-12-30 18:00:40 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4490 => 4495 | [h] fc85c05d57 => dd3defc2c4 | 2026-02-14 18:00:39 (UTC+3)
+3588375561_Treasure of the Timeless Rite | [s] 4495 => 4478 | [h] dd3defc2c4 => 0baabc4107 | 2026-02-27 18:01:19 (UTC+3)
 360372347_Outland Witch's Horns | [s] None => 3244 | [h] None => 1be6392a2e | 2024-03-21 18:05:55 (UTC+3)
 360372347_Outland Witch's Horns | [s] 3244 => 3514 | [h] 1be6392a2e => 001669879e | 2024-12-19 18:02:30 (UTC+3)
 360372347_Outland Witch's Horns | [s] 3514 => 3504 | [h] 001669879e => 5d757076ff | 2025-05-11 16:24:46 (UTC+3)
