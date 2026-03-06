@@ -40168,3 +40168,5 @@
 7993307384_Monster Hunter Universal Material Pack - Rare | [s] None => 2082 | [h] None => eeaec21bff | 2026-01-22 03:22:58 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4490 => 4495 | [h] fc85c05d57 => dd3defc2c4 | 2026-02-14 18:00:39 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4495 => 4478 | [h] dd3defc2c4 => 0baabc4107 | 2026-02-27 18:01:19 (UTC+3)
+2085579066_Taunt_ Goin' Bananas | [s] 2705 => 2902 | [h] 8060fff71d => 29a557bde7 | 2026-03-06 18:01:22 (UTC+3)
+3588375561_Treasure of the Timeless Rite | [s] 4478 => 4489 | [h] 0baabc4107 => ae14665749 | 2026-03-06 18:01:22 (UTC+3)
