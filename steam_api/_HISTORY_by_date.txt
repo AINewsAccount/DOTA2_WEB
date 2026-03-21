@@ -6872,3 +6872,7 @@
 3488100 - Deadlock Experimental Server | [v] 1504 => 1505 | 2026-03-20 23:25:30 (UTC+3)
 3488080 - Deadlock Experimental | [v] 1505 => 1506 | 2026-03-21 02:04:35 (UTC+3)
 3488100 - Deadlock Experimental Server | [v] 1505 => 1506 | 2026-03-21 02:04:35 (UTC+3)
+247060 - Dota 2 Experimental Server | [v] 7336 => 7337 | 2026-03-21 04:01:39 (UTC+3)
+247040 - Dota 2 Experimental | [v] 7336 => 7337 | 2026-03-21 04:04:32 (UTC+3)
+247060 - Dota 2 Experimental Server | [v] 7337 => 7338 | 2026-03-21 04:35:22 (UTC+3)
+247040 - Dota 2 Experimental | [v] 7337 => 7338 | 2026-03-21 04:40:15 (UTC+3)
