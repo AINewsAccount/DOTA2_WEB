@@ -40170,3 +40170,4 @@
 3588375561_Treasure of the Timeless Rite | [s] 4495 => 4478 | [h] dd3defc2c4 => 0baabc4107 | 2026-02-27 18:01:19 (UTC+3)
 2085579066_Taunt_ Goin' Bananas | [s] 2705 => 2902 | [h] 8060fff71d => 29a557bde7 | 2026-03-06 18:01:22 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4478 => 4489 | [h] 0baabc4107 => ae14665749 | 2026-03-06 18:01:22 (UTC+3)
+57939709_Pirate Slayer's Cutlass | [s] 3049 => 3037 | [h] 52c8b36e7e => 8ed84b9d49 | 2026-03-24 18:00:35 (UTC+3)

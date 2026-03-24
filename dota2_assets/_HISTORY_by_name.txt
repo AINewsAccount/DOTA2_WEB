@@ -34415,6 +34415,7 @@
 57939709_Pirate Slayer's Cutlass | [s] 3010 => 3087 | [h] 5dfdbea41d => 5ee25d1560 | 2025-05-21 01:14:25 (UTC+3)
 57939709_Pirate Slayer's Cutlass | [s] 3087 => 3049 | [h] 5ee25d1560 => f75fab3775 | 2025-07-22 16:26:01 (UTC+3)
 57939709_Pirate Slayer's Cutlass | [h] f75fab3775 => 52c8b36e7e | 2025-10-11 18:01:08 (UTC+3)
+57939709_Pirate Slayer's Cutlass | [s] 3049 => 3037 | [h] 52c8b36e7e => 8ed84b9d49 | 2026-03-24 18:00:35 (UTC+3)
 57939710_Pirate Slayer's Tricorn | [s] None => 2837 | [h] None => bc9caeb1f8 | 2024-03-21 18:05:54 (UTC+3)
 57939710_Pirate Slayer's Tricorn | [s] 2837 => 3053 | [h] bc9caeb1f8 => ee5a0f0727 | 2024-12-19 18:02:29 (UTC+3)
 57939710_Pirate Slayer's Tricorn | [s] 3053 => 3043 | [h] ee5a0f0727 => 6210538a70 | 2025-05-11 16:24:45 (UTC+3)
