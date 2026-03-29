@@ -34409,6 +34409,7 @@
 57939708_Pirate Slayer's Bracer | [s] 3022 => 3099 | [h] 8f6e980874 => 8eb455326b | 2025-05-21 01:14:25 (UTC+3)
 57939708_Pirate Slayer's Bracer | [s] 3099 => 3061 | [h] 8eb455326b => 4fa9255201 | 2025-07-16 16:22:29 (UTC+3)
 57939708_Pirate Slayer's Bracer | [h] 4fa9255201 => e195a9eec1 | 2025-10-11 18:01:08 (UTC+3)
+57939708_Pirate Slayer's Bracer | [s] 3061 => 3049 | [h] e195a9eec1 => 005e5f579c | 2026-03-29 18:00:30 (UTC+3)
 57939709_Pirate Slayer's Cutlass | [s] None => 2804 | [h] None => a619d93648 | 2024-03-21 18:05:54 (UTC+3)
 57939709_Pirate Slayer's Cutlass | [s] 2804 => 3020 | [h] a619d93648 => 8a546beca8 | 2024-12-29 13:39:28 (UTC+3)
 57939709_Pirate Slayer's Cutlass | [s] 3020 => 3010 | [h] 8a546beca8 => 5dfdbea41d | 2025-05-11 16:24:45 (UTC+3)
