@@ -13,8 +13,6 @@
   "last_update_steamid": "0",
   "event_notes": "see announcement body",
   "jsondata": {
-    "localized_subtitle": [],
-    "localized_summary": [],
     "localized_title_image": [],
     "localized_capsule_image": [
       "882f6398bbe0c283cb33d57a3c18160c5d5a9f00.png"
@@ -38,7 +36,6 @@
     "bBroadcastEnabled": false,
     "broadcastChatSetting": "hide",
     "default_broadcast_title": "#Broadcast_default_title_dev",
-    "localized_broadcast_title": [],
     "localized_broadcast_left_image": [],
     "localized_broadcast_right_image": [],
     "broadcast_whitelist": [],
@@ -76,7 +73,7 @@
       "Лише за декілька коротких місяців найкращі команди Dota зі всього освіту зберуться в Шанхаї, щоби змагатися за Еґіду чемпіонів перед тисячами захоплених уболівальників. Ми оголосили [url=https://www.dota2.com/newsentry/655981180194128453]офіційні запрошення командам[/url], а тепер радо запрошуємо вас. Якщо ви хочете стати одним із цих уболівальників за свою команду на арені, час готуватися: продаж квитків на The International 2026 розпочнеться 10 червня о 9:00 за київським часом (14:00 за стандартним китайським часом).",
       "Події на арені відбуватимуться з 20 до 23 серпня в Східному спортивному центрі (SPD Bank Oriental Sports Center). Доступні два варіанти квитків: одноденні квитки на будь-який день або дводенні комплекти, що охоплюють четвер-п’ятницю чи суботу-неділю. Цього року за всіма квитками закріплені місця. Квитків із незакріпленими місцями не буде.",
       "Ціни на квитки відрізняються залежно від дня та секції, тож ознайомтеся з повним списком варіантів:",
-      "[img]{STEAM_CLAN_IMAGE}/3703047/eeda1e52cc7d32f4c0db01e2ed4f7ff409a95c4f.png[/img][/img]",
+      "[img]{STEAM_CLAN_LOC_IMAGE}/3703047/eeda1e52cc7d32f4c0db01e2ed4f7ff409a95c4f.png[/img]",
       "Цього року існують два шляхи купівлі квитків: один для вболівальників, які купують квитки в межах Китаю, й інший для міжнародних покупок.",
       "[h2]Продаж у Китаї[/h2]",
       "Продаж квитків у Китаї доступний через [url=https://m.damai.cn/shows/item.html?itemId=1052581844801]Damai[/url] або застосунок Perfect World. Для здійснення купівлі необхідно мати китайське посвідчення особи.",
@@ -98,7 +95,7 @@
       "[b]Яка політика повернення квитків?[/b]",
       "Для квитків, придбаних у Китаї, дивіться [url=https://m.damai.cn/shows/item.html?itemId=1052581844801]політику повернення Damai[/url]. Для міжнародних квитків дивіться [url=https://www.trip.com/t/TI2026]політику повернення Trip.com[/url]."
     ],
-    "commentcount": 95,
+    "commentcount": 97,
     "tags": [
       "mod_reviewed",
       "ModAct_1415716708_1779769372_0",
@@ -109,7 +106,7 @@
     "hidden": 0,
     "forum_topic_id": "833873889733942919",
     "event_gid": "655981180194128451",
-    "voteupcount": 879,
+    "voteupcount": 888,
     "votedowncount": 79,
     "ban_check_result": 0,
     "banned": 0
@@ -122,7 +119,7 @@
   "follower_count": 0,
   "ignore_count": 0,
   "forum_topic_id": "833873889733942919",
-  "rtime32_last_modified": 1779832263,
+  "rtime32_last_modified": 1779833898,
   "news_post_gid": "0",
   "rtime_mod_reviewed": 1779809372,
   "featured_app_tagid": 0,
@@ -131,7 +128,7 @@
   "build_branch": "",
   "unlisted": 0,
   "rtime_created": 1779471898,
-  "votes_up": 879,
+  "votes_up": 887,
   "votes_down": 79,
   "comment_type": "ForumTopic",
   "gidfeature": "1636418037459185108",
