@@ -40175,3 +40175,4 @@
 3588375561_Treasure of the Timeless Rite | [s] 4489 => 4482 | [h] ae14665749 => e3bd9f2551 | 2026-03-30 18:00:41 (UTC+3)
 57939707_Pirate Slayer's Black Flag | [s] 3075 => 3063 | [h] 5dcef3df64 => 57c92db96b | 2026-05-02 18:00:45 (UTC+3)
 57939710_Pirate Slayer's Tricorn | [s] 3082 => 3070 | [h] 5597d339e7 => dfd076a89b | 2026-05-02 18:00:45 (UTC+3)
+3588375561_Treasure of the Timeless Rite | [s] 4482 => 4498 | [h] e3bd9f2551 => 76ca7df538 | 2026-06-23 18:07:28 (UTC+3)
