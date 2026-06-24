@@ -39157,6 +39157,7 @@
 87638787_Heavy Steel Armor Set | [s] 1908 => 1985 | [h] 4cc0cbf813 => f2a793deca | 2025-05-21 01:14:29 (UTC+3)
 87638787_Heavy Steel Armor Set | [s] 1985 => 1947 | [h] f2a793deca => 5ebfd70a87 | 2025-07-28 18:10:45 (UTC+3)
 87638787_Heavy Steel Armor Set | [h] 5ebfd70a87 => 7c57a9f376 | 2025-10-11 18:01:09 (UTC+3)
+87638787_Heavy Steel Armor Set | [s] 1947 => 1587 | [h] 7c57a9f376 => 0a43034f53 | 2026-06-24 18:00:28 (UTC+3)
 87638789_Heavy Steel Axe | [s] None => 2762 | [h] None => f77e2a6e82 | 2024-03-21 18:05:54 (UTC+3)
 87638789_Heavy Steel Axe | [s] 2762 => 2978 | [h] f77e2a6e82 => 918b3feea1 | 2024-12-24 08:17:58 (UTC+3)
 87638789_Heavy Steel Axe | [s] 2978 => 2968 | [h] 918b3feea1 => 4b45c24e5d | 2025-05-11 16:24:45 (UTC+3)
