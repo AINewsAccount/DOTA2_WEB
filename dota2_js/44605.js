@@ -1,7 +1,7 @@
 /**** (c) Valve Corporation. Use is governed by the terms of the Steam Subscriber Agreement http://store.steampowered.com/subscriber_agreement/.
  ****/
 (self.webpackChunkdota_react = self.webpackChunkdota_react || []).push([
-  [4605],
+  [44605],
   {
     74704: (e) => {
       e.exports = {
@@ -42,7 +42,7 @@
         i = a(74704),
         t = a.n(i),
         _ = a(21384),
-        h = a(40045);
+        h = a(27866);
       const l = () =>
         (0, n.jsxs)("div", {
           className: t().Root,

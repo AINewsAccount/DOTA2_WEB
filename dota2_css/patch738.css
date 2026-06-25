@@ -1,4 +1,4 @@
-// 4172.css
+// 84172.css
 
 
 
@@ -31,6 +31,7 @@ a {
 }
 .Strike {
   text-decoration: line-through;
+  font-family: "Reaver", serif;
 }
 [data-aos="fade-zoom-in"] {
   opacity: 0;
@@ -2231,6 +2232,7 @@ a {
 }
 .Strike {
   text-decoration: line-through;
+  font-family: "Reaver", serif;
 }
 [data-aos="fade-zoom-in"] {
   opacity: 0;

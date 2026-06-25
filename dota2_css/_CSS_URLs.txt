@@ -316,6 +316,13 @@ https://cdn.steamstatic.com/apps/dota2/images/dota_react/crownfall/regaltile.png
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/crownfall/sm_alternate_style_background.jpg
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/crownfall/smoke_texture.png
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/crownfall/vs_alternate_style_background.jpg
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/backgrounds/content_backdrop.png
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/backgrounds/sky_backdrop.png
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/header/frame_border.png
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/section_divider_tile.png
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/texture_metal_scratches.png
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/texture_woodgrain.jpg
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/video_mask.png
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/dpc/lcq_countdown_bg.jpg
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/global/divider-line-point.svg
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/global/dota2_logo_horiz.png
@@ -378,6 +385,9 @@ https://cdn.steamstatic.com/apps/dota2/images/dota_react/international2024/ringm
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/international2025/decor_bottom.png
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/international2025/decor_pronounced.png
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/international2025/decor_top.png
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/international2026/decor_top.png
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/international2026/ti15_countdown_background.jpg
+https://cdn.steamstatic.com/apps/dota2/images/dota_react/international2026/ti15_divider.png
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/kez/divider_pattern.png
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/kez/kez_abilitty_explaination_background.jpg
 https://cdn.steamstatic.com/apps/dota2/images/dota_react/kez/kez_header_background.jpg

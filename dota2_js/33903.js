@@ -1,7 +1,7 @@
 /**** (c) Valve Corporation. Use is governed by the terms of the Steam Subscriber Agreement http://store.steampowered.com/subscriber_agreement/.
  ****/
 (self.webpackChunkdota_react = self.webpackChunkdota_react || []).push([
-  [3903],
+  [33903],
   {
     11417: (e) => {
       e.exports = {
@@ -249,7 +249,7 @@
         r = s.n(l),
         n = s(21384),
         o = s(89506),
-        c = s(40045);
+        c = s(27866);
       const m = ({ image: e, is_new: a }) =>
           (0, i.jsxs)("div", {
             className: r().ComparisonImage,
@@ -313,13 +313,13 @@
         t = s(69500),
         l = s(89506),
         r = s(33706),
-        n = s(40045),
+        n = s(27866),
         o = s(68446),
         c = s(7552),
         m = s(73202),
         d = s(35927),
         p = s(21384),
-        _ = s(47496),
+        _ = s(59095),
         x = s(47202),
         h = s(36305),
         g = s(55730),
@@ -853,7 +853,7 @@
                 ? "ringmaster_trailer_schinese"
                 : "ringmaster_trailer_english",
             s = r.B5.Get().getHeroData(131);
-          let i = (0, d.ww)((0, d.sf)(l.r.LANGUAGE));
+          let i = (0, d.wwZ)((0, d.sfN)(l.r.LANGUAGE));
           "zh-cn" === i ? (i = "zh-Hans") : "zh-tw" === i && (i = "zh-Hant");
           let o = "templatepage_logo_en";
           return (

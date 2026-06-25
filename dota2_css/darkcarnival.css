@@ -1,0 +1,3031 @@
+// 59818.css
+
+
+
+
+
+
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+  font-family: "Radiance", "Noto Sans", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.Bold {
+  font-weight: bold;
+}
+.Spoiler {
+  background-color: #000 !important;
+  color: #000 !important;
+}
+.Spoiler:hover {
+  color: #fff !important;
+}
+.Strike {
+  text-decoration: line-through;
+  font-family: "Reaver", serif;
+}
+[data-aos="fade-zoom-in"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: scale(0);
+}
+[data-aos="fade-zoom-in"] &.aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+[data-aos="fade-slide-right"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateX(-40%);
+}
+[data-aos="fade-slide-right"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="fade-slide-left"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateX(40%);
+}
+[data-aos="fade-slide-left"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="fade-slide-up"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateY(40%);
+}
+[data-aos="fade-slide-up"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="fade-slide-down"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateY(-40%);
+}
+[data-aos="fade-slide-down"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="rotate"] {
+  transition-property: transform;
+  transform: rotateZ(0deg);
+}
+[data-aos="rotate"] &[data-aos-rotate-bottom] {
+  transform-origin: bottom center;
+}
+[data-aos="rotate"] &[data-aos-rotate="10"].aos-animate {
+  transform: rotateZ(10deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="20"].aos-animate {
+  transform: rotateZ(20deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="30"].aos-animate {
+  transform: rotateZ(30deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="40"].aos-animate {
+  transform: rotateZ(40deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="50"].aos-animate {
+  transform: rotateZ(50deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="60"].aos-animate {
+  transform: rotateZ(60deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="70"].aos-animate {
+  transform: rotateZ(70deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="80"].aos-animate {
+  transform: rotateZ(80deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="90"].aos-animate {
+  transform: rotateZ(90deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="100"].aos-animate {
+  transform: rotateZ(100deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="110"].aos-animate {
+  transform: rotateZ(110deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="120"].aos-animate {
+  transform: rotateZ(120deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="130"].aos-animate {
+  transform: rotateZ(130deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="140"].aos-animate {
+  transform: rotateZ(140deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="150"].aos-animate {
+  transform: rotateZ(150deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="160"].aos-animate {
+  transform: rotateZ(160deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="170"].aos-animate {
+  transform: rotateZ(170deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="180"].aos-animate {
+  transform: rotateZ(180deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="190"].aos-animate {
+  transform: rotateZ(190deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="200"].aos-animate {
+  transform: rotateZ(200deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="210"].aos-animate {
+  transform: rotateZ(210deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="220"].aos-animate {
+  transform: rotateZ(220deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="230"].aos-animate {
+  transform: rotateZ(230deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="240"].aos-animate {
+  transform: rotateZ(240deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="250"].aos-animate {
+  transform: rotateZ(250deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="260"].aos-animate {
+  transform: rotateZ(260deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="270"].aos-animate {
+  transform: rotateZ(270deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="280"].aos-animate {
+  transform: rotateZ(280deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="290"].aos-animate {
+  transform: rotateZ(290deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="300"].aos-animate {
+  transform: rotateZ(300deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="310"].aos-animate {
+  transform: rotateZ(310deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="320"].aos-animate {
+  transform: rotateZ(320deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="330"].aos-animate {
+  transform: rotateZ(330deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="340"].aos-animate {
+  transform: rotateZ(340deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="350"].aos-animate {
+  transform: rotateZ(350deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-10"].aos-animate {
+  transform: rotateZ(-10deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-20"].aos-animate {
+  transform: rotateZ(-20deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-30"].aos-animate {
+  transform: rotateZ(-30deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-40"].aos-animate {
+  transform: rotateZ(-40deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-50"].aos-animate {
+  transform: rotateZ(-50deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-60"].aos-animate {
+  transform: rotateZ(-60deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-70"].aos-animate {
+  transform: rotateZ(-70deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-80"].aos-animate {
+  transform: rotateZ(-80deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-90"].aos-animate {
+  transform: rotateZ(-90deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-100"].aos-animate {
+  transform: rotateZ(-100deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-110"].aos-animate {
+  transform: rotateZ(-110deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-120"].aos-animate {
+  transform: rotateZ(-120deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-130"].aos-animate {
+  transform: rotateZ(-130deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-140"].aos-animate {
+  transform: rotateZ(-140deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-150"].aos-animate {
+  transform: rotateZ(-150deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-160"].aos-animate {
+  transform: rotateZ(-160deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-170"].aos-animate {
+  transform: rotateZ(-170deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-180"].aos-animate {
+  transform: rotateZ(-180deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-190"].aos-animate {
+  transform: rotateZ(-190deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-200"].aos-animate {
+  transform: rotateZ(-200deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-210"].aos-animate {
+  transform: rotateZ(-210deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-220"].aos-animate {
+  transform: rotateZ(-220deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-230"].aos-animate {
+  transform: rotateZ(-230deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-240"].aos-animate {
+  transform: rotateZ(-240deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-250"].aos-animate {
+  transform: rotateZ(-250deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-260"].aos-animate {
+  transform: rotateZ(-260deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-270"].aos-animate {
+  transform: rotateZ(-270deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-280"].aos-animate {
+  transform: rotateZ(-280deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-290"].aos-animate {
+  transform: rotateZ(-290deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-300"].aos-animate {
+  transform: rotateZ(-300deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-310"].aos-animate {
+  transform: rotateZ(-310deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-320"].aos-animate {
+  transform: rotateZ(-320deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-330"].aos-animate {
+  transform: rotateZ(-330deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-340"].aos-animate {
+  transform: rotateZ(-340deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-350"].aos-animate {
+  transform: rotateZ(-350deg);
+}
+.carousel__slide-focus-ring {
+  outline: none !important;
+}
+.carousel__dot:focus {
+  outline: none !important;
+}
+.__react_component_tooltip.show {
+  opacity: 1 !important;
+}
+._3v01whza-_hIEOHwXaieh4 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+._3HVEW5xeKbuHH1gRhSJw2a {
+  mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+@font-face {
+  font-family: "Radiance";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.ttf")
+      format("truetype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.svg#ywftsvg")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Radiance";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.ttf")
+      format("truetype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.svg#ywftsvg")
+      format("svg");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Radiance";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.ttf")
+      format("truetype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.svg#ywftsvg")
+      format("svg");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Goudy Trajan";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Goudy Trajan";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.ttf")
+      format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Goudy Trajan";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-regular.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-regular.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-semibold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-semibold.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-bold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-bold.ttf")
+      format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Averia Serif Libre";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-regular.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-regular.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Averia Serif Libre";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-italic.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-italic.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Light.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-Light.ttf")
+      format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-SemiBold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-SemiBold.ttf")
+      format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Bold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-Bold.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Black.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-Black.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+._2W7_ATq3w9PsCIfoxw6K7t {
+  border: 3px solid hsla(0, 0%, 100%, 0.3137254902);
+  padding: 15px 25px;
+  margin: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition-duration: 0.2s;
+}
+._2W7_ATq3w9PsCIfoxw6K7t:hover {
+  border: 3px solid #ff6046;
+  transform: translateY(-2px);
+  color: #ff6046;
+}
+._2W7_ATq3w9PsCIfoxw6K7t ._24YLUR5Ghek8262yOtMxdl {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 900px) {
+  ._2W7_ATq3w9PsCIfoxw6K7t ._24YLUR5Ghek8262yOtMxdl {
+    font-size: 16px;
+  }
+}
+._2W7_ATq3w9PsCIfoxw6K7t .ZGz9F7Siofs2E3BU5QU5p {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+._2W7_ATq3w9PsCIfoxw6K7t .ZGz9F7Siofs2E3BU5QU5p._3bTxTnKcyHNbsx6sJuh8lx {
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/icon-play.svg");
+}
+._2W7_ATq3w9PsCIfoxw6K7t ._29dGiV5wNu1t9z39mAqR-n {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/steam_icon.svg");
+}
+.crOIS-IBoaVv8tox20y1m,
+.JaLdV_eQRsotNqjF8tV0X {
+  background-color: #36363e;
+  color: #ddd;
+  max-width: 250px;
+  border: 1px solid #2d2d33;
+  border-radius: 3px;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 10px;
+  z-index: 99999;
+}
+.JaLdV_eQRsotNqjF8tV0X {
+  max-width: none;
+}
+.ReactVirtualized__Table__headerRow {
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ReactVirtualized__Table__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ReactVirtualized__Table__headerTruncatedText {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ReactVirtualized__Table__headerColumn {
+  margin-right: 5px;
+  min-width: 0px;
+}
+.ReactVirtualized__Table__rowColumn {
+  margin-right: 5px;
+  min-width: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ReactVirtualized__Table__headerColumn:first-of-type {
+  margin-left: 5px;
+}
+.ReactVirtualized__Table__rowColumn:first-of-type {
+  margin-left: 5px;
+}
+.ReactVirtualized__Table__sortableHeaderColumn {
+  cursor: pointer;
+}
+.ReactVirtualized__Table__sortableHeaderIconContainer {
+  display: flex;
+  align-items: center;
+}
+.ReactVirtualized__Table__sortableHeaderIcon {
+  flex: 0 0 24px;
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  text-align: center;
+  margin: 0px;
+  color: #f5f5f5;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  text-wrap: pretty;
+}
+.uFzAyqYRSoRrFToB_K3Du {
+  color: #b0b3c3;
+}
+._1O6wLEBt_N2DZf1Qipxe7K {
+  color: #b0b3c3;
+}
+.Vm4yZmaerlxTMhAiWb761 {
+  font-family: "Reaver", serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+._3I3dJnz-VJh51klY4GhaSi {
+  font-size: clamp(24px, 1.5rem + 56 * (100vw - 360px)/1560, 80px);
+  font-weight: 700;
+}
+._2TYSbDKNXYJM9Zlwqa8qVN {
+  font-size: clamp(20px, 1.25rem + 36 * (100vw - 360px)/1560, 56px);
+}
+._3a111EW0FHTY_ijwOYn-a3 {
+  font-size: clamp(16px, 1rem + 20 * (100vw - 360px)/1560, 36px);
+}
+._3cOXkYI5xxT39dJsbj6Ktg {
+  font-size: clamp(14px, 0.875rem + 10 * (100vw - 360px)/1560, 24px);
+}
+.JBiIKtQJdXQnD-ElWEjji {
+  font-size: clamp(12px, 0.875rem + 8 * (100vw - 360px)/1560, 20px);
+}
+._3uWu8EG7bO8uqZYDNb0bVN {
+  font-family: "Reaver", serif;
+  line-height: 1.5;
+}
+.ENvwbI2Mfkq7Vw80m0rsf {
+  font-size: clamp(19px, 1.375rem + 25 * (100vw - 360px)/1560, 44px);
+}
+._2OcXeIX8ESfgjwAGarrw9J {
+  font-size: clamp(17px, 1.0625rem + 19 * (100vw - 360px)/1560, 36px);
+}
+.Jku6dAl9iu02waOPrl3l- {
+  font-size: clamp(15px, 0.9375rem + 15 * (100vw - 360px)/1560, 30px);
+}
+._358PmdFAOjxCQm5pXQDevp {
+  font-size: clamp(13px, 0.8125rem + 11 * (100vw - 360px)/1560, 24px);
+}
+.SJjqUn5OtkNR_deGcqrDu {
+  font-family: "Radiance", sans-serif;
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+}
+._3tie8N-HXUJu9iqFsrY_SR {
+  font-size: clamp(18px, 1.125rem + 8 * (100vw - 360px)/1560, 26px);
+}
+._2ES0URgvGK7MTl-tPgt7U7 {
+  font-size: clamp(16px, 1rem + 6 * (100vw - 360px)/1560, 22px);
+}
+._5MiY2mfdGGbUIBy_DWHvJ {
+  font-size: clamp(14px, 0.875rem + 4 * (100vw - 360px)/1560, 18px);
+}
+._14WiVdT-geX6udLzJdBzrH {
+  font-size: clamp(12px, 0.75rem + 2 * (100vw - 360px)/1560, 14px);
+}
+._2ggAgGoJmP6Lw75lPfE7Vd {
+  font-family: "Radiance", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+._3nVOck-XNvJ5HtISLEdwq_ {
+  font-size: clamp(18px, 1.125rem + 8 * (100vw - 360px)/1560, 26px);
+  font-weight: 700;
+}
+.bVtoiXBxpxNefoILs5bU1 {
+  font-size: clamp(16px, 1rem + 6 * (100vw - 360px)/1560, 22px);
+  font-weight: 700;
+}
+.ANZRNOhVfRNAdG4KCfpfA {
+  font-size: clamp(14px, 0.875rem + 4 * (100vw - 360px)/1560, 18px);
+  font-weight: 600;
+}
+._137o040c12cGmovSXnHQGL {
+  font-size: clamp(12px, 0.75rem + 2 * (100vw - 360px)/1560, 14px);
+  font-weight: 300;
+}
+.LAqy8ib79Jb-_JAfCWGSn {
+  background: linear-gradient(
+    180deg,
+    #fff3d9 20%,
+    #fbe0a0,
+    #787c89,
+    #9d968e,
+    #88a7ff 80%
+  );
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: hsla(0, 0%, 100%, 0);
+}
+._1WwDpvkBxPkKEDjOa-kw7H {
+  background: linear-gradient(180deg, #ffdfb7 10%, #977656 100%);
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.5));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: hsla(0, 0%, 100%, 0);
+}
+._1VIXigP2uLD2qdIYfCrBFm {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+}
+._27WoeZH33rUPYyE3JTX5Oj {
+  box-shadow: 0px 16px 20px -2px rgba(0, 0, 0, 0.5);
+}
+._2wHjYA-YV6nzdQnjMU_qs4.JwPYYn5sHXjaj3_gP25cg {
+  display: none;
+}
+._1V6iWjnq73OIGQcDLGmmQ_ {
+  -webkit-text-size-adjust: none;
+  width: 100%;
+  background-color: #000;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+._1V6iWjnq73OIGQcDLGmmQ_ ._3L4G6M7_0FkDAknEwfSSNZ {
+  display: none;
+}
+@media (max-width: 600px) {
+  ._1V6iWjnq73OIGQcDLGmmQ_ ._3L4G6M7_0FkDAknEwfSSNZ {
+    display: block;
+  }
+}
+._4-l3koqkEzUMey6sMnflW {
+  background-color: #0c0c0d;
+  background-size: 100%;
+  background-repeat: repeat-y;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+._4-l3koqkEzUMey6sMnflW ._2SFm3Int4ZM7rdS56sbj5M {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 1600px;
+  gap: calc(3vw + 12px);
+  padding: 0px calc(2vw + 12px);
+  margin: calc(5vw + 24px) 0px;
+}
+@media (max-width: 1600px) {
+  ._4-l3koqkEzUMey6sMnflW ._2SFm3Int4ZM7rdS56sbj5M {
+    width: 90%;
+  }
+}
+@media (max-width: 1200px) {
+  ._4-l3koqkEzUMey6sMnflW ._2SFm3Int4ZM7rdS56sbj5M {
+    width: 100%;
+  }
+}
+._4-l3koqkEzUMey6sMnflW ._31S7C2yj1lZUKsTG6hy7a1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  gap: calc(6px + 0.5vw);
+}
+@media (max-width: 900px) {
+  ._4-l3koqkEzUMey6sMnflW ._31S7C2yj1lZUKsTG6hy7a1 {
+    width: 100%;
+  }
+}
+._3D2zUZZw0Ns2NHJrNlat6l {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+  width: 70%;
+  max-width: 1600px;
+}
+@media (max-width: 1600px) {
+  ._3D2zUZZw0Ns2NHJrNlat6l {
+    width: 90%;
+  }
+}
+@media (max-width: 900px) {
+  ._3D2zUZZw0Ns2NHJrNlat6l {
+    width: 100%;
+  }
+}
+.Gs8GX2fpntmXtVLlBnF4T {
+  width: 100%;
+  margin-bottom: calc(0px - 15vw);
+}
+.Gs8GX2fpntmXtVLlBnF4T ._20eYNXiJ0HPkp32pnaffGA {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to left,
+    rgba(219, 237, 255, 0),
+    rgba(219, 237, 255, 0.1333333333),
+    rgba(219, 237, 255, 0.2),
+    rgba(219, 237, 255, 0.1333333333),
+    rgba(219, 237, 255, 0)
+  );
+  border-top: 1px solid;
+  border-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgb(0, 0, 0),
+      rgba(0, 0, 0, 0)
+    )
+    1;
+}
+.Gs8GX2fpntmXtVLlBnF4T .wwbloR7TIYQt39ml2dzjK {
+  width: 100%;
+  height: 15vw;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(219, 237, 255, 0.0666666667) 0,
+    rgba(219, 237, 255, 0) 65%
+  );
+}
+._1OjKS1i6vXBeom23YTP8xl {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #000;
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/section_divider_tile.png");
+  background-size: 64px 40px;
+  overflow: hidden;
+}
+._1OjKS1i6vXBeom23YTP8xl ._1XqyjYwen1zYNZr1GZTipX {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  mix-blend-mode: overlay;
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/texture_metal_scratches.png");
+  background-size: 204px 40px;
+  opacity: 0.5;
+}
+._1OjKS1i6vXBeom23YTP8xl ._1aT5JW97xHgFJk-y7-JCwJ {
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(to right, black, white, black);
+  position: absolute;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+@media (max-width: 900px) {
+  ._1OjKS1i6vXBeom23YTP8xl {
+    height: 20px;
+    background-size: 32px 20px;
+  }
+}
+._2W7_ATq3w9PsCIfoxw6K7t {
+  margin: 0px;
+  margin-top: 1vw;
+  backdrop-filter: blur(16px);
+}
+@media (max-width: 600px) {
+  ._2W7_ATq3w9PsCIfoxw6K7t {
+    width: 100%;
+    border-width: 2px;
+  }
+}
+.QOJ54l7Ljfww8KVIOKvRd {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1vw;
+}
+._1SPq3tiJkYAvAfJUXq9Wsn {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(16px + 1.4vw);
+}
+@media (max-width: 900px) {
+  ._1SPq3tiJkYAvAfJUXq9Wsn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+._1c3PynActBjxePqhP_1qNy {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(16px + 1.4vw);
+}
+@media (max-width: 900px) {
+  ._1c3PynActBjxePqhP_1qNy {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+._2q78DKm0w2otLEAMkl64qT {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(16px + 1.4vw);
+}
+@media (max-width: 900px) {
+  ._2q78DKm0w2otLEAMkl64qT {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+._25IwZh46BLk-p7ZyEUTQU9 {
+  display: flex;
+  flex-direction: column;
+  gap: calc(4px + 0.5vw);
+}
+._408ZlOOQgRh-28BTCboGS {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12px + 1.2vw);
+}
+._408ZlOOQgRh-28BTCboGS img,
+._408ZlOOQgRh-28BTCboGS video {
+  width: 100%;
+}
+@media (max-width: 900px) {
+  ._408ZlOOQgRh-28BTCboGS {
+    flex-direction: row;
+    align-items: center;
+  }
+  ._408ZlOOQgRh-28BTCboGS img,
+  ._408ZlOOQgRh-28BTCboGS video {
+    width: 40%;
+  }
+  ._408ZlOOQgRh-28BTCboGS ._25IwZh46BLk-p7ZyEUTQU9 {
+    width: 60%;
+  }
+  ._408ZlOOQgRh-28BTCboGS ._25IwZh46BLk-p7ZyEUTQU9 p {
+    text-align: left;
+  }
+}
+.QG8LLxixlkTFDzGseh0Se {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(12px + 1.2vw);
+}
+.QG8LLxixlkTFDzGseh0Se img,
+.QG8LLxixlkTFDzGseh0Se video {
+  width: 50%;
+}
+.QG8LLxixlkTFDzGseh0Se ._25IwZh46BLk-p7ZyEUTQU9 {
+  width: 50%;
+}
+.QG8LLxixlkTFDzGseh0Se ._25IwZh46BLk-p7ZyEUTQU9 p {
+  text-align: left;
+}
+.QG8LLxixlkTFDzGseh0Se._29R7DZLGQ6YzqTcEiVtsWn {
+  flex-direction: row-reverse;
+}
+.QG8LLxixlkTFDzGseh0Se._2TSLwRLhhOiM_o28tgYAAJ img,
+.QG8LLxixlkTFDzGseh0Se._2TSLwRLhhOiM_o28tgYAAJ video {
+  width: 30%;
+}
+.QG8LLxixlkTFDzGseh0Se._2TSLwRLhhOiM_o28tgYAAJ ._25IwZh46BLk-p7ZyEUTQU9 {
+  width: 70%;
+}
+@media (max-width: 900px) {
+  .QG8LLxixlkTFDzGseh0Se {
+    flex-direction: row;
+  }
+  .QG8LLxixlkTFDzGseh0Se img,
+  .QG8LLxixlkTFDzGseh0Se video {
+    width: 40%;
+  }
+  .QG8LLxixlkTFDzGseh0Se ._25IwZh46BLk-p7ZyEUTQU9 {
+    width: 60%;
+  }
+}
+.QG8LLxixlkTFDzGseh0Se._2-mRN35XTykzDrYzxQ8SEO img,
+.QG8LLxixlkTFDzGseh0Se._2-mRN35XTykzDrYzxQ8SEO video {
+  width: 70%;
+}
+.QG8LLxixlkTFDzGseh0Se._2-mRN35XTykzDrYzxQ8SEO ._25IwZh46BLk-p7ZyEUTQU9 {
+  width: 30%;
+}
+@media (max-width: 900px) {
+  .QG8LLxixlkTFDzGseh0Se._2-mRN35XTykzDrYzxQ8SEO {
+    flex-direction: column;
+  }
+  .QG8LLxixlkTFDzGseh0Se._2-mRN35XTykzDrYzxQ8SEO img,
+  .QG8LLxixlkTFDzGseh0Se._2-mRN35XTykzDrYzxQ8SEO video {
+    width: 100%;
+  }
+  .QG8LLxixlkTFDzGseh0Se._2-mRN35XTykzDrYzxQ8SEO ._25IwZh46BLk-p7ZyEUTQU9 {
+    width: 100%;
+  }
+}
+.TEXn97NUhrGUq_1MElf5Z {
+  width: 100%;
+  box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.6);
+}
+.UGWv8fw5IobO_uvapg_wL {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(2vw + 12px);
+  background-color: #0c0c0d;
+  border: 1px solid #3c3e44;
+  padding: calc(2vw + 12px);
+  box-shadow: 0px 20px 32px -4px rgba(0, 0, 0, 0.6);
+}
+.UGWv8fw5IobO_uvapg_wL img,
+.UGWv8fw5IobO_uvapg_wL video {
+  width: 50%;
+}
+.UGWv8fw5IobO_uvapg_wL ._25IwZh46BLk-p7ZyEUTQU9 {
+  width: 50%;
+}
+@media (max-width: 900px) {
+  .UGWv8fw5IobO_uvapg_wL ._25IwZh46BLk-p7ZyEUTQU9 {
+    width: 100%;
+  }
+}
+.UGWv8fw5IobO_uvapg_wL ._25IwZh46BLk-p7ZyEUTQU9 p {
+  text-align: left;
+}
+.UGWv8fw5IobO_uvapg_wL ._25IwZh46BLk-p7ZyEUTQU9 ._2W7_ATq3w9PsCIfoxw6K7t {
+  margin-top: calc(1vw + 8px);
+}
+@media (max-width: 900px) {
+  .UGWv8fw5IobO_uvapg_wL ._25IwZh46BLk-p7ZyEUTQU9 ._2W7_ATq3w9PsCIfoxw6K7t {
+    width: 100%;
+  }
+}
+.UGWv8fw5IobO_uvapg_wL ._1CZPVfeCOpwVqwzzsRlSY- {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2509803922);
+}
+@media (max-width: 900px) {
+  .UGWv8fw5IobO_uvapg_wL img,
+  .UGWv8fw5IobO_uvapg_wL video {
+    width: 100%;
+  }
+  .UGWv8fw5IobO_uvapg_wL {
+    flex-direction: column;
+  }
+}
+.AyBCmmM5GFsj1swXorVan {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.AyBCmmM5GFsj1swXorVan ._25IwZh46BLk-p7ZyEUTQU9 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+  margin-left: calc(50% + 1vw);
+  margin-right: 3vw;
+}
+.AyBCmmM5GFsj1swXorVan ._25IwZh46BLk-p7ZyEUTQU9 p {
+  text-align: left;
+}
+.AyBCmmM5GFsj1swXorVan img,
+.AyBCmmM5GFsj1swXorVan video {
+  width: 100%;
+}
+._3OWnmPWdzqrCYyFCQrhz-b {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+._3OWnmPWdzqrCYyFCQrhz-b ._2jWOhB6UwlRhvwTWS8UdNB {
+  flex: none;
+  color: #a1a7b6;
+}
+._3OWnmPWdzqrCYyFCQrhz-b ._3u_hZrUFDNkjneN15Bv_HE {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  height: 1px;
+  background: linear-gradient(to left, #545760, rgba(255, 255, 255, 0));
+}
+._3OWnmPWdzqrCYyFCQrhz-b ._2zC7PfP7f1XXAwC60_7Zln {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  height: 1px;
+  background: linear-gradient(to right, #545760, rgba(255, 255, 255, 0));
+}
+._1RdtKf5195vwfteonjfRwc {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+}
+@media (max-width: 1200px) {
+  ._1RdtKf5195vwfteonjfRwc {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+  }
+}
+@media (max-width: 600px) {
+  ._1RdtKf5195vwfteonjfRwc {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+}
+._1RdtKf5195vwfteonjfRwc ._2GsEm4JNtQBQCNrlb_t094 {
+  margin: 3px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+  transition-property: border, filter;
+  transition-duration: 0.1s;
+}
+._1RdtKf5195vwfteonjfRwc ._15AsnjylBxRRTsllTinsPf {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  margin-top: -2px;
+  margin-left: -2px;
+  border-radius: 4px;
+  background-color: #212425;
+  border: 1px solid #000;
+  text-align: center;
+  font-size: 14px;
+  text-shadow: 0px 1px 2px #000;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+}
+._1RdtKf5195vwfteonjfRwc._2-WFDYCVL_S6XOKEBABdGu ._2GsEm4JNtQBQCNrlb_t094 {
+  width: 100%;
+  border: 2px solid #3b434b;
+  border-top-color: #798188;
+  border-bottom-color: #232a31;
+}
+._1RdtKf5195vwfteonjfRwc:hover ._2GsEm4JNtQBQCNrlb_t094 {
+  filter: brightness(1.2);
+}
+._1RdtKf5195vwfteonjfRwc:hover._2-WFDYCVL_S6XOKEBABdGu
+  ._2GsEm4JNtQBQCNrlb_t094 {
+  border: 2px solid #798188;
+  border-top-color: #bbc5ce;
+  border-bottom-color: #3b434b;
+}
+._2Qc26rPrbPvmYXXp7ZiN8I {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: calc(4px + 0.5vw);
+  padding-top: calc(4px + 0.5vw);
+  border-top: 1px solid;
+  border-image: linear-gradient(
+      to right,
+      rgba(255, 192, 75, 0),
+      rgba(255, 208, 121, 0.5),
+      rgba(255, 192, 75, 0)
+    )
+    1;
+}
+@media (max-width: 900px) {
+  ._2Qc26rPrbPvmYXXp7ZiN8I {
+    justify-content: flex-start;
+    border-image: linear-gradient(
+        to right,
+        rgba(255, 208, 121, 0.5),
+        rgba(255, 192, 75, 0)
+      )
+      1;
+  }
+}
+._2Qc26rPrbPvmYXXp7ZiN8I Img {
+  width: 20px;
+  height: 20px;
+}
+._2Qc26rPrbPvmYXXp7ZiN8I p {
+  color: #ffd079;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+}
+@media (max-width: 1200px) {
+  ._2Qc26rPrbPvmYXXp7ZiN8I {
+    display: none;
+  }
+}
+._1a3ujVWG01-O1Qt-Wk_aIn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  background-image: linear-gradient(180deg, #080715 0%, #080715 100%);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100%;
+}
+@media (max-width: 900px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn {
+    min-height: 100vw;
+  }
+}
+._1a3ujVWG01-O1Qt-Wk_aIn ._2SFm3Int4ZM7rdS56sbj5M {
+  position: relative;
+}
+._1a3ujVWG01-O1Qt-Wk_aIn .I9OvOolB0PulhM01I_rfr {
+  position: absolute;
+  width: 100vw;
+  top: -2vw;
+  opacity: 0.8;
+}
+@media (max-width: 900px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn .I9OvOolB0PulhM01I_rfr {
+    top: 12vw;
+  }
+}
+._1a3ujVWG01-O1Qt-Wk_aIn ._1NrIKXq7GDuueIDuqrZkFU {
+  position: absolute;
+  width: 100vw;
+  top: 8vw;
+  mix-blend-mode: screen;
+  filter: blur(6px);
+}
+@media (max-width: 900px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn ._1NrIKXq7GDuueIDuqrZkFU {
+    top: 16vw;
+  }
+}
+._1a3ujVWG01-O1Qt-Wk_aIn ._1RWlqo2RfX5xubzPzK4R-O {
+  width: 100%;
+  margin-top: 0vw;
+  margin-bottom: -20vw;
+}
+@media (max-width: 900px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn ._1RWlqo2RfX5xubzPzK4R-O {
+    width: 150%;
+    margin-bottom: -35vw;
+  }
+}
+._1a3ujVWG01-O1Qt-Wk_aIn ._31IPR5eleuZ7PyJB4hB52J {
+  width: 100%;
+  height: calc(45px + 8vw);
+  background: linear-gradient(180deg, #09090b 0%, rgba(9, 9, 11, 0) 100%);
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  opacity: 0.6;
+}
+._1a3ujVWG01-O1Qt-Wk_aIn .rQsceu8TqffVet5rpwiqe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-bottom: -5vw;
+  filter: drop-shadow(0px 24px 24px -2px rgba(0, 0, 0, 0.8));
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn .rQsceu8TqffVet5rpwiqe {
+    width: 65%;
+  }
+}
+@media (max-width: 600px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn .rQsceu8TqffVet5rpwiqe {
+    width: 75%;
+  }
+}
+._1a3ujVWG01-O1Qt-Wk_aIn ._2A7LxAHW0Pvned3c_VOe6v {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vw;
+  width: 100%;
+  max-width: 1600px;
+  text-shadow: 0px 10px 24px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn ._2A7LxAHW0Pvned3c_VOe6v {
+    width: 100%;
+  }
+}
+._1a3ujVWG01-O1Qt-Wk_aIn ._1UEZVyezw5GUbAx2UyhPyn {
+  width: 100%;
+  max-width: 1920px;
+  box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+@media (min-width: 1200px) {
+  ._1a3ujVWG01-O1Qt-Wk_aIn ._1UEZVyezw5GUbAx2UyhPyn {
+    width: 94vw;
+  }
+}
+._2NQ-KnVuPNK78y9visb7FM {
+  background-image:
+    url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/backgrounds/sky_backdrop.png"),
+    linear-gradient(180deg, #0c152c 0%, #080714 100%);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100%;
+  padding-bottom: calc(3vw + 12px);
+  overflow: clip;
+}
+._2NQ-KnVuPNK78y9visb7FM ._2OWXOXn6h6NOwZTmU-WlsF {
+  position: absolute;
+  z-index: 1;
+  left: -1%;
+  width: 12vw;
+}
+._2NQ-KnVuPNK78y9visb7FM ._37HSJ4dmJ9u38G7nEgcVf5 {
+  position: absolute;
+  z-index: 1;
+  left: 10%;
+  width: 6vw;
+  filter: blur(2px);
+}
+._2NQ-KnVuPNK78y9visb7FM ._1JcxeZ8LMWeRNZEWnau1Gn {
+  position: absolute;
+  z-index: 1;
+  right: 6%;
+  width: 8vw;
+  filter: blur(1px);
+}
+._2NQ-KnVuPNK78y9visb7FM ._31S7C2yj1lZUKsTG6hy7a1 {
+  z-index: 1;
+  width: 90%;
+}
+._2NQ-KnVuPNK78y9visb7FM ._2q78DKm0w2otLEAMkl64qT {
+  z-index: 1;
+}
+._2NQ-KnVuPNK78y9visb7FM ._3WhoaVcyVPgGwwZ-G0IgK- {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -2vw;
+}
+._2NQ-KnVuPNK78y9visb7FM ._3WhoaVcyVPgGwwZ-G0IgK- ._1Mkt0RRU10L0s6ZkacltrM {
+  width: 60%;
+}
+._2NQ-KnVuPNK78y9visb7FM ._3WhoaVcyVPgGwwZ-G0IgK- ._33Oy4Kgn1mcwcXArm1fWti {
+  width: 90%;
+}
+._2NQ-KnVuPNK78y9visb7FM ._3WhoaVcyVPgGwwZ-G0IgK- ._1g7BwE4SvCm7TJmdHautzw {
+  border: none;
+  position: relative;
+}
+._2NQ-KnVuPNK78y9visb7FM
+  ._3WhoaVcyVPgGwwZ-G0IgK-
+  ._1g7BwE4SvCm7TJmdHautzw
+  ._12xTWZZFSClJ92XQz3uSoB {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-image-repeat: stretch;
+  border-image-slice: 40 40 40 40 fill;
+  border-image-source: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/header/frame_border.png");
+  border-image-width: 24px;
+}
+._2NQ-KnVuPNK78y9visb7FM
+  ._3WhoaVcyVPgGwwZ-G0IgK-
+  ._1g7BwE4SvCm7TJmdHautzw
+  ._2s6EaBIq4NZNhEyi3SGFdm {
+  position: absolute;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background: radial-gradient(farthest-corner at 50% 100%, #48375a, #0e0c10);
+  top: 2px;
+  left: 2px;
+  box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.6392156863);
+}
+._2NQ-KnVuPNK78y9visb7FM
+  ._3WhoaVcyVPgGwwZ-G0IgK-
+  ._1g7BwE4SvCm7TJmdHautzw
+  ._1F51bEhi5sPt01XlTvKCbl {
+  position: absolute;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  top: 2px;
+  left: 2px;
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/texture_woodgrain.jpg");
+  background-size: 40%;
+  mix-blend-mode: overlay;
+  opacity: 0.75;
+}
+._2NQ-KnVuPNK78y9visb7FM
+  ._3WhoaVcyVPgGwwZ-G0IgK-
+  ._1g7BwE4SvCm7TJmdHautzw
+  .UGWv8fw5IobO_uvapg_wL {
+  border: none;
+  margin: 2px;
+  background-color: unset;
+  z-index: 1;
+  position: relative;
+}
+._2NQ-KnVuPNK78y9visb7FM ._2Ww5l37FnhBwrAy-BrTJqa {
+  z-index: 1;
+}
+._2NQ-KnVuPNK78y9visb7FM ._2yYrO4db6T1lfs5p28tLB3 {
+  position: relative;
+  margin-top: -3vw;
+}
+@media (max-width: 900px) {
+  ._2NQ-KnVuPNK78y9visb7FM ._2yYrO4db6T1lfs5p28tLB3 {
+    flex-direction: column;
+  }
+}
+._2NQ-KnVuPNK78y9visb7FM ._2yYrO4db6T1lfs5p28tLB3 ._3s9gUueCEYF_jAY6HBlazR {
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  ._2NQ-KnVuPNK78y9visb7FM ._2yYrO4db6T1lfs5p28tLB3 ._3s9gUueCEYF_jAY6HBlazR {
+    width: 100%;
+  }
+}
+._2NQ-KnVuPNK78y9visb7FM ._2yYrO4db6T1lfs5p28tLB3 ._25IwZh46BLk-p7ZyEUTQU9 {
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  ._2NQ-KnVuPNK78y9visb7FM ._2yYrO4db6T1lfs5p28tLB3 ._25IwZh46BLk-p7ZyEUTQU9 {
+    width: 100%;
+  }
+}
+._2NQ-KnVuPNK78y9visb7FM ._2yYrO4db6T1lfs5p28tLB3 ._1YUiVmPb6VSeqXS1y78gMm {
+  position: absolute;
+  width: 100%;
+  bottom: -3vw;
+  transform: scale(1.3);
+}
+._2NQ-KnVuPNK78y9visb7FM .n0wPZ9qAWwpPQm4mI7pTF {
+  position: relative;
+}
+._2NQ-KnVuPNK78y9visb7FM .n0wPZ9qAWwpPQm4mI7pTF ._408ZlOOQgRh-28BTCboGS {
+  z-index: 1;
+  gap: 0px;
+}
+._2NQ-KnVuPNK78y9visb7FM .n0wPZ9qAWwpPQm4mI7pTF ._11XWSKP6G-rfI51AG81HLP {
+  position: absolute;
+  width: 100%;
+  top: calc(-24px - 14vw);
+  transform: scale(1.3);
+  filter: blur(2px);
+}
+._2NQ-KnVuPNK78y9visb7FM ._16GqrlLE_svk3C8VZZCa8g,
+._2NQ-KnVuPNK78y9visb7FM ._1QJRN1pgwkid69cyWy2aFS {
+  margin-top: -2vw;
+}
+@media (max-width: 900px) {
+  ._2NQ-KnVuPNK78y9visb7FM ._1QJRN1pgwkid69cyWy2aFS {
+    flex-direction: column-reverse;
+  }
+}
+._2NQ-KnVuPNK78y9visb7FM .bBq6bG7QH3y2anqBpao26 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: calc(1vw + 8px);
+}
+@media (max-width: 900px) {
+  ._2NQ-KnVuPNK78y9visb7FM .bBq6bG7QH3y2anqBpao26 {
+    width: 40%;
+  }
+}
+._2NQ-KnVuPNK78y9visb7FM .bBq6bG7QH3y2anqBpao26 ._2iH0TwWMv-EW-DseS_k9m_ {
+  width: 46px;
+  height: 46px;
+  image-rendering: pixelated;
+}
+@media (max-width: 900px) {
+  ._2NQ-KnVuPNK78y9visb7FM .bBq6bG7QH3y2anqBpao26 ._2iH0TwWMv-EW-DseS_k9m_ {
+    width: 36px;
+    height: 36px;
+  }
+}
+._2NQ-KnVuPNK78y9visb7FM ._9BVHzpGeRCdEudUaXCxYb {
+  width: 120vw;
+  margin: -16vw 0 -22vw;
+}
+@keyframes _1YckCSAXRrLETxoumedY8t {
+  from {
+    transform: translateX(350px);
+  }
+  to {
+    transform: translateX(-350px);
+  }
+}
+._2GfKFn_q87F0htsAVB7PHO {
+  background-image:
+    url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/backgrounds/content_backdrop.png"),
+    linear-gradient(180deg, #0a141f 0%, #0c0915 100%);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100%;
+}
+._2GfKFn_q87F0htsAVB7PHO ._31S7C2yj1lZUKsTG6hy7a1 {
+  width: 100%;
+}
+._2GfKFn_q87F0htsAVB7PHO ._1UfI0eTaRUKdy4llEH7gy7 {
+  width: 140%;
+  margin: -12% 0px -8%;
+}
+@media (min-width: 1600px) {
+  ._2GfKFn_q87F0htsAVB7PHO ._1UfI0eTaRUKdy4llEH7gy7 {
+    width: 180%;
+  }
+}
+._2GfKFn_q87F0htsAVB7PHO ._3-_8pk1sZFo5y2Phox-CmM {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+._2GfKFn_q87F0htsAVB7PHO .MoM8feejGJrr-xfaIvsSM {
+  width: 100%;
+}
+._2GfKFn_q87F0htsAVB7PHO .MoM8feejGJrr-xfaIvsSM .bBq6bG7QH3y2anqBpao26 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: calc(1vw + 8px);
+}
+@media (max-width: 900px) {
+  ._2GfKFn_q87F0htsAVB7PHO .MoM8feejGJrr-xfaIvsSM .bBq6bG7QH3y2anqBpao26 {
+    width: 40%;
+  }
+}
+._2GfKFn_q87F0htsAVB7PHO
+  .MoM8feejGJrr-xfaIvsSM
+  .bBq6bG7QH3y2anqBpao26
+  ._2iH0TwWMv-EW-DseS_k9m_ {
+  width: 46px;
+  height: 46px;
+  image-rendering: pixelated;
+}
+@media (max-width: 900px) {
+  ._2GfKFn_q87F0htsAVB7PHO
+    .MoM8feejGJrr-xfaIvsSM
+    .bBq6bG7QH3y2anqBpao26
+    ._2iH0TwWMv-EW-DseS_k9m_ {
+    width: 36px;
+    height: 36px;
+  }
+}
+._2GfKFn_q87F0htsAVB7PHO ._2SFm3Int4ZM7rdS56sbj5M {
+  z-index: 1;
+}
+._2GfKFn_q87F0htsAVB7PHO ._3OfH9Ny_GSlhALbWI_8u7G {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  opacity: 0.4;
+}
+._1qbK29z-UBOIfH5903nPNE {
+  width: 120%;
+  background-color: #080a0a;
+  border: 1px solid;
+  border-image: linear-gradient(to bottom, #ffdfb7 0%, #977656 100%) 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+@media (max-width: 1600px) {
+  ._1qbK29z-UBOIfH5903nPNE {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE {
+    flex-direction: column;
+  }
+}
+._1qbK29z-UBOIfH5903nPNE ._2Fr6jszNoU8CBxki3zl2ah {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: clip;
+}
+._1qbK29z-UBOIfH5903nPNE ._2Fr6jszNoU8CBxki3zl2ah .GN9fGajwJi-BAbb4ZNxSb {
+  position: absolute;
+  width: 100%;
+  left: -25%;
+  mix-blend-mode: screen;
+  filter: saturate(50%);
+  -webkit-mask-image: radial-gradient(
+    circle at center top,
+    black 0,
+    transparent 60%
+  );
+  mask-image: radial-gradient(circle at center top, black 0, transparent 60%);
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE ._2Fr6jszNoU8CBxki3zl2ah .GN9fGajwJi-BAbb4ZNxSb {
+    width: 200%;
+    left: -50%;
+  }
+}
+._1qbK29z-UBOIfH5903nPNE._3h8CmX1Ed5HhsRmIqFW6Pd {
+  flex-direction: row-reverse;
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE._3h8CmX1Ed5HhsRmIqFW6Pd {
+    flex-direction: column;
+  }
+}
+._1qbK29z-UBOIfH5903nPNE._3h8CmX1Ed5HhsRmIqFW6Pd .GN9fGajwJi-BAbb4ZNxSb {
+  left: 25%;
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE._3h8CmX1Ed5HhsRmIqFW6Pd .GN9fGajwJi-BAbb4ZNxSb {
+    left: -50%;
+  }
+}
+._1qbK29z-UBOIfH5903nPNE._3h8CmX1Ed5HhsRmIqFW6Pd ._34F2Om38w5wWiLRAGdER2i {
+  left: 0%;
+}
+._1qbK29z-UBOIfH5903nPNE ._28KEgB298nfLvfNn3dQKWH {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 4px solid;
+  border-image: linear-gradient(to bottom, #664d37 0%, #4c4347 100%) 1;
+  opacity: 0.5;
+}
+._1qbK29z-UBOIfH5903nPNE ._2lNhW6TRm1eTZu9t6OM4Yc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  width: 50%;
+}
+._1qbK29z-UBOIfH5903nPNE ._2lNhW6TRm1eTZu9t6OM4Yc ._2NJmdOIbXSUCh7kuhwOawB {
+  width: 200%;
+  margin: -2vw 0;
+}
+._1qbK29z-UBOIfH5903nPNE ._2d9SiPVoddoTN0DcBPdYiZ {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(6px + 0.6vw);
+  padding: calc(8px + 4vw);
+  width: 50%;
+  max-width: 820px;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE ._2d9SiPVoddoTN0DcBPdYiZ {
+    width: 100%;
+  }
+}
+._1qbK29z-UBOIfH5903nPNE ._2d9SiPVoddoTN0DcBPdYiZ p {
+  text-align: left;
+}
+._1qbK29z-UBOIfH5903nPNE ._2d9SiPVoddoTN0DcBPdYiZ ._1BR-MMZ0r7V6Uxpv1WuQKM {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(12px + 0.5vw);
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  ._1BR-MMZ0r7V6Uxpv1WuQKM
+  ._332v5XfvUrg915kdnMCW-V {
+  height: calc(32px + 3vw);
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.6);
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  ._1BR-MMZ0r7V6Uxpv1WuQKM
+  ._17ltPJHST0I_IcJ5wlldVZ {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  ._1BR-MMZ0r7V6Uxpv1WuQKM
+  ._17ltPJHST0I_IcJ5wlldVZ
+  ._1cJAD8CxGNd3RhcJAzWFMY {
+  color: rgba(255, 234, 208, 0.6);
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  ._1BR-MMZ0r7V6Uxpv1WuQKM
+  ._17ltPJHST0I_IcJ5wlldVZ
+  .AOOMD-7bIQOTVYkKxKGMy {
+  color: #f5f5f5;
+}
+._1qbK29z-UBOIfH5903nPNE ._2d9SiPVoddoTN0DcBPdYiZ .kJVX6nA3cVP10ANiA5aYS {
+  color: rgba(255, 234, 208, 0.8);
+}
+._1qbK29z-UBOIfH5903nPNE ._2d9SiPVoddoTN0DcBPdYiZ ._1m8ZDMv1oJ9BtV_1o4ysHk {
+  display: flex;
+  flex-direction: column;
+}
+._1qbK29z-UBOIfH5903nPNE ._2d9SiPVoddoTN0DcBPdYiZ .mMQ9fc9kCitPzmapROxcf {
+  display: flex;
+  gap: 4px;
+  width: stretch;
+  width: -webkit-fill-available;
+  width: -moz-available;
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  .mMQ9fc9kCitPzmapROxcf
+  .eyD6eYDVVKtAuk4Nhm3tV {
+  display: flex;
+  aspect-ratio: 1;
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  .mMQ9fc9kCitPzmapROxcf
+  ._2n2V0OdvDEynIPwElWIqda {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  .mMQ9fc9kCitPzmapROxcf
+  ._2n2V0OdvDEynIPwElWIqda
+  ._2xgorrJy9SefcR_g-T8RvD {
+  width: calc(28px + 0.5vw);
+  min-width: calc(28px + 0.5vw);
+  image-rendering: pixelated;
+}
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  .mMQ9fc9kCitPzmapROxcf
+  .eyD6eYDVVKtAuk4Nhm3tV,
+._1qbK29z-UBOIfH5903nPNE
+  ._2d9SiPVoddoTN0DcBPdYiZ
+  .mMQ9fc9kCitPzmapROxcf
+  ._2n2V0OdvDEynIPwElWIqda {
+  width: calc(36px + 2vw);
+}
+._1qbK29z-UBOIfH5903nPNE ._3ytVqnRL2JQBo2ejrn749o {
+  width: stretch;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  mask-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/textures/video_mask.png");
+  mask-mode: luminance;
+  mask-size: cover;
+}
+._1qbK29z-UBOIfH5903nPNE._2XQgmSMeW3vg-0Vt-lrStF ._2NJmdOIbXSUCh7kuhwOawB {
+  min-width: 235%;
+  margin: -2vw 0;
+  transform: translate(0%, -1%);
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE._2XQgmSMeW3vg-0Vt-lrStF ._2NJmdOIbXSUCh7kuhwOawB {
+    min-width: 315%;
+    margin: -2vw 0 -8vw;
+  }
+}
+._1qbK29z-UBOIfH5903nPNE._2XQgmSMeW3vg-0Vt-lrStF ._2Fr6jszNoU8CBxki3zl2ah {
+  background: radial-gradient(
+    farthest-corner at 0px 0px,
+    rgb(123, 29, 29) 0,
+    transparent 80%
+  );
+}
+._1qbK29z-UBOIfH5903nPNE._1iNmlY9PLUypFUEIswvCIY ._2NJmdOIbXSUCh7kuhwOawB {
+  min-width: 240%;
+  margin: -3vw 0;
+  transform: translate(1%, -5%);
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE._1iNmlY9PLUypFUEIswvCIY ._2NJmdOIbXSUCh7kuhwOawB {
+    min-width: 330%;
+    margin: -3vw 0 -10vw;
+    transform: translate(0%, -5%);
+  }
+}
+._1qbK29z-UBOIfH5903nPNE._1iNmlY9PLUypFUEIswvCIY ._2Fr6jszNoU8CBxki3zl2ah {
+  background: radial-gradient(
+    farthest-corner at 0px 0px,
+    rgb(81, 41, 16) 0,
+    transparent 80%
+  );
+}
+._1qbK29z-UBOIfH5903nPNE._1dNMIZj6_g5-gh1sdpjP9v ._2NJmdOIbXSUCh7kuhwOawB {
+  min-width: 270%;
+  margin: -6vw 0;
+  transform: translate(-2%, 0%);
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE._1dNMIZj6_g5-gh1sdpjP9v ._2NJmdOIbXSUCh7kuhwOawB {
+    min-width: 350%;
+    transform: translate(0%, 0%);
+  }
+}
+._1qbK29z-UBOIfH5903nPNE._1dNMIZj6_g5-gh1sdpjP9v ._2Fr6jszNoU8CBxki3zl2ah {
+  background: radial-gradient(
+    farthest-corner at 100% 0px,
+    rgb(44, 22, 92) 0,
+    transparent 80%
+  );
+}
+._1qbK29z-UBOIfH5903nPNE.U_h84z6lseTEQ_youaRSQ ._2NJmdOIbXSUCh7kuhwOawB {
+  min-width: 240%;
+  margin: -3vw 0;
+  transform: translate(-3%, -1%);
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE.U_h84z6lseTEQ_youaRSQ ._2NJmdOIbXSUCh7kuhwOawB {
+    min-width: 350%;
+    margin: -4vw 0 -10vw;
+    transform: translate(1%, -1%);
+  }
+}
+._1qbK29z-UBOIfH5903nPNE.U_h84z6lseTEQ_youaRSQ ._2Fr6jszNoU8CBxki3zl2ah {
+  background: radial-gradient(
+    farthest-corner at 100% 0px,
+    rgb(29, 82, 123) 0,
+    transparent 80%
+  );
+}
+._1qbK29z-UBOIfH5903nPNE._2fQZWZHieVdPac1Bpp7zku ._2NJmdOIbXSUCh7kuhwOawB {
+  min-width: 240%;
+  margin: -3vw 0;
+  transform: translate(-3%, 0%);
+}
+@media (max-width: 900px) {
+  ._1qbK29z-UBOIfH5903nPNE._2fQZWZHieVdPac1Bpp7zku ._2NJmdOIbXSUCh7kuhwOawB {
+    min-width: 340%;
+    margin: -5vw 0 -9vw;
+  }
+}
+._1qbK29z-UBOIfH5903nPNE._2fQZWZHieVdPac1Bpp7zku ._2Fr6jszNoU8CBxki3zl2ah {
+  background: radial-gradient(
+    farthest-corner at 0px 0px,
+    rgb(77, 53, 35) 0,
+    transparent 80%
+  );
+}
+.L0Iw0Mtm_ecwSn0cvmEqv {
+  width: 14%;
+  margin: -3vw 0 -3vw;
+}
+.kPkugYV23sj2RnGi6QxkL {
+  background: linear-gradient(0deg, #201e33 50%, #0c0c0d 90%);
+}
+._2kz8PGzjjR6VjIUuYpa5AC {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._3YHGj5EK1cUl3z1CfHLxIw {
+  position: absolute;
+  width: 110%;
+  bottom: -4%;
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._11OQjkFU2oTTuLM00-ZznB {
+  overflow: visible;
+  width: 40%;
+  margin: -4% 0px -10%;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  ._2kz8PGzjjR6VjIUuYpa5AC ._11OQjkFU2oTTuLM00-ZznB {
+    width: 64%;
+    margin: -2% 0px -12%;
+  }
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._11OQjkFU2oTTuLM00-ZznB ._1ht-2OO_30dziDr7Aho0HX {
+  opacity: 1;
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW
+  img,
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW
+  video {
+  height: 100%;
+  width: 160%;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW
+  ._3NGAS-PtYy8nBOSU3yRYDQ {
+  transform: translateY(55px);
+  width: 175%;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW
+  ._2mImdYVXQGkVEwlQb7yb4d {
+  transform: translateY(105px);
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW
+  ._3AjdP-7yniv3nfcBBWTIJc {
+  transform: translateY(115px);
+  width: 190%;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW
+  ._1ajRbhR6J5lY3MbOtt5hh8 {
+  transform: translateY(145px);
+  width: 180%;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._11OQjkFU2oTTuLM00-ZznB
+  ._1ht-2OO_30dziDr7Aho0HX
+  .hv5_Q8SrYp97Be4uooMsW
+  ._1WqWUYiT23U3Du2Z4ARjDK {
+  transform: translateY(45px);
+  width: 180%;
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._11OQjkFU2oTTuLM00-ZznB ._1AOJQewJYeZyaomi4GgYDz {
+  opacity: 0.4;
+  transform: scale(0.7);
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._2j2JhwfTLNPUYmM75B0Ft {
+  text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._1OFWSL41ttPl6hIkPas8-n {
+  opacity: 60%;
+  z-index: 1;
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._3A3i1pEEqW5yvqkGq0mwK- {
+  gap: 12px;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  ._2kz8PGzjjR6VjIUuYpa5AC ._3A3i1pEEqW5yvqkGq0mwK- {
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    top: 40%;
+  }
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._3A3i1pEEqW5yvqkGq0mwK- ._31w9ke-570YFAByycJi270 {
+  height: 12px;
+  width: 12px;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  border-radius: 50%;
+  border-width: 0px;
+  display: inline-block;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._31w9ke-570YFAByycJi270:disabled {
+  height: 12px;
+  width: 12px;
+  background: linear-gradient(to bottom, #ffffff, #babdc6);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 900px) {
+  ._2kz8PGzjjR6VjIUuYpa5AC ._3A3i1pEEqW5yvqkGq0mwK- ._31w9ke-570YFAByycJi270 {
+    display: none;
+  }
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._3A3i1pEEqW5yvqkGq0mwK- ._2Xz3RgsaOf4ARqTtgoNBI9 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(to bottom, #4e2317, #230b0a);
+  box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border: 2px solid #ab8c67;
+  display: inline-block;
+}
+@media (max-width: 900px) {
+  ._2kz8PGzjjR6VjIUuYpa5AC ._3A3i1pEEqW5yvqkGq0mwK- ._2Xz3RgsaOf4ARqTtgoNBI9 {
+    width: 64px;
+    height: 64px;
+  }
+}
+._2kz8PGzjjR6VjIUuYpa5AC ._3A3i1pEEqW5yvqkGq0mwK- ._2Xz3RgsaOf4ARqTtgoNBI9 {
+  transition-property: transform, background-color, box-shadow, border;
+  transition-duration: 0.1s;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9._2-MwYYLDuq9IcqraPuMM9z {
+  margin-right: 20px;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9._3lHDEZK2VoUIWNNC26bcjz {
+  margin-left: 20px;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9
+  ._3imtqrEqwakMkDECiF3ifR {
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/chevron_fancy_right.svg");
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9
+  ._2i58pRDTtTT7x_14kHKdAu {
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/chevron_fancy_left.svg");
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9
+  ._3imtqrEqwakMkDECiF3ifR,
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9
+  ._2i58pRDTtTT7x_14kHKdAu {
+  width: 50%;
+  height: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+  opacity: 0.9;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9:hover {
+  transform: scale3d(1.06, 1.06, 1);
+  border: 2px solid #debb91;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9:hover
+  ._3imtqrEqwakMkDECiF3ifR,
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9:hover
+  ._2i58pRDTtTT7x_14kHKdAu {
+  opacity: 1;
+}
+._2kz8PGzjjR6VjIUuYpa5AC
+  ._3A3i1pEEqW5yvqkGq0mwK-
+  ._2Xz3RgsaOf4ARqTtgoNBI9:active {
+  background-color: #000;
+  transform: translateY(1px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
+}
+._32z1cf9ZE3v2Ck8x73Q8hk {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  z-index: 25;
+}
+._32z1cf9ZE3v2Ck8x73Q8hk.JwPYYn5sHXjaj3_gP25cg {
+  visibility: collapse;
+}
+._32z1cf9ZE3v2Ck8x73Q8hk .vU4IlcY8iOvzetC69mM8E {
+  width: 100%;
+  margin: auto;
+}
+._32z1cf9ZE3v2Ck8x73Q8hk ._15nIoUI4ILRH42jlxULBCU {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 64px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  border: 3px solid #3c3e44;
+  border-radius: 6px;
+  cursor: pointer;
+  transition-property: transform, border, background-color;
+  transition-duration: 0.1s;
+}
+._32z1cf9ZE3v2Ck8x73Q8hk ._15nIoUI4ILRH42jlxULBCU:hover {
+  border-color: #ff6046;
+  transform: translateY(-1px);
+}
+._32z1cf9ZE3v2Ck8x73Q8hk ._15nIoUI4ILRH42jlxULBCU ._2Qh1EwqK127zg2z2D1rgSd {
+  width: 24px;
+  height: 24px;
+}
+._2K-Jm5OmemUSoGw6_zAJjU {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 20;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 13, 9, 0.6);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+}
+@media (max-width: 980px) {
+  ._2K-Jm5OmemUSoGw6_zAJjU {
+    display: none;
+  }
+}
+._2K-Jm5OmemUSoGw6_zAJjU ._1Y3Eub3HpkXEEPR_pXSEeP {
+  cursor: pointer;
+  font-size: 15px;
+  font-family: "Radiance", serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ff6046;
+  font-weight: 700;
+  width: -webkit-fill-available;
+  max-width: 300px;
+  transition:
+    color,
+    text-shadow 0.2s ease;
+}
+._2K-Jm5OmemUSoGw6_zAJjU ._1Y3Eub3HpkXEEPR_pXSEeP:hover {
+  color: #fff;
+  text-shadow: 0px 0px 12px #fff;
+}
+.s8jBwQOe8mlKf8xDMwdwZ {
+  align-items: center;
+  gap: 20px;
+}
+.s8jBwQOe8mlKf8xDMwdwZ ._1coIRpzx5nMgE-aY4noRFL {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .s8jBwQOe8mlKf8xDMwdwZ ._1coIRpzx5nMgE-aY4noRFL {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+.s8jBwQOe8mlKf8xDMwdwZ .mfX8-4cU9AetBiZHOnzmm {
+  padding: 12px 28px;
+  width: fit-content;
+  border: 2px solid rgba(255, 223, 183, 0.2);
+  border-radius: 6px;
+  transition-property: border;
+  transition-duration: 0.2s;
+}
+.s8jBwQOe8mlKf8xDMwdwZ .mfX8-4cU9AetBiZHOnzmm:hover {
+  border: 2px solid #ffdfb7;
+}
+@media (max-width: 600px) {
+  .s8jBwQOe8mlKf8xDMwdwZ .mfX8-4cU9AetBiZHOnzmm {
+    width: 100%;
+  }
+}
+.s8jBwQOe8mlKf8xDMwdwZ ._35aPSDUNeLldI40CId-IXX {
+  width: 160px;
+  height: 160px;
+}
+@media (max-width: 900px) {
+  .s8jBwQOe8mlKf8xDMwdwZ ._35aPSDUNeLldI40CId-IXX {
+    width: 100px;
+    height: 100px;
+  }
+}
+._1aWAcVv4khhRKQHKyqIDl5 {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+._3KCtpfqeVGR0eaqc5YB4iF {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+* {
+  box-sizing: border-box;
+  font-family: "Radiance", "Noto Sans", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.Bold {
+  font-weight: bold;
+}
+.Spoiler {
+  background-color: #000 !important;
+  color: #000 !important;
+}
+.Spoiler:hover {
+  color: #fff !important;
+}
+.Strike {
+  text-decoration: line-through;
+  font-family: "Reaver", serif;
+}
+[data-aos="fade-zoom-in"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: scale(0);
+}
+[data-aos="fade-zoom-in"] &.aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+[data-aos="fade-slide-right"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateX(-40%);
+}
+[data-aos="fade-slide-right"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="fade-slide-left"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateX(40%);
+}
+[data-aos="fade-slide-left"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="fade-slide-up"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateY(40%);
+}
+[data-aos="fade-slide-up"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="fade-slide-down"] {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transform: translateY(-40%);
+}
+[data-aos="fade-slide-down"] &.aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="rotate"] {
+  transition-property: transform;
+  transform: rotateZ(0deg);
+}
+[data-aos="rotate"] &[data-aos-rotate-bottom] {
+  transform-origin: bottom center;
+}
+[data-aos="rotate"] &[data-aos-rotate="10"].aos-animate {
+  transform: rotateZ(10deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="20"].aos-animate {
+  transform: rotateZ(20deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="30"].aos-animate {
+  transform: rotateZ(30deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="40"].aos-animate {
+  transform: rotateZ(40deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="50"].aos-animate {
+  transform: rotateZ(50deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="60"].aos-animate {
+  transform: rotateZ(60deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="70"].aos-animate {
+  transform: rotateZ(70deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="80"].aos-animate {
+  transform: rotateZ(80deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="90"].aos-animate {
+  transform: rotateZ(90deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="100"].aos-animate {
+  transform: rotateZ(100deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="110"].aos-animate {
+  transform: rotateZ(110deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="120"].aos-animate {
+  transform: rotateZ(120deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="130"].aos-animate {
+  transform: rotateZ(130deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="140"].aos-animate {
+  transform: rotateZ(140deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="150"].aos-animate {
+  transform: rotateZ(150deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="160"].aos-animate {
+  transform: rotateZ(160deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="170"].aos-animate {
+  transform: rotateZ(170deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="180"].aos-animate {
+  transform: rotateZ(180deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="190"].aos-animate {
+  transform: rotateZ(190deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="200"].aos-animate {
+  transform: rotateZ(200deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="210"].aos-animate {
+  transform: rotateZ(210deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="220"].aos-animate {
+  transform: rotateZ(220deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="230"].aos-animate {
+  transform: rotateZ(230deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="240"].aos-animate {
+  transform: rotateZ(240deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="250"].aos-animate {
+  transform: rotateZ(250deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="260"].aos-animate {
+  transform: rotateZ(260deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="270"].aos-animate {
+  transform: rotateZ(270deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="280"].aos-animate {
+  transform: rotateZ(280deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="290"].aos-animate {
+  transform: rotateZ(290deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="300"].aos-animate {
+  transform: rotateZ(300deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="310"].aos-animate {
+  transform: rotateZ(310deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="320"].aos-animate {
+  transform: rotateZ(320deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="330"].aos-animate {
+  transform: rotateZ(330deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="340"].aos-animate {
+  transform: rotateZ(340deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="350"].aos-animate {
+  transform: rotateZ(350deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-10"].aos-animate {
+  transform: rotateZ(-10deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-20"].aos-animate {
+  transform: rotateZ(-20deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-30"].aos-animate {
+  transform: rotateZ(-30deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-40"].aos-animate {
+  transform: rotateZ(-40deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-50"].aos-animate {
+  transform: rotateZ(-50deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-60"].aos-animate {
+  transform: rotateZ(-60deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-70"].aos-animate {
+  transform: rotateZ(-70deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-80"].aos-animate {
+  transform: rotateZ(-80deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-90"].aos-animate {
+  transform: rotateZ(-90deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-100"].aos-animate {
+  transform: rotateZ(-100deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-110"].aos-animate {
+  transform: rotateZ(-110deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-120"].aos-animate {
+  transform: rotateZ(-120deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-130"].aos-animate {
+  transform: rotateZ(-130deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-140"].aos-animate {
+  transform: rotateZ(-140deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-150"].aos-animate {
+  transform: rotateZ(-150deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-160"].aos-animate {
+  transform: rotateZ(-160deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-170"].aos-animate {
+  transform: rotateZ(-170deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-180"].aos-animate {
+  transform: rotateZ(-180deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-190"].aos-animate {
+  transform: rotateZ(-190deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-200"].aos-animate {
+  transform: rotateZ(-200deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-210"].aos-animate {
+  transform: rotateZ(-210deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-220"].aos-animate {
+  transform: rotateZ(-220deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-230"].aos-animate {
+  transform: rotateZ(-230deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-240"].aos-animate {
+  transform: rotateZ(-240deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-250"].aos-animate {
+  transform: rotateZ(-250deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-260"].aos-animate {
+  transform: rotateZ(-260deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-270"].aos-animate {
+  transform: rotateZ(-270deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-280"].aos-animate {
+  transform: rotateZ(-280deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-290"].aos-animate {
+  transform: rotateZ(-290deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-300"].aos-animate {
+  transform: rotateZ(-300deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-310"].aos-animate {
+  transform: rotateZ(-310deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-320"].aos-animate {
+  transform: rotateZ(-320deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-330"].aos-animate {
+  transform: rotateZ(-330deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-340"].aos-animate {
+  transform: rotateZ(-340deg);
+}
+[data-aos="rotate"] &[data-aos-rotate="-350"].aos-animate {
+  transform: rotateZ(-350deg);
+}
+.carousel__slide-focus-ring {
+  outline: none !important;
+}
+.carousel__dot:focus {
+  outline: none !important;
+}
+.__react_component_tooltip.show {
+  opacity: 1 !important;
+}
+._2KCuf_SJJEXcOuLP59IpZD {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+._2SRFpua15h9hV8a3jNjni2 {
+  mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+@font-face {
+  font-family: "Radiance";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.ttf")
+      format("truetype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance.svg#ywftsvg")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Radiance";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.ttf")
+      format("truetype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-bold.svg#ywftsvg")
+      format("svg");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Radiance";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.ttf")
+      format("truetype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/radiance-semibold.svg#ywftsvg")
+      format("svg");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Goudy Trajan";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-regular-pro-webfont.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Goudy Trajan";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-bold-pro-webfont.ttf")
+      format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Goudy Trajan";
+  src: url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.eot");
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/goudytrajan-medium-pro-webfont.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-regular.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-regular.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-semibold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-semibold.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-bold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/notosans-bold.ttf")
+      format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Averia Serif Libre";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-regular.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-regular.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Averia Serif Libre";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-italic.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/averiaseriflibre-italic.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Light.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-Light.ttf")
+      format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-SemiBold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-SemiBold.ttf")
+      format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Bold.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-Bold.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Reaver";
+  src:
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Black.woff")
+      format("woff"),
+    url("https://cdn.steamstatic.com/apps/dota2/fonts/Reaver-Regular-Black.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+._1L8NMpo1QC44tsK7DKSVnw {
+  border: 3px solid hsla(0, 0%, 100%, 0.3137254902);
+  padding: 15px 25px;
+  margin: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition-duration: 0.2s;
+}
+._1L8NMpo1QC44tsK7DKSVnw:hover {
+  border: 3px solid #ff6046;
+  transform: translateY(-2px);
+  color: #ff6046;
+}
+._1L8NMpo1QC44tsK7DKSVnw ._3Tcu-X4CLlK6f8Z_tAvsD_ {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 900px) {
+  ._1L8NMpo1QC44tsK7DKSVnw ._3Tcu-X4CLlK6f8Z_tAvsD_ {
+    font-size: 16px;
+  }
+}
+._1L8NMpo1QC44tsK7DKSVnw ._2M524qpSjFi6IfObEmF-cy {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+._1L8NMpo1QC44tsK7DKSVnw ._2M524qpSjFi6IfObEmF-cy._1rFiYfze09LpLHA9RiWY0B {
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/icon-play.svg");
+}
+._1L8NMpo1QC44tsK7DKSVnw ._27stRql3gZKng9YPfD7_qw {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/steam_icon.svg");
+}
+.BVdqNbQQInntutmm3Nh0S,
+._3E5CJhrbtmLHhcF1gFGKtG {
+  background-color: #36363e;
+  color: #ddd;
+  max-width: 250px;
+  border: 1px solid #2d2d33;
+  border-radius: 3px;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 10px;
+  z-index: 99999;
+}
+._3E5CJhrbtmLHhcF1gFGKtG {
+  max-width: none;
+}
+.ReactVirtualized__Table__headerRow {
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ReactVirtualized__Table__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ReactVirtualized__Table__headerTruncatedText {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ReactVirtualized__Table__headerColumn {
+  margin-right: 5px;
+  min-width: 0px;
+}
+.ReactVirtualized__Table__rowColumn {
+  margin-right: 5px;
+  min-width: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ReactVirtualized__Table__headerColumn:first-of-type {
+  margin-left: 5px;
+}
+.ReactVirtualized__Table__rowColumn:first-of-type {
+  margin-left: 5px;
+}
+.ReactVirtualized__Table__sortableHeaderColumn {
+  cursor: pointer;
+}
+.ReactVirtualized__Table__sortableHeaderIconContainer {
+  display: flex;
+  align-items: center;
+}
+.ReactVirtualized__Table__sortableHeaderIcon {
+  flex: 0 0 24px;
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+._2sN0pNrIzHUat1asHjzUwy {
+  font-family: "Reaver", serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.Jtn7uNabEp70OXGRt1jIO {
+  font-size: clamp(24px, 1.5rem + 56 * (100vw - 360px)/1560, 80px);
+  font-weight: 700;
+  text-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+}
+.xvEnp93vqen7YpN-HlNXV {
+  font-size: clamp(20px, 1.25rem + 36 * (100vw - 360px)/1560, 56px);
+  text-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+}
+._1NCqAbb-Jq85onJwpvptin {
+  font-size: clamp(16px, 1rem + 20 * (100vw - 360px)/1560, 36px);
+}
+._2ogKF6cT1JywfF0uScF7Lr {
+  font-size: clamp(14px, 0.875rem + 10 * (100vw - 360px)/1560, 24px);
+}
+._1su99h-ViXbgQSMl8z-1Hk {
+  font-size: clamp(12px, 0.875rem + 8 * (100vw - 360px)/1560, 20px);
+}
+._3ztcC3rN3CcduqM_n1X2kP {
+  font-family: "Reaver", serif;
+  line-height: 1.5;
+}
+.TjgfS5u55aPN4gVn4NM9E {
+  font-size: clamp(19px, 1.375rem + 25 * (100vw - 360px)/1560, 44px);
+}
+._5x9OT3ROlOxoiqxZVsNs3 {
+  font-size: clamp(17px, 1.0625rem + 19 * (100vw - 360px)/1560, 36px);
+}
+._1MAj4PXW447nFPNAxU9SlK {
+  font-size: clamp(15px, 0.9375rem + 15 * (100vw - 360px)/1560, 30px);
+}
+._3apIrpHy7lF_6JMTvbNu2N {
+  font-size: clamp(13px, 0.8125rem + 11 * (100vw - 360px)/1560, 24px);
+}
+._2jARk1k1C45P3VTG3DPgC_ {
+  font-family: "Radiance", sans-serif;
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+}
+._3ndMFKguCaLf0hhGc9_DdJ {
+  font-size: clamp(18px, 1.125rem + 8 * (100vw - 360px)/1560, 26px);
+}
+._3Z9n3dfjRTIRMhGtjeKJXZ {
+  font-size: clamp(16px, 1rem + 6 * (100vw - 360px)/1560, 22px);
+}
+._2I-hSp--FoJKl2zTLfEWSH {
+  font-size: clamp(15px, 0.9375rem + 4 * (100vw - 360px)/1560, 19px);
+}
+._3k436nzi1RwUqbFq9C_EXp {
+  font-size: clamp(12px, 0.75rem + 2 * (100vw - 360px)/1560, 14px);
+}
+.UablZ8c6hXxJcvBWetiJG {
+  font-family: "Radiance", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.bMssBD-3bmdghhFoefDMr {
+  font-size: clamp(18px, 1.125rem + 8 * (100vw - 360px)/1560, 26px);
+  font-weight: 700;
+}
+.XaiSqzYAYmzolqVBN8Zz9 {
+  font-size: clamp(16px, 1rem + 6 * (100vw - 360px)/1560, 22px);
+  font-weight: 700;
+}
+._20x981-rWSrxNRyZiqHQ0E {
+  font-size: clamp(14px, 0.875rem + 4 * (100vw - 360px)/1560, 18px);
+  font-weight: 600;
+}
+._197wWeTyBn6JFS6iSKia7 {
+  font-size: clamp(12px, 0.75rem + 2 * (100vw - 360px)/1560, 14px);
+  font-weight: 300;
+}
+._16woM4c_O-l8jf7MzzGfnX {
+  -webkit-text-size-adjust: none;
+  width: 100%;
+  background-color: #000;
+  scroll-behavior: smooth;
+  color: #fff;
+  position: relative;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  text-wrap: pretty;
+  overflow-x: hidden;
+}
+._3pcG4fwiU6A7C80B-IXdnY {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url("https://cdn.steamstatic.com/apps/dota2/images/dota_react/darkcarnival/backgrounds/sky_backdrop.png");
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100%;
+  -webkit-mask-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.4941176471) 0%,
+    #ffffff 100%
+  );
+  mask-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.4941176471) 0%,
+    #ffffff 100%
+  );
+}
+._3xdJfae_CO-ZSBTKdbBFR_ {
+  width: 100%;
+  padding-top: calc(64px + 3vw);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(20px + 1vw);
+}
+@media (min-width: 2550px) {
+  ._3xdJfae_CO-ZSBTKdbBFR_ {
+    background-size: cover;
+  }
+}
+._1P_GWB09a1rddlMQvQcysl {
+  width: calc(100% - 60px);
+  max-width: 1920px;
+  box-shadow: 0px 16px 32px -4px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+@media (max-width: 900px) {
+  ._1P_GWB09a1rddlMQvQcysl {
+    width: 100%;
+  }
+}
+._1P_GWB09a1rddlMQvQcysl ._3WJd3fWb5C6RKuqyr3rGZT {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(235, 255, 252, 0.2);
+  position: absolute;
+  top: 0px;
+  pointer-events: none;
+}
+._1P_GWB09a1rddlMQvQcysl img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+._Tbu-FT4HCFi3kljOY8Hi {
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(245, 245, 245, 0.8);
+  border-radius: 6px;
+}
+._Tbu-FT4HCFi3kljOY8Hi._1WDJSy0ekUS8AhcRI-IVbY {
+  color: #575757;
+}
+._2Jx45RysUVVl9djRSO1jQM {
+  color: rgba(245, 245, 245, 0.8);
+  text-shadow: 0px 2px 8px #000;
+  padding-bottom: calc(4px + 0.2vw);
+  border-bottom: 2px solid #ff6046;
+  margin-bottom: calc(24px + 1vw);
+  transition-property: color;
+  transition-duration: 0.15s;
+}
+._2Jx45RysUVVl9djRSO1jQM:hover {
+  color: #fff;
+}
+._2Jx45RysUVVl9djRSO1jQM._1WDJSy0ekUS8AhcRI-IVbY {
+  opacity: 0;
+  pointer-events: none;
+}
