@@ -40177,3 +40177,5 @@
 57939710_Pirate Slayer's Tricorn | [s] 3082 => 3070 | [h] 5597d339e7 => dfd076a89b | 2026-05-02 18:00:45 (UTC+3)
 3588375561_Treasure of the Timeless Rite | [s] 4482 => 4498 | [h] e3bd9f2551 => 76ca7df538 | 2026-06-23 18:07:28 (UTC+3)
 87638787_Heavy Steel Armor Set | [s] 1947 => 1587 | [h] 7c57a9f376 => 0a43034f53 | 2026-06-24 18:00:28 (UTC+3)
+1946934696_Black Orc Warboss | [s] 2012 => 1586 | [h] 9b69a28a3a => b32d11c7b1 | 2026-06-25 18:00:44 (UTC+3)
+848631469_The Ram's Head Armaments | [s] 2012 => 1616 | [h] 7a24fd82e7 => 9229bcb47c | 2026-06-25 18:00:44 (UTC+3)
