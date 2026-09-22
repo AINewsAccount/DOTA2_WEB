@@ -1,5 +1,5 @@
 {
-  "revision": 1790095164,
+  "revision": 1790109121,
   "pops": {
     "ams": {
       "desc": "Amsterdam (Netherlands)",
@@ -13,7 +13,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -66,7 +67,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -120,7 +122,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ]
     },
     "dfw": {
@@ -135,7 +138,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -188,7 +192,8 @@
       "tier": 0,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -227,7 +232,8 @@
       "groups": [
         "steam-china",
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ]
     },
     "eze": {
@@ -242,7 +248,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -295,7 +302,8 @@
       "tier": 0,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -427,19 +435,20 @@
       ]
     },
     "fsn": {
-      "desc": "Falkenstein (Germany)",
+      "desc": "Hetzner Falkenstein (Germany)",
       "geo": [
         12.37,
         50.48
       ],
       "has_gameservers": true,
-      "partner": "valve",
+      "partner": "hetzner",
       "partners": 1,
       "tier": 1,
       "groups": [
+        "hetzner",
         "not-on-backbone",
         "steam-global",
-        "valve"
+        "trusted"
       ]
     },
     "gru": {
@@ -454,7 +463,8 @@
       "tier": 0,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -525,7 +535,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -552,19 +563,20 @@
       "aliases": [
         "helm"
       ],
-      "desc": "Helsinki (Finland)",
+      "desc": "Hetzner Helsinki (Finland)",
       "geo": [
         24.85,
         60.11
       ],
       "has_gameservers": true,
-      "partner": "valve",
+      "partner": "hetzner",
       "partners": 1,
       "tier": 1,
       "groups": [
+        "hetzner",
         "not-on-backbone",
         "steam-global",
-        "valve"
+        "trusted"
       ]
     },
     "hkg": {
@@ -580,7 +592,8 @@
       "groups": [
         "steam-china",
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -687,7 +700,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -740,7 +754,8 @@
       "tier": 0,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -775,7 +790,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -828,7 +844,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -881,7 +898,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -934,7 +952,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -987,7 +1006,8 @@
       "tier": 0,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1040,7 +1060,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1094,7 +1115,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ]
     },
     "pvg": {
@@ -1111,7 +1133,8 @@
         "alicloud",
         "dota-global",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ]
     },
     "scl": {
@@ -1126,7 +1149,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1161,7 +1185,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1196,7 +1221,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1250,7 +1276,8 @@
       "groups": [
         "steam-china",
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1321,7 +1348,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1438,7 +1466,8 @@
       "groups": [
         "steam-china",
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1492,7 +1521,8 @@
       "groups": [
         "perfectworld",
         "steam-china",
-        "tencent"
+        "tencent",
+        "trusted"
       ]
     },
     "tyo": {
@@ -1513,7 +1543,8 @@
       "groups": [
         "steam-china",
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1584,7 +1615,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -1655,7 +1687,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -2481,7 +2514,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -2519,7 +2553,8 @@
       "tier": 1,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -2554,7 +2589,8 @@
       "tier": 0,
       "groups": [
         "steam-global",
-        "valve"
+        "valve",
+        "trusted"
       ],
       "relays": [
         {
@@ -2694,7 +2730,28 @@
       "groups": [
         "datapacket",
         "not-on-backbone",
-        "steam-global"
+        "steam-global",
+        "trusted"
+      ],
+      "relays": [
+        {
+          "visible": true,
+          "hostname": "sdr1-fra-dpkt.valve.net",
+          "ipv4": "89.222.108.161",
+          "port_range": [
+            27015,
+            27060
+          ]
+        },
+        {
+          "visible": true,
+          "hostname": "sdr2-fra-dpkt.valve.net",
+          "ipv4": "89.222.108.162",
+          "port_range": [
+            27015,
+            27060
+          ]
+        }
       ]
     },
     "gfra": {
@@ -3018,7 +3075,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3156,7 +3214,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3215,7 +3274,8 @@
         "alicloud",
         "dota-global",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3297,7 +3357,8 @@
       "groups": [
         "perfectworld",
         "steam-china",
-        "tencent"
+        "tencent",
+        "trusted"
       ],
       "relays": [
         {
@@ -3355,7 +3416,8 @@
       "groups": [
         "datapacket",
         "not-on-backbone",
-        "steam-global"
+        "steam-global",
+        "trusted"
       ]
     },
     "gseo": {
@@ -3469,7 +3531,8 @@
       "groups": [
         "datapacket",
         "not-on-backbone",
-        "steam-global"
+        "steam-global",
+        "trusted"
       ]
     },
     "glhr": {
@@ -3597,7 +3660,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3655,7 +3719,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3714,7 +3779,8 @@
         "alicloud",
         "dota-global",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3796,7 +3862,8 @@
       "groups": [
         "perfectworld",
         "steam-china",
-        "tencent"
+        "tencent",
+        "trusted"
       ],
       "relays": [
         {
@@ -3854,7 +3921,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3932,7 +4000,8 @@
       "groups": [
         "alicloud",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -3991,7 +4060,8 @@
         "alicloud",
         "dota-global",
         "perfectworld",
-        "steam-china"
+        "steam-china",
+        "trusted"
       ],
       "relays": [
         {
@@ -4087,7 +4157,8 @@
       "groups": [
         "perfectworld",
         "steam-china",
-        "tencent"
+        "tencent",
+        "trusted"
       ],
       "relays": [
         {
@@ -4673,6 +4744,16 @@
     ],
     [
       "ams",
+      "dfra",
+      6
+    ],
+    [
+      "ams",
+      "dlhr",
+      6
+    ],
+    [
+      "ams",
       "fra",
       5
     ],
@@ -4723,11 +4804,6 @@
     ],
     [
       "ams",
-      "mad",
-      30
-    ],
-    [
-      "ams",
       "mam1",
       0
     ],
@@ -4763,11 +4839,6 @@
     ],
     [
       "ams",
-      "par",
-      10
-    ],
-    [
-      "ams",
       "sams",
       0
     ],
@@ -4775,11 +4846,6 @@
       "ams",
       "sto2",
       24
-    ],
-    [
-      "ams",
-      "vie",
-      17
     ],
     [
       "ams4",
@@ -4879,7 +4945,7 @@
     [
       "atl",
       "dfw",
-      15
+      16
     ],
     [
       "atl",
@@ -4929,7 +4995,7 @@
     [
       "atl",
       "iad",
-      13
+      12
     ],
     [
       "atl",
@@ -5279,7 +5345,7 @@
     [
       "bom2",
       "hkg",
-      81
+      80
     ],
     [
       "bom2",
@@ -5344,7 +5410,7 @@
     [
       "ctum",
       "hkg",
-      58
+      57
     ],
     [
       "ctum",
@@ -5354,7 +5420,7 @@
     [
       "ctum",
       "sgp",
-      112
+      117
     ],
     [
       "ctut",
@@ -5369,7 +5435,7 @@
     [
       "ctut",
       "hkg",
-      34
+      33
     ],
     [
       "ctut",
@@ -5403,6 +5469,11 @@
     ],
     [
       "dfra",
+      "fra",
+      1
+    ],
+    [
+      "dfra",
       "gmum",
       53
     ],
@@ -5420,6 +5491,16 @@
       "dfra",
       "mdb1",
       38
+    ],
+    [
+      "dfra",
+      "par",
+      9
+    ],
+    [
+      "dfra",
+      "vie",
+      14
     ],
     [
       "dfw",
@@ -5614,7 +5695,7 @@
     [
       "dfw",
       "ord",
-      21
+      37
     ],
     [
       "dfw",
@@ -5679,7 +5760,12 @@
     [
       "dlhr",
       "jnb",
-      77
+      125
+    ],
+    [
+      "dlhr",
+      "lhr",
+      1
     ],
     [
       "dlhr",
@@ -5688,8 +5774,18 @@
     ],
     [
       "dlhr",
+      "mad",
+      22
+    ],
+    [
+      "dlhr",
       "mdb1",
       56
+    ],
+    [
+      "dlhr",
+      "par",
+      6
     ],
     [
       "dsto",
@@ -5709,12 +5805,12 @@
     [
       "dsto",
       "sto",
-      24
+      12
     ],
     [
       "dsto",
       "sto2",
-      24
+      12
     ],
     [
       "dsto",
@@ -5745,11 +5841,6 @@
       "dxb",
       "mdb1",
       0
-    ],
-    [
-      "dxb",
-      "pekt",
-      116
     ],
     [
       "dxb",
@@ -5894,7 +5985,7 @@
     [
       "eze",
       "ord",
-      161
+      160
     ],
     [
       "eze",
@@ -5999,7 +6090,7 @@
     [
       "fra",
       "iad",
-      85
+      86
     ],
     [
       "fra",
@@ -6029,7 +6120,7 @@
     [
       "fra",
       "lax",
-      148
+      149
     ],
     [
       "fra",
@@ -6114,7 +6205,7 @@
     [
       "fra",
       "ord",
-      105
+      106
     ],
     [
       "fra",
@@ -6134,7 +6225,7 @@
     [
       "fra",
       "sea",
-      151
+      153
     ],
     [
       "fra",
@@ -6144,12 +6235,12 @@
     [
       "fra",
       "sto",
-      22
+      21
     ],
     [
       "fra",
       "sto2",
-      22
+      20
     ],
     [
       "fra",
@@ -6159,7 +6250,7 @@
     [
       "fra",
       "waw",
-      17
+      18
     ],
     [
       "fsn",
@@ -6188,11 +6279,6 @@
     ],
     [
       "fsn",
-      "lhr",
-      18
-    ],
-    [
-      "fsn",
       "mfr1",
       5
     ],
@@ -6208,11 +6294,6 @@
     ],
     [
       "fsn",
-      "par",
-      15
-    ],
-    [
-      "fsn",
       "sto2",
       20
     ],
@@ -6224,7 +6305,7 @@
     [
       "fsn",
       "waw",
-      12
+      14
     ],
     [
       "gash",
@@ -7484,7 +7565,7 @@
     [
       "hkg",
       "pekm",
-      47
+      46
     ],
     [
       "hkg",
@@ -7509,7 +7590,7 @@
     [
       "hkg",
       "pvgt",
-      26
+      27
     ],
     [
       "hkg",
@@ -7554,7 +7635,7 @@
     [
       "hkg",
       "tgdt",
-      8
+      7
     ],
     [
       "hkg",
@@ -7684,7 +7765,7 @@
     [
       "iad",
       "ord",
-      19
+      20
     ],
     [
       "iad",
@@ -7998,6 +8079,11 @@
     ],
     [
       "jnb",
+      "par",
+      163
+    ],
+    [
+      "jnb",
       "sgp",
       173
     ],
@@ -8089,7 +8175,7 @@
     [
       "lhr",
       "par",
-      6
+      7
     ],
     [
       "lhr",
@@ -8124,7 +8210,7 @@
     [
       "maa2",
       "sgp",
-      32
+      31
     ],
     [
       "mad",
@@ -8639,7 +8725,7 @@
     [
       "ord",
       "sto2",
-      127
+      128
     ],
     [
       "osd1",
@@ -8699,7 +8785,7 @@
     [
       "par",
       "sto2",
-      29
+      31
     ],
     [
       "pek",
@@ -8744,7 +8830,7 @@
     [
       "pekm",
       "syd",
-      154
+      152
     ],
     [
       "pekt",
@@ -8754,17 +8840,17 @@
     [
       "pekt",
       "pvgm",
-      27
+      26
     ],
     [
       "pekt",
       "pvgt",
-      24
+      25
     ],
     [
       "pekt",
-      "tyo",
-      57
+      "sgp",
+      157
     ],
     [
       "peku",
@@ -8804,12 +8890,12 @@
     [
       "pvgm",
       "pvgt",
-      2
+      3
     ],
     [
       "pvgm",
       "pvgu",
-      4
+      3
     ],
     [
       "pvgm",
@@ -8819,12 +8905,17 @@
     [
       "pvgm",
       "sgp",
-      103
+      87
+    ],
+    [
+      "pvgm",
+      "tyo",
+      41
     ],
     [
       "pvgt",
       "pvgu",
-      4
+      6
     ],
     [
       "pvgt",
@@ -8834,12 +8925,12 @@
     [
       "pvgt",
       "sgp",
-      82
+      140
     ],
     [
       "pvgt",
       "tyo",
-      39
+      32
     ],
     [
       "pvgu",
@@ -8849,7 +8940,7 @@
     [
       "pvgu",
       "tyo",
-      51
+      34
     ],
     [
       "sams",
@@ -8889,7 +8980,7 @@
     [
       "sgp",
       "syd",
-      146
+      145
     ],
     [
       "sgp",
@@ -8899,7 +8990,7 @@
     [
       "sgp",
       "tgdm",
-      64
+      65
     ],
     [
       "shkg",
@@ -8944,7 +9035,7 @@
     [
       "sto2",
       "vie",
-      32
+      26
     ],
     [
       "sto2",
@@ -8989,7 +9080,7 @@
     [
       "vie",
       "waw",
-      15
+      12
     ]
   ],
   "success": true
